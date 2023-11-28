@@ -28,6 +28,7 @@ ehthumbs_vista.db
 .yarn-integrity
 
 ### Cache ###
+.nx
 .npm
 .cache
 .stylelintcache
