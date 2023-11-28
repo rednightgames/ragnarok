@@ -46,7 +46,7 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "local-pkg": "^0.5.0",
     "prettier": "^3.1.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2"
   },
   "devDependencies": {
     "@rednight/eslint-config-rednight": "*",
