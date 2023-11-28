@@ -1,0 +1,62 @@
+{
+  "name": "@rednight/eslint-config-rednight",
+  "description": "Modern eslint config for a more civilized age",
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "javascript",
+    "typescript",
+    "styleguide"
+  ],
+  "license": "GPL-3.0",
+  "author": "Rednight Inc.",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint lib"
+  },
+  "dependencies": {
+    "@stylistic/eslint-plugin": "^1.4.1",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint-plugin-deprecation": "^2.0.0",
+    "eslint-plugin-es": "^4.1.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-i": "^2.29.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-monorepo-cop": "^1.0.2",
+    "eslint-plugin-no-only-tests": "^3.1.0",
+    "eslint-plugin-perfectionist": "^2.5.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-testing-library": "^6.2.0",
+    "eslint-plugin-unicorn": "^49.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "local-pkg": "^0.5.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@rednight/eslint-config-rednight": "*",
+    "@types/eslint": "^8.44.7",
+    "@types/node": "^20.10.0",
+    "eslint": "^8.54.0",
+    "eslint-define-config": "^2.0.0",
+    "tsup": "^8.0.1"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  }
+}
