@@ -1,0 +1,21 @@
+{
+  "name": "ragnarok",
+  "license": "AGPL-3.0",
+  "author": "Rednight Inc.",
+  "workspaces": [
+    "applications/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "lint": "lerna run lint --parallel"
+  },
+  "packageManager": "yarn@4.0.2",
+  "devDependencies": {
+    "lerna": "^7.4.2",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">= v20.9.0"
+  }
+}
