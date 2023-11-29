@@ -16,8 +16,8 @@ interface ButtonOwnProps {
   loading?: boolean;
   /**
    * Controls the shape of the button.
-   * - `text` for texted button
-   * - `contained` for filled button
+   * - `ghost` for texted button
+   * - `solid` for filled button
    * - `outline` for bordered button
    */
   shape?: ButtonShape;
