@@ -29,6 +29,7 @@ export const DarkTheme = createGlobalStyle`
     --text-norm: #ffffff;
     --text-hint: #8f8d8a;
     --text-weak: #5c5958;
+    --text-invert: #000000;
 
     // field
     --field-norm: #232427;
