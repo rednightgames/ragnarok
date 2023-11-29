@@ -18,5 +18,10 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     minify: "esbuild",
+    rollupOptions: {
+      external: [
+        "@rednight/utils",
+      ],
+    },
   },
 });

@@ -19,6 +19,9 @@
     "build": "tsc && vite build",
     "lint": "eslint lib"
   },
+  "dependencies": {
+    "@rednight/utils": "*"
+  },
   "devDependencies": {
     "@rednight/eslint-config-rednight": "*",
     "@types/node": "^20.10.0",
