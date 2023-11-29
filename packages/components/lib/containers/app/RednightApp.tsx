@@ -3,6 +3,7 @@ import {ReactNode} from "react";
 import {BrowserRouter} from "react-router-dom";
 
 import {ConfigProvider} from "../config";
+import {FocusProvider} from "../focus";
 
 interface AppProps {
   config: RednightConfig;
@@ -12,7 +13,9 @@ interface AppProps {
 const RednightApp = ({config, children}: AppProps) => {
   return (
     <ConfigProvider config={config}>
-      <BrowserRouter>{children}</BrowserRouter>
+      <FocusProvider>
+        <BrowserRouter>{children}</BrowserRouter>
+      </FocusProvider>
     </ConfigProvider>
   );
 };
