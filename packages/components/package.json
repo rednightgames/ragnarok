@@ -22,6 +22,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@rednight/shared": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-polymorphic-types": "^2.0.0",

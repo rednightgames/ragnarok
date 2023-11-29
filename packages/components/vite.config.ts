@@ -41,11 +41,18 @@ export default defineConfig({
         "react-dom",
         "react-router",
         "react-hook-form",
+        "@rednight/shared",
         "react-router-dom",
         "styled-components",
         "react/jsx-runtime",
         "@remix-run/router",
       ],
+    },
+  },
+  resolve: {
+    alias: {
+      "@containers": resolve(__dirname, "./lib/containers"),
+      "@hooks": resolve(__dirname, "./lib/hooks"),
     },
   },
 });
