@@ -1209,6 +1209,8 @@ __metadata:
   resolution: "@rednight/components@workspace:packages/components"
   dependencies:
     "@rednight/eslint-config-rednight": "npm:*"
+    "@rednight/shared": "npm:*"
+    "@rednight/utils": "npm:*"
     "@testing-library/dom": "npm:^9.3.3"
     "@testing-library/jest-dom": "npm:^6.1.4"
     "@testing-library/react": "npm:^14.1.2"
@@ -1271,11 +1273,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rednight/shared@workspace:packages/shared":
+"@rednight/shared@npm:*, @rednight/shared@workspace:packages/shared":
   version: 0.0.0-use.local
   resolution: "@rednight/shared@workspace:packages/shared"
   dependencies:
     "@rednight/eslint-config-rednight": "npm:*"
+    "@rednight/utils": "npm:*"
     "@types/node": "npm:^20.10.0"
     eslint: "npm:^8.54.0"
     ts-node: "npm:^10.9.1"
@@ -1285,7 +1288,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rednight/utils@workspace:packages/utils":
+"@rednight/utils@npm:*, @rednight/utils@workspace:packages/utils":
   version: 0.0.0-use.local
   resolution: "@rednight/utils@workspace:packages/utils"
   dependencies:

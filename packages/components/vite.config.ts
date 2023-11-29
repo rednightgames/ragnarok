@@ -40,6 +40,7 @@ export default defineConfig({
         "react-is",
         "react-dom",
         "react-router",
+        "@rednight/utils",
         "react-hook-form",
         "@rednight/shared",
         "react-router-dom",
