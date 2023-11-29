@@ -42,6 +42,7 @@ export default defineConfig({
         "react-router",
         "@rednight/utils",
         "react-hook-form",
+        "@rednight/colors",
         "@rednight/shared",
         "react-router-dom",
         "styled-components",
