@@ -1271,6 +1271,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rednight/utils@workspace:packages/utils":
+  version: 0.0.0-use.local
+  resolution: "@rednight/utils@workspace:packages/utils"
+  dependencies:
+    "@rednight/eslint-config-rednight": "npm:*"
+    eslint: "npm:^8.54.0"
+    typescript: "npm:^5.3.2"
+    vite: "npm:^5.0.4"
+    vite-plugin-dts: "npm:^3.6.3"
+    vitest: "npm:^0.34.6"
+  languageName: unknown
+  linkType: soft
+
 "@remix-run/router@npm:1.13.0":
   version: 1.13.0
   resolution: "@remix-run/router@npm:1.13.0"
