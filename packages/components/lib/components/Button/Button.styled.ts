@@ -20,7 +20,6 @@ export const StyledButton = styled.div<StyledButtonProps>`
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  height: 64px;
   outline-offset: 4px;
   outline-color: var(--focus-ring);
 
