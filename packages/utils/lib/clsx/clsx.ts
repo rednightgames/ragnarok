@@ -8,7 +8,7 @@ function clsx(...args: any): any {
     .filter((a: any) => typeof a === "string")
     .map((a: string) => a.trim())
     .filter((a: string) => a !== "")
-    .join(' ');
+    .join(" ");
 }
 
 export default clsx;
