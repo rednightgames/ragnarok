@@ -8,24 +8,11 @@ export default defineConfig({
   plugins: [
     dts({
       outDir: ["dist"],
-      exclude: ["vite.config.ts", "vitest.config.ts", "**/tests/**"],
+      exclude: ["vite.config.ts", "vitest.config.ts", "**/tests/**", "**/**.test.ts"],
       rollupTypes: true,
       clearPureImport: true,
     }),
-    react({
-      babel: {
-        plugins: [
-          [
-            "babel-plugin-styled-components",
-            {
-              displayName: false,
-              minify: true,
-              pure: true,
-            },
-          ],
-        ],
-      },
-    }),
+    react(),
   ],
   build: {
     lib: {
@@ -45,7 +32,6 @@ export default defineConfig({
         "@rednight/colors",
         "@rednight/shared",
         "react-router-dom",
-        "styled-components",
         "react/jsx-runtime",
         "@remix-run/router",
       ],

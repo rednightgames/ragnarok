@@ -16,10 +16,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build:watch": "tsc && vite build --watch",
+    "build:storybook": "storybook build",
     "build": "tsc && vite build",
     "lint": "eslint lib",
     "test": "vitest --passWithNoTests",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "storybook": "storybook dev --no-open -p 6006"
   },
   "dependencies": {
     "@rednight/colors": "*",
@@ -29,11 +31,21 @@
     "react-dom": "^18.2.0",
     "react-polymorphic-types": "^2.0.0",
     "react-router": "^6.20.0",
-    "react-router-dom": "^6.20.0",
-    "styled-components": "^6.1.1"
+    "react-router-dom": "^6.20.0"
   },
   "devDependencies": {
     "@rednight/eslint-config-rednight": "*",
+    "@storybook/addon-docs": "^7.6.1",
+    "@storybook/addon-essentials": "^7.6.1",
+    "@storybook/addon-interactions": "^7.6.1",
+    "@storybook/addon-links": "^7.6.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.6.1",
+    "@storybook/manager-api": "^7.6.1",
+    "@storybook/react": "^7.6.1",
+    "@storybook/react-vite": "^7.6.1",
+    "@storybook/testing-library": "^0.2.2",
+    "@storybook/theming": "^7.6.1",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
@@ -43,9 +55,10 @@
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.0",
     "@vitest/coverage-v8": "^0.34.6",
-    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^8.54.0",
     "jsdom": "^23.0.0",
+    "sass": "^1.69.5",
+    "storybook": "^7.6.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2",
     "vite": "^5.0.4",
