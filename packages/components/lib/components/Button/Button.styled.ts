@@ -1,11 +1,12 @@
 import {InvertThemeColors, ThemeColorUnion} from "@rednight/colors";
 import styled, {css} from "styled-components";
 
-import {ButtonShape} from "./Button";
+import {ButtonShape, ButtonSize} from "./Button";
 
 interface StyledButtonProps {
   $shape?: ButtonShape;
   $color: ThemeColorUnion;
+  $size: ButtonSize;
   $focused: boolean;
   $fullWith: boolean;
   $loading: boolean;
@@ -13,28 +14,35 @@ interface StyledButtonProps {
 }
 
 export const StyledButton = styled.div<StyledButtonProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-decoration: none;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  outline-offset: 4px;
   outline-color: var(--focus-ring);
 
   & u {
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 5px;
     text-decoration: none;
   }
-
-  &:focus-visible {
-    outline: none;
-  }
     
+  ${(props: StyledButtonProps) => css`
+    ${props.$size === "small" && css`
+      & u {
+        padding: 3px 11px;
+      }
+    `}
+    ${props.$size === "medium" && css`
+      & u {
+        padding: 7px 15px;
+      }
+    `}
+    ${props.$size === "large" && css`
+      & u {
+        padding: 9px 19px;
+      }
+    `}
+  `}
+
   ${(props: StyledButtonProps) => props.$fullWith && css`
     width: 100%;
   `}
@@ -67,21 +75,6 @@ export const StyledButton = styled.div<StyledButtonProps>`
       &:not(:focus-visible):focus u:after {
         width: 100%;
       }
-
-      ${props.$loading && css`
-        cursor: default;
-
-        & u {
-          display: flex;
-          align-items: center;
-          pointer-events: none;
-          color: var(--${props.$color}-hover);
-        }
-
-        & u:after {
-          height: 0;
-        }
-      `}
         
       ${props.disabled && css`
         cursor: default;
@@ -89,8 +82,7 @@ export const StyledButton = styled.div<StyledButtonProps>`
         & u {
           display: flex;
           align-items: center;
-          pointer-events: none;
-          color: var(--${props.$color}-disabled);
+          color: var(--${props.$color}-${props.$loading ? `major-1` : `major-2`});
         }
 
         & u:after {
@@ -107,15 +99,18 @@ export const StyledButton = styled.div<StyledButtonProps>`
     props.$shape === "solid" && css`
       & u {
         width: 100%;
-        padding: 5px 16px;
-        border-radius: 12px;
+        border-radius: 8px;
         color: var(--text-norm);
         transition: background-color 0.3s;
         background-color: var(--${props.$color});
       }
 
       &:hover u {
-        background-color: var(--${props.$color}-hover);
+        background-color: var(--${props.$color}-major-1);
+      }
+      
+      &:active u {
+          background-color: var(--${props.$color}-major-2);
       }
 
       ${InvertThemeColors.includes(props.$color) && css`
@@ -124,31 +119,15 @@ export const StyledButton = styled.div<StyledButtonProps>`
         }
       `}
 
-      ${props.$loading && css`
-        cursor: default;
-        pointer-events: none;
-
-        & u {
-          cursor: default;
-          background-color: var(--${props.$color}-hover);
-        }
-
-        &:hover u {
-          background-color: var(--${props.$color}-hover);
-        }
-      `}
-
       ${props.disabled && css`
         cursor: default;
-        pointer-events: none;
 
         & u {
-          cursor: default;
-          background-color: var(--${props.$color}-disabled);
+          background-color: var(--${props.$color}-${props.$loading ? `major-1` : `major-2`});
         }
 
         &:hover u {
-          background-color: var(--${props.$color}-disabled);
+          background-color: var(--${props.$color}-${props.$loading ? `major-1` : `major-2`});
         }
       `}
 
@@ -161,45 +140,28 @@ export const StyledButton = styled.div<StyledButtonProps>`
     props.$shape === "outline" && css`
       & u {
         width: 100%;
-        padding: 12px 20px;
         border-radius: 12px;
         color: var(--${props.$color});
-        transition:
-          color 0.3s,
-          border 0.3s;
+        transition: color 0.3s, border 0.3s;
         border: var(--${props.$color}) solid 1px;
       }
 
       &:hover u {
-        color: var(--${props.$color}-hover);
-        border: var(--${props.$color}-hover) solid 1px;
+        color: var(--${props.$color}-major-1);
+        border: var(--${props.$color}-major-1) solid 1px;
       }
 
-      ${props.$loading && css`
-        cursor: default;
-
-        & u {
-          color: var(--${props.$color}-hover);
-          border: var(--${props.$color}-hover) solid 1px;
-        }
-
-        &:hover u {
-          color: var(--${props.$color}-hover);
-          border: var(--${props.$color}-hover) solid 1px;
-        }
-      `}
-        
       ${props.disabled && css`
         cursor: default;
 
         & u {
-          color: var(--${props.$color}-disabled);
-          border: var(--${props.$color}-disabled) solid 1px;
+          color: var(--${props.$color}-${props.$loading ? `major-1` : `major-2`});
+          border: var(--${props.$color}-${props.$loading ? `major-1` : `major-2`}) solid 1px;
         }
 
         &:hover u {
-          color: var(--${props.$color}-disabled);
-          border: var(--${props.$color}-disabled) solid 1px;
+          color: var(--${props.$color}-${props.$loading ? `major-1` : `major-2`});
+          border: var(--${props.$color}-${props.$loading ? `major-1` : `major-2`}) solid 1px;
         }
       `}
 

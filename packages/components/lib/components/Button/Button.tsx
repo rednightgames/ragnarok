@@ -8,6 +8,8 @@ import {StyledButton} from "./Button.styled";
 
 export type ButtonShape = "ghost" | "solid" | "outline";
 
+export type ButtonSize = "small" | "medium" | "large";
+
 interface ButtonOwnProps {
   /**
    * Whether the button should render a loader.
@@ -26,6 +28,10 @@ interface ButtonOwnProps {
    * Exact styles applied to depend on the chosen shape as well.
    */
   color?: ThemeColorUnion;
+  /**
+   * Controls how large the button should be.
+   */
+  size?: ButtonSize;
   /**
    * Controls the width of the button.
    * - `false` for width of text length
@@ -58,6 +64,7 @@ const Button = <E extends ElementType = typeof defaultElement>(
     children,
     shape: shapeProp,
     color = ThemeColor.Primary,
+    size = "medium",
     as,
     "data-testid": dataTestId,
     ...restProps
@@ -77,6 +84,7 @@ const Button = <E extends ElementType = typeof defaultElement>(
       as={Element}
       $shape={shapeProp}
       $color={color}
+      $size={size}
       $focused={focusVisible}
       $fullWith={fullWidth}
       $loading={loading}
