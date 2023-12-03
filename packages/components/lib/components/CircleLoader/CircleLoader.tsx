@@ -1,20 +1,21 @@
-import {generateUID} from "@rednight/utils";
+import {clsx, generateUID} from "@rednight/utils";
 import {ComponentPropsWithoutRef} from "react";
 
-import {
-  StyledCircle,
-  StyledCircleLoader,
-  StyledLoaderCircle,
-} from "./CircleLoader.styled";
+import "./CircleLoader.scss";
 
-export type CircleLoaderProps = ComponentPropsWithoutRef<"svg">;
+export type CircleLoaderSize = "small" | "medium" | "large";
 
-const CircleLoader = ({...rest}: CircleLoaderProps) => {
+export interface CircleLoaderProps extends ComponentPropsWithoutRef<"svg"> {
+  size?: CircleLoaderSize;
+}
+
+const CircleLoader = ({size, className, ...rest}: CircleLoaderProps) => {
   const uid = generateUID("circle_loader");
 
   return (
-    <StyledCircleLoader
+    <svg
       xmlns="http://www.w3.org/2000/svg"
+      className={clsx("circle-loader", size && `is-${size}`, className)}
       viewBox="0 0 16 16"
       data-testid="circle_loader"
       {...rest}
@@ -27,9 +28,9 @@ const CircleLoader = ({...rest}: CircleLoaderProps) => {
           r="7"
         />
       </defs>
-      <StyledCircle href={`#${uid}`} />
-      <StyledLoaderCircle href={`#${uid}`} />
-    </StyledCircleLoader>
+      <use href={`#${uid}`} className="circle-loader-track"/>
+      <use href={`#${uid}`} className="circle-loader-circle"/>
+    </svg>
   );
 };
 
