@@ -4,15 +4,15 @@ import tinycolor, {Instance as Color} from "tinycolor2";
 import shade from "./shade";
 import tint from "./tint";
 
-function genMutation(color: Color) {
-  return function (mutation: number) {
+const genMutation = (color: Color) => {
+  return (mutation: number) => {
     const clone = color.clone();
 
     return mutation > 0 ? tint(clone, mutation) : shade(clone, Math.abs(mutation));
   };
 }
 
-function genButtonShades(base: Color, light: boolean) {
+const genButtonShades = (base: Color, light: boolean) => {
   const hsv = base.toHsv();
 
   if (hsv.s <= 0.3) {
