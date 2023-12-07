@@ -4,11 +4,13 @@ import * as cssTree from "css-tree";
 import prettier from "prettier";
 import tiny from "tinycolor2";
 
+import {ThemeConfig, ThemeFileType} from "./config";
 import genButtonShades from "./gen-button-shades";
-import {ThemeConfig, ThemeFileType} from "./themes.config";
 
 const generateTheme = ({source, type}: {source: string; type: ThemeFileType}) => {
   const buttonBases = [
+    "signal-primary",
+    "signal-secondary",
     "signal-danger",
     "signal-warning",
     "signal-info",

@@ -10,7 +10,7 @@ const genMutation = (color: Color) => {
 
     return mutation > 0 ? tint(clone, mutation) : shade(clone, Math.abs(mutation));
   };
-}
+};
 
 const genButtonShades = (base: Color, light: boolean) => {
   const hsv = base.toHsv();
@@ -34,17 +34,17 @@ const genButtonShades = (base: Color, light: boolean) => {
       });
 
       return [...tinted, ...shaded];
-    } 
-      const shaded = [-80, -70].map(genMutation(base)).map((c) => {
-        const hsl = c.toHsl();
-        hsl.h = hsl.h - 15;
-        return tinycolor(hsl);
-      });
+    }
 
-      const tinted = [0, 10, 20, 30].map(genMutation(base));
+    const shaded = [-80, -70].map(genMutation(base)).map((c) => {
+      const hsl = c.toHsl();
+      hsl.h = hsl.h - 15;
+      return tinycolor(hsl);
+    });
 
-      return [...shaded, ...tinted];
-    
+    const tinted = [0, 10, 20, 30].map(genMutation(base));
+
+    return [...shaded, ...tinted];
   }
 
   if (light) {
@@ -52,6 +52,6 @@ const genButtonShades = (base: Color, light: boolean) => {
   } 
     return [-80, -70, 0, 10, 20, 30].map(genMutation(base));
   
-}
+};
 
 export default genButtonShades;
