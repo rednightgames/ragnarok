@@ -1,7 +1,7 @@
+import "./CircleLoader.scss";
+
 import {clsx, generateUID} from "@rednight/utils";
 import {ComponentPropsWithoutRef} from "react";
-
-import "./CircleLoader.scss";
 
 export type CircleLoaderSize = "small" | "medium" | "large";
 
@@ -28,8 +28,14 @@ const CircleLoader = ({size, className, ...rest}: CircleLoaderProps) => {
           r="7"
         />
       </defs>
-      <use href={`#${uid}`} className="circle-loader-track"/>
-      <use href={`#${uid}`} className="circle-loader-circle"/>
+      <use
+        href={`#${uid}`}
+        className="circle-loader-track"
+      />
+      <use
+        href={`#${uid}`}
+        className="circle-loader-circle"
+      />
     </svg>
   );
 };
