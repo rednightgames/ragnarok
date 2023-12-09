@@ -19,7 +19,7 @@ describe("clsx()", () => {
     expect(result).toBe("");
   });
 
-  it('joins strings correctly', () => {
+  it("joins strings correctly", () => {
     const result = clsx("a", "b");
 
     expect(result).toBe("a b");
