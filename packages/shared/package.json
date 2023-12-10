@@ -6,11 +6,9 @@
   "version": "1.0.0",
   "type": "module",
   "main": "dist/shared.js",
-  "module": "dist/shared.cjs",
   "exports": {
     ".": {
-      "import": "./dist/shared.js",
-      "require": "./dist/shared.cjs"
+      "import": "./dist/shared.js"
     }
   },
   "types": "dist/index.d.ts",

@@ -6,11 +6,9 @@
   "version": "1.0.0",
   "type": "module",
   "main": "dist/components.js",
-  "module": "dist/components.cjs",
   "exports": {
     ".": {
-      "import": "./dist/components.js",
-      "require": "./dist/components.cjs"
+      "import": "./dist/components.js"
     }
   },
   "types": "dist/index.d.ts",

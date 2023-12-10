@@ -6,11 +6,9 @@
   "version": "1.0.0",
   "type": "module",
   "main": "dist/utils.js",
-  "module": "dist/utils.cjs",
   "exports": {
     ".": {
-      "import": "./dist/utils.js",
-      "require": "./dist/utils.cjs"
+      "import": "./dist/utils.js"
     }
   },
   "types": "dist/index.d.ts",

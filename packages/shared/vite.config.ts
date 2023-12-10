@@ -15,11 +15,12 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
       name: "rednight-shared",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     minify: "esbuild",
     rollupOptions: {
       external: [
+        "@rednight/crypto",
         "@rednight/utils",
       ],
     },

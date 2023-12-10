@@ -20,7 +20,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
       name: "rednight-components",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     minify: "esbuild",
     rollupOptions: {

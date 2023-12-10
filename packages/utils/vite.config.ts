@@ -15,7 +15,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
       name: "rednight-utils",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     minify: "esbuild",
   },
