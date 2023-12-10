@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "lint": "lerna run lint --parallel"
+    "lint": "lerna run lint --parallel",
+    "test": "lerna run test --parallel"
   },
   "packageManager": "yarn@4.0.2",
   "devDependencies": {
