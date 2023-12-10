@@ -10,8 +10,8 @@ export const stylistic = (): ConfigItem[] => {
       },
       rules: {
         "style/arrow-spacing": ["error", {after: true, before: true}],
-        "style/block-spacing": ["error", "always"],
-        "style/brace-style": ["error", "stroustrup", {allowSingleLine: true}],
+        "style/block-spacing": ["error", "never"],
+        "style/brace-style": ["error", "1tbs", {allowSingleLine: false}],
         "style/comma-dangle": ["error", "always-multiline"],
         "style/comma-spacing": ["error", {after: true, before: false}],
         "style/comma-style": ["error", "last"],

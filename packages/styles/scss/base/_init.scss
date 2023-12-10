@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--background-norm);
+  min-block-size: 100%;
+}
+
+::selection {
+  background-color: var(--selection-background-color);
+}
+
+a {
+  color: var(--link-norm);
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--link-hover);
+    text-decoration: none;
+  }
+
+  &:active {
+    color: var(--link-active);
+    text-decoration: none;
+  }
+}
+
+b,
+strong {
+  font-weight: var(--font-weight-bold);
+}

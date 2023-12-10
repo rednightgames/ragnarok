@@ -1,0 +1,29 @@
+{
+  "name": "@rednight/utils",
+  "description": "Generic business-agnostic utils",
+  "license": "AGPL-3.0",
+  "author": "Rednight Inc.",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/utils.js",
+  "exports": {
+    ".": {
+      "import": "./dist/utils.js"
+    }
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build:watch": "tsc && vite build --watch",
+    "build": "tsc && vite build",
+    "lint": "eslint lib",
+    "test": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "@rednight/eslint-config-rednight": "*",
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.7",
+    "vite-plugin-dts": "^3.6.4",
+    "vitest": "^1.0.4"
+  }
+}
