@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    about: Useful documentation about Rednight, its API, and how you can contribute.
+    url: https://docs.rednightgames.com
