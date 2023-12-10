@@ -6,7 +6,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
       name: "rednight-colors",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     minify: "esbuild",
     rollupOptions: {
