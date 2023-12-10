@@ -4,7 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 
 import {ConfigProvider} from "../config";
 import {FocusProvider} from "../focus";
-import {ThemeInjector} from "../theme";
+import {ThemeProvider} from "../theme";
 
 interface AppProps {
   config: RednightConfig;
@@ -14,11 +14,11 @@ interface AppProps {
 const RednightApp = ({config, children}: AppProps) => {
   return (
     <ConfigProvider config={config}>
-      <FocusProvider>
-        <ThemeInjector>
+      <ThemeProvider>
+        <FocusProvider>
           <BrowserRouter>{children}</BrowserRouter>
-        </ThemeInjector>
-      </FocusProvider>
+        </FocusProvider>
+      </ThemeProvider>
     </ConfigProvider>
   );
 };

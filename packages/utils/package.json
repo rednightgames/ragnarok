@@ -6,11 +6,9 @@
   "version": "1.0.0",
   "type": "module",
   "main": "dist/utils.js",
-  "module": "dist/utils.cjs",
   "exports": {
     ".": {
-      "import": "./dist/utils.js",
-      "require": "./dist/utils.cjs"
+      "import": "./dist/utils.js"
     }
   },
   "types": "dist/index.d.ts",
@@ -22,10 +20,10 @@
   },
   "devDependencies": {
     "@rednight/eslint-config-rednight": "*",
-    "eslint": "^8.54.0",
-    "typescript": "^5.3.2",
-    "vite": "^5.0.4",
-    "vite-plugin-dts": "^3.6.3",
-    "vitest": "^0.34.6"
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.7",
+    "vite-plugin-dts": "^3.6.4",
+    "vitest": "^1.0.4"
   }
 }

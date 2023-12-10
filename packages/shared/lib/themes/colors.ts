@@ -6,9 +6,4 @@ export enum ThemeColor {
   Success = "success",
 }
 
-export const InvertThemeColors: string[] = [
-  ThemeColor.Warning,
-  ThemeColor.Success,
-];
-
 export type ThemeColorUnion = `${ThemeColor}`;

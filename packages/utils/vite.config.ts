@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     dts({
       outDir: ["dist"],
-      exclude: ["vite.config.ts"],
+      exclude: ["vite.config.ts", "vitest.config.ts", "**/**.test.ts"],
       rollupTypes: true,
       clearPureImport: true,
     }),
@@ -15,7 +15,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
       name: "rednight-utils",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     minify: "esbuild",
   },

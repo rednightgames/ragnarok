@@ -30,7 +30,7 @@ export const core = (): ConfigItem[] => {
         }],
         "default-case": ["error", {commentPattern: "^no default$"}],
         "default-case-last": "error",
-        "default-param-last": "error",
+        "default-param-last": "off",
         "dot-notation": ["error", {allowKeywords: true}],
         "dot-location": ["error", "property"],
         "eqeqeq": ["error", "always", {null: "ignore"}],
@@ -90,7 +90,7 @@ export const core = (): ConfigItem[] => {
         "no-octal": "error",
         "no-octal-escape": "error",
         "no-proto": "error",
-        "no-redeclare": "error",
+        "no-redeclare": "off",
         "no-restricted-properties": ["error", {
           object: "arguments",
           property: "callee",

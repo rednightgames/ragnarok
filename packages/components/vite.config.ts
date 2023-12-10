@@ -3,35 +3,24 @@ import {resolve} from "node:path";
 import react from "@vitejs/plugin-react";
 import {defineConfig} from "vite";
 import dts from "vite-plugin-dts";
+import {libInjectCss} from "vite-plugin-lib-inject-css";
 
 export default defineConfig({
   plugins: [
     dts({
       outDir: ["dist"],
-      exclude: ["vite.config.ts", "vitest.config.ts", "**/tests/**"],
+      exclude: ["vite.config.ts", "vitest.config.ts", "**/tests/**", "**/**.test.ts"],
       rollupTypes: true,
       clearPureImport: true,
     }),
-    react({
-      babel: {
-        plugins: [
-          [
-            "babel-plugin-styled-components",
-            {
-              displayName: false,
-              minify: true,
-              pure: true,
-            },
-          ],
-        ],
-      },
-    }),
+    libInjectCss(),
+    react(),
   ],
   build: {
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
       name: "rednight-components",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     minify: "esbuild",
     rollupOptions: {
@@ -45,7 +34,6 @@ export default defineConfig({
         "@rednight/colors",
         "@rednight/shared",
         "react-router-dom",
-        "styled-components",
         "react/jsx-runtime",
         "@remix-run/router",
       ],

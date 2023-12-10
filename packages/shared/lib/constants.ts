@@ -53,6 +53,12 @@ export const APPS_CONFIGURATION: {[key in APP_NAMES]: AppConfiguration} = {
 
 export type APP_KEYS = keyof typeof APPS;
 export type APP_NAMES = (typeof APPS)[APP_KEYS];
+export const SSO_PATHS = {
+  SWITCH: "/switch",
+  LOGIN: "/login",
+  RESET_PASSWORD: "/reset-password",
+  SIGNUP: "/signup",
+} as const;
 
 export enum HTTP_STATUS_CODE {
   OK = 200,
