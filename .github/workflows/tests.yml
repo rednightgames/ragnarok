@@ -19,13 +19,13 @@ jobs:
         id: modules-cache
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          key: yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Cache Nx
         uses: actions/cache@v3
         with:
           path: ".nx"
-          key: cache-nx-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          key: nx-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install packages
         if: steps.modules-cache.outputs.cache-hit != 'true'
