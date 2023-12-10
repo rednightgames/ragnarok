@@ -1,4 +1,4 @@
-<h1><img src="https://github.com/rednightgames/ragnarok/assets/152066369/d66ca76a-dcd0-4887-833d-b23b99dfe7ba" width="100%" alt="Ragnarok"></h1>
+[![Ragnarok](https://github.com/rednightgames/ragnarok/assets/152066369/d66ca76a-dcd0-4887-833d-b23b99dfe7ba)](https://rednightgames.com/)
 
 This project is a monorepo hosting the Rednight applications. It includes the applications, their dependencies & shared modules as well as all tooling surrounding development of the clients (as well as some additional miscellaneous things).
 
