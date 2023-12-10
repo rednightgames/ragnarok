@@ -1,0 +1,52 @@
+:root,
+.ui-standard {
+    --primary: #6d4aff;
+    --primary-contrast: white;
+
+    --signal-danger: #dc3251;
+
+    --signal-warning: #ff9900;
+
+    --signal-success: #1ea885;
+
+    --signal-info: #239ece;
+
+    --interaction-norm: #6d4aff;
+
+    --interaction-weak: #eae7e4;
+
+    --text-norm: #0c0c14;
+    --text-weak: #5c5958;
+    --text-hint: #8f8d8a;
+    --text-disabled: #c2bfbc;
+    --text-invert: white;
+
+    --field-norm: #adaba8;
+    --field-hover: #8f8d8a;
+    --field-disabled: #d1cfcd;
+
+    --focus-outline: #6d4aff;
+    --focus-ring: rgb(109 74 255 / 0.2);
+
+    --border-norm: #d1cfcd;
+    --border-weak: #eae7e4;
+
+    --background-norm: #ff0000;
+    --background-weak: #f5f4f2;
+    --background-strong: #e5e4e1;
+    --background-invert: #0c0c14;
+
+    --interaction-default: transparent;
+    --interaction-default-hover: rgb(194 193 192 / 0.2);
+    --interaction-default-active: rgb(194 192 190 / 0.35);
+
+    --shadow-norm-opacity: 0.1;
+    --shadow-lifted-opacity: 0.16;
+
+    --backdrop-norm: rgb(38 42 51 / 0.48);
+
+    /* Optional colors */
+
+    --optional-scrollbar-thumb-color: #d1cfcd;
+    --optional-scrollbar-thumb-hover-color: #c2bfbc;
+}
