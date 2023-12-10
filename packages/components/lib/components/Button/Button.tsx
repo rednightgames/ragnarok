@@ -1,10 +1,11 @@
-import {useFocusVisible} from "@hooks";
-import {ThemeColor, ThemeColorUnion} from "@rednight/colors";
+import "./Button.scss";
+
+import {ThemeColor, ThemeColorUnion} from "@rednight/shared";
+import {clsx} from "@rednight/utils";
 import {ElementType, ForwardedRef, forwardRef} from "react";
 import {PolymorphicPropsWithRef} from "react-polymorphic-types";
 
 import {CircleLoader} from "../CircleLoader";
-import {StyledButton} from "./Button.styled";
 
 export type ButtonShape = "ghost" | "solid" | "outline";
 
@@ -60,9 +61,10 @@ const Button = <E extends ElementType = typeof defaultElement>(
     loading = false,
     disabled = false,
     fullWidth = false,
+    className,
     tabIndex,
     children,
-    shape: shapeProp,
+    shape = "solid",
     color = ThemeColor.Primary,
     size = "medium",
     as,
@@ -71,39 +73,40 @@ const Button = <E extends ElementType = typeof defaultElement>(
   }: ButtonProps<E>,
   ref: ForwardedRef<Element>,
 ) => {
-  const {focusVisible, onInput, onFocus, onBlur} = useFocusVisible();
   const isDisabled = loading || disabled;
 
   const Element: ElementType = as || defaultElement;
+
+  const buttonClassName = clsx(
+    "button",
+    fullWidth && "w-full",
+    size !== "medium" && `button-${size}`,
+    `button-${shape}-${color}`,
+    Element !== "button" && "inline-block text-center",
+    className,
+  );
 
   const roleProps =
     restProps.onClick && !restProps.type ? {role: "button"} : undefined;
 
   return (
-    <StyledButton
-      as={Element}
-      $shape={shapeProp}
-      $color={color}
-      $size={size}
-      $focused={focusVisible}
-      $fullWith={fullWidth}
-      $loading={loading}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onInput={onInput}
-      disabled={isDisabled}
+    <Element
       ref={ref}
+      className={buttonClassName}
+      disabled={isDisabled}
       tabIndex={isDisabled ? -1 : tabIndex}
       aria-busy={loading}
       data-testid={dataTestId}
       {...roleProps}
       {...restProps}
     >
-      <u>
-        {children}
-        {loading && <CircleLoader />}
-      </u>
-    </StyledButton>
+      {children}
+      {loading && (
+        <span className="button-loader-container">
+          <CircleLoader />
+        </span>
+      )}
+    </Element>
   );
 };
 
