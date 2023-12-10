@@ -1,0 +1,37 @@
+{
+  "name": "@rednight/shared",
+  "description": "Rednight shared",
+  "license": "AGPL-3.0",
+  "author": "Rednight Inc.",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/shared.js",
+  "exports": {
+    ".": {
+      "import": "./dist/shared.js"
+    }
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build:watch": "tsc && vite build --watch",
+    "build": "tsc && vite build",
+    "lint": "eslint lib"
+  },
+  "dependencies": {
+    "@rednight/colors": "*",
+    "@rednight/crypto": "*",
+    "@rednight/utils": "*",
+    "jsbi": "^4.3.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@rednight/eslint-config-rednight": "*",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.4",
+    "eslint": "^8.55.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.7",
+    "vite-plugin-dts": "^3.6.4"
+  }
+}

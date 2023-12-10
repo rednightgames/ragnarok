@@ -1,0 +1,14 @@
+{
+  "name": "@rednight/styles",
+  "description": "Rednight Design system",
+  "license": "ISC",
+  "author": "Rednight Inc.",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "inter-ui": "^3.19.3"
+  },
+  "devDependencies": {
+    "include-media": "^2.0.0"
+  }
+}

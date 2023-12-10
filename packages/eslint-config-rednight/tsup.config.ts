@@ -5,7 +5,7 @@ export default defineConfig({
   external: ["eslint"],
   splitting: false,
   treeshake: true,
-  format: "esm",
+  format: ["esm"],
   minify: true,
   clean: true,
   dts: true,

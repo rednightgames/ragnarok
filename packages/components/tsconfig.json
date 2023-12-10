@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@containers/*": [
+        "lib/containers/*"
+      ],
+      "@contexts": [
+        "lib/contexts/contexts.ts"
+      ],
+      "@hooks": [
+        "lib/hooks/index.ts"
+      ]
+    }
+  },
+  "extends": "../../tsconfig.base.json"
+}
