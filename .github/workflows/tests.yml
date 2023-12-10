@@ -1,0 +1,35 @@
+name: Unit Tests
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js LTS
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.9.0"
+          cache: "yarn"
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: modules-cache
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Cache Nx
+        uses: actions/cache@v3
+        with:
+          path: ".nx"
+          key: cache-nx-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install packages
+        if: steps.modules-cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Run test
+        run: yarn test
