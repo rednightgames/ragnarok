@@ -22,12 +22,12 @@
     "storybook": "storybook dev --no-open -p 6006"
   },
   "dependencies": {
+    "@rednight/react-polymorphic-types": "*",
     "@rednight/shared": "*",
     "@rednight/styles": "*",
     "@rednight/utils": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-polymorphic-types": "^2.0.0",
     "react-router": "^6.20.1",
     "react-router-dom": "^6.20.1"
   },
