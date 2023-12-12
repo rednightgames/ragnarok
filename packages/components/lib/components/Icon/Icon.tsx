@@ -27,7 +27,8 @@ export type IconSize =
 
 export type IconName =
   | "account"
-  | "app-switch";
+  | "checkmark"
+  | "minus";
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
   /** Determines which icon to render based on its name */

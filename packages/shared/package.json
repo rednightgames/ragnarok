@@ -29,7 +29,6 @@
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.4",
     "eslint": "^8.55.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
     "vite-plugin-dts": "^3.6.4"
