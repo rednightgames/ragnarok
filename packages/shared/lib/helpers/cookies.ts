@@ -15,7 +15,7 @@ export const getCookie = (name: string, cookies = document.cookie) => {
 export enum CookieSameSiteAttribute {
   Lax = "lax",
   Strict = "strict",
-  None = "none",
+  None = "none"
 }
 
 export interface SetCookieArguments {

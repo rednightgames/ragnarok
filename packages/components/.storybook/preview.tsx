@@ -2,6 +2,7 @@ import type {Preview} from "@storybook/react";
 import {RednightConfig} from "@rednight/shared";
 import {ConfigProvider} from "@containers/config";
 import {FocusProvider} from "@containers/focus";
+import {Icons} from "@components/Icon";
 
 import "./index.scss";
 
@@ -21,6 +22,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ConfigProvider config={config}>
+        <Icons />
         <FocusProvider>
           <Story />
         </FocusProvider>

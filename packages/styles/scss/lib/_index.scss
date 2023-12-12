@@ -8,6 +8,13 @@
 // Functions
 @import
   "em",
+  "rem",
   "im-to-em",
+  "str-replace",
   "easing",
   "dash-join";
+
+// Mixins
+@import
+  "vendor-prefix",
+  "responsive-classes";

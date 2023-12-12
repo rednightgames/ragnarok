@@ -316,7 +316,6 @@ export const react = (): ConfigItem[] => {
         "jsx/no-noninteractive-element-interactions": "warn",
         "jsx/no-noninteractive-tabindex": "warn",
         "jsx/no-static-element-interactions": "warn",
-        "jsx/prefer-tag-over-role": "warn",
       },
       settings: {
         "import/resolver": {

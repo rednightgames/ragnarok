@@ -1,9 +1,9 @@
 import "./Button.scss";
 
+import {PolymorphicPropsWithRef} from "@rednight/react-polymorphic-types";
 import {ThemeColor, ThemeColorUnion} from "@rednight/shared";
 import {clsx} from "@rednight/utils";
 import {ElementType, ForwardedRef, forwardRef} from "react";
-import {PolymorphicPropsWithRef} from "react-polymorphic-types";
 
 import {CircleLoader} from "../CircleLoader";
 

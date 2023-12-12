@@ -16,7 +16,7 @@ interface ThemeProviderProps {
 }
 
 export const getThemeStyle = (themeType: ThemeTypes = DEFAULT_THEME) => {
-  return THEMES_MAP[themeType]?.theme || THEMES_MAP[DEFAULT_THEME].theme;
+  return THEMES_MAP[themeType]?.theme.default || THEMES_MAP[DEFAULT_THEME].theme.default;
 };
 
 const THEME_COOKIE_NAME = "theme";
@@ -161,7 +161,7 @@ const ThemeProvider = ({children}: ThemeProviderProps) => {
         addListener: listeners.subscribe,
       }), [])}
     >
-      <style id={THEME_ID}>{style.default}</style>
+      <style id={THEME_ID}>{style}</style>
       {children}
     </ThemeContext.Provider>
   );

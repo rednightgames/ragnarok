@@ -1,0 +1,32 @@
+{
+  "name": "@rednight/react-polymorphic-types",
+  "description": "Zero-runtime polymorphic component definitions for React",
+  "license": "MIT",
+  "author": "Kristóf Poduszló <kripod@protonmail.com>",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/react-polymorphic-types.js",
+  "exports": {
+    ".": {
+      "import": "./dist/react-polymorphic-types.js"
+    }
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && vite build",
+    "lint": "eslint lib"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@rednight/eslint-config-rednight": "*",
+    "@types/react": "^18.2.43",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.6.4"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.14.52"
+  }
+}
