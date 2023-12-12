@@ -3352,6 +3352,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^4.2.1"
     "@vitest/coverage-v8": "npm:^1.0.4"
     eslint: "npm:^8.55.0"
+    jsdom: "npm:^23.0.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     typescript: "npm:^5.3.3"
