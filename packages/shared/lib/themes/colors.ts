@@ -3,7 +3,7 @@ export enum ThemeColor {
   Secondary = "secondary",
   Danger = "danger",
   Warning = "warning",
-  Success = "success",
+  Success = "success"
 }
 
 export type ThemeColorUnion = `${ThemeColor}`;

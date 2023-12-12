@@ -67,7 +67,7 @@ export enum HTTP_STATUS_CODE {
   NOT_FOUND = 404,
   UNPROCESSABLE_ENTITY = 422,
   TOO_MANY_REQUESTS = 429,
-  INTERNAL_SERVER_ERROR = 500,
+  INTERNAL_SERVER_ERROR = 500
 }
 
 export const REGEX_EMAIL =
@@ -78,9 +78,9 @@ export const REDNIGHT_DOMAINS = ["https://rednightgames.com"];
 export enum DESKTOP_PLATFORMS {
   LINUX = "linux",
   MACOS = "macos",
-  WINDOWS = "windows",
+  WINDOWS = "windows"
 }
 
 export enum REDNIGHT_WEBSITES {
-  STATUS_PAGE = "https://status.rednightgames.com",
+  STATUS_PAGE = "https://status.rednightgames.com"
 }

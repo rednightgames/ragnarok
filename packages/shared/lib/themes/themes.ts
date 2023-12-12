@@ -7,7 +7,7 @@ import {decodeBase64URL, encodeBase64URL} from "../helpers";
 
 export enum ThemeTypes {
   Carbon,
-  Snow,
+  Snow
 }
 
 export const DEFAULT_THEME = ThemeTypes.Carbon;
@@ -37,12 +37,12 @@ export const getThemes = () => {
 export enum ThemeModeSetting {
   Auto,
   Dark,
-  Light,
+  Light
 }
 
 export enum ColorScheme {
   Dark,
-  Light,
+  Light
 }
 
 export enum ThemeFontSizeSetting {
@@ -50,13 +50,13 @@ export enum ThemeFontSizeSetting {
   X_SMALL,
   SMALL,
   LARGE,
-  X_LARGE,
+  X_LARGE
 }
 
 export enum ThemeFeatureSetting {
   DEFAULT,
   SCROLLBARS_OFF,
-  ANIMATIONS_OFF,
+  ANIMATIONS_OFF
 }
 
 export interface ThemeSetting {
