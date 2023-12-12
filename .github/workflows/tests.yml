@@ -31,5 +31,8 @@ jobs:
         if: steps.modules-cache.outputs.cache-hit != 'true'
         run: yarn
 
+      - name: Build
+        run: yarn build
+
       - name: Run test
         run: yarn test
