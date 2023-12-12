@@ -1,3 +1,4 @@
+import {Icons} from "@components/Icon";
 import {RednightConfig} from "@rednight/shared";
 import {ReactNode} from "react";
 import {BrowserRouter} from "react-router-dom";
@@ -14,6 +15,7 @@ interface AppProps {
 const RednightApp = ({config, children}: AppProps) => {
   return (
     <ConfigProvider config={config}>
+      <Icons />
       <ThemeProvider>
         <FocusProvider>
           <BrowserRouter>{children}</BrowserRouter>

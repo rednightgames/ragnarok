@@ -41,6 +41,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      "@components": resolve(__dirname, "./lib/components"),
       "@containers": resolve(__dirname, "./lib/containers"),
       "@hooks": resolve(__dirname, "./lib/hooks"),
     },
