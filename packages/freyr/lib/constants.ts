@@ -21,3 +21,5 @@ export const AUTO_GENERATE_DISCLAIMER = [
   " * Manual changes will be lost.",
   " */",
 ].join("\n");
+
+export const BUTTON_SHADE_NAMES = ["-minor-2", "-minor-1", "", "-major-1", "-major-2", "-major-3", "-contrast"];
