@@ -2,8 +2,8 @@ import CI from "ci-info";
 import {Writable} from "stream";
 
 import {FREYR_VERSION} from "../constants";
-import {Code} from "./codes";
 import {applyStyle, formatCode, pretty, Style, Type} from "./helpers";
+import {MessageName} from "./messageNames";
 
 export type LoggerOptions = {
   includeFooter?: boolean;
@@ -60,11 +60,11 @@ export class Logger {
         ? `${name}: ${message}`
         : message;
 
-      logger.reportWarning(Code.UNNAMED, fullMessage);
+      logger.reportWarning(MessageName.UNNAMED, fullMessage);
     };
 
     if (opts.includeVersion) {
-      logger.reportInfo(Code.UNNAMED, applyStyle(`Freyr ${FREYR_VERSION}`, Style.BOLD));
+      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Freyr ${FREYR_VERSION}`, Style.BOLD));
     }
 
     try {
@@ -231,36 +231,36 @@ export class Logger {
     }
   }
 
-  reportInfo(code: Code | null, text: string) {
-    const formattedCode = formatCode(code);
+  reportInfo(name: MessageName | null, text: string) {
+    const formattedCode = formatCode(name);
     const prefix = formattedCode ? `${formattedCode}: ` : "";
     const message = `${this.formatPrefix(prefix, "magentaBright")}${text}`;
 
     this.writeLine(message);
   }
 
-  reportWarning(code: Code, text: string) {
+  reportWarning(name: MessageName, text: string) {
     this.warningCount += 1;
 
-    const formattedCode = formatCode(code);
+    const formattedCode = formatCode(name);
     const prefix = formattedCode ? `${formattedCode}: ` : "";
 
     this.writeLine(`${this.formatPrefix(prefix, "yellowBright")}${text}`);
   }
 
   reportException(error: Error) {
-    this.reportError(Code.EXCEPTION, error.stack || error.message);
+    this.reportError(MessageName.EXCEPTION, error.stack || error.message);
   }
 
-  reportError(name: Code, text: string) {
+  reportError(name: MessageName, text: string) {
     this.errorCount += 1;
     this.timerFooter.push(() => this.reportErrorImpl(name, text));
 
     this.reportErrorImpl(name, text);
   }
 
-  private reportErrorImpl(code: Code, text: string) {
-    const formattedCode = formatCode(code);
+  private reportErrorImpl(name: MessageName, text: string) {
+    const formattedCode = formatCode(name);
     const prefix = formattedCode ? `${formattedCode}: ` : "";
 
     this.writeLine(`${this.formatPrefix(prefix, "redBright")}${text}`);
@@ -286,11 +286,11 @@ export class Logger {
     const message = `${installStatus} in ${timing}`;
 
     if (this.errorCount > 0) {
-      this.reportError(Code.UNNAMED, message);
+      this.reportError(MessageName.UNNAMED, message);
     } else if (this.warningCount > 0) {
-      this.reportWarning(Code.UNNAMED, message);
+      this.reportWarning(MessageName.UNNAMED, message);
     } else {
-      this.reportInfo(Code.UNNAMED, message);
+      this.reportInfo(MessageName.UNNAMED, message);
     }
   }
 

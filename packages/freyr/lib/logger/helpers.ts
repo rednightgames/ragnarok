@@ -1,7 +1,11 @@
 import chalk from "chalk";
 import CI from "ci-info";
 
-import {Code, stringifyMessageName} from "./codes";
+import {MessageName} from "./messageNames";
+
+export const stringifyMessageName = (code: MessageName | number): string => {
+  return `FR${code.toString(10).padStart(4, "0")}`;
+};
 
 export const Type = {
   NO_HINT: "NO_HINT",
@@ -120,11 +124,11 @@ export const pretty = <T extends Types>(value: string | number, formatType: T | 
   return applyColor(value as string, formatType);
 };
 
-export const formatCode = (code: Code | null) => {
-  const num = code === null ? 0 : code;
+export const formatCode = (name: MessageName | null) => {
+  const num = name === null ? 0 : name;
 
   const label = stringifyMessageName(num);
-  if (code === null) {
+  if (name === null) {
     return pretty(label, "grey");
   } 
     return label;
