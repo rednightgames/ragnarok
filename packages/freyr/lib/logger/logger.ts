@@ -1,4 +1,4 @@
-import {Writable} from "node:stream";
+import {Writable} from "stream";
 
 import {FREYR_VERSION} from "../constants";
 import {Code} from "./codes";
