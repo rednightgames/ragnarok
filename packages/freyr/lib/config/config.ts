@@ -1,27 +1,59 @@
-export type MaybePromise<T> = T | Promise<T>;
-
-export type ThemeFileType = "light" | "dark";
-
-export interface FileConfig {
-  path: string;
-  type: ThemeFileType;
-}
-
-export interface ThemeConfig {
-  output: string;
-  files: FileConfig[];
-}
-
-/**
- * The options available in freyr.config.ts
- */
-export type Config = {
-  buttons?: string[];
-  themes?: ThemeConfig[];
-};
+import {Config, MaybePromise} from "../types";
+import JoyCon from "joycon";
+import {CONFIG_FILES} from "../constants";
+import {parse} from "path";
+import {bundleRequire} from "bundle-require";
+import {Code} from "../logger";
+import {BundleConfig, ConfigOptions, LoadConfig} from "./types";
 
 export const defineConfig = (
   options:
     | Config
     | (() => MaybePromise<Config>),
 ) => options;
+
+export class ConfigProvider {
+  static async load(opts: ConfigOptions) {
+    return await opts.logger.startTimerPromise("Config step", async () => {
+      const config = await this.loadConfig(process.cwd());
+
+      if (!config.path) {
+        opts.logger.reportError(Code.EXCEPTION, "Cannot find config file");
+      }
+
+      return typeof config.data === "function"
+        ? await config.data()
+        : config.data as Config;
+    });
+  }
+
+  private static async bundleConfig(configPath: string): Promise<BundleConfig> {
+    return await bundleRequire({
+      filepath: configPath,
+    });
+  }
+
+  private static async resolveConfig(cwd: string = process.cwd()): Promise<string | null> {
+    const configJoycon = new JoyCon();
+    return await configJoycon.resolve({
+      files: CONFIG_FILES,
+      cwd: cwd,
+      stopDir: parse(cwd).root,
+    });
+  }
+
+  private static async loadConfig(cwd: string): Promise<LoadConfig> {
+    const configPath = await this.resolveConfig(cwd);
+
+    if (configPath) {
+      const config = await this.bundleConfig(configPath);
+
+      return {
+        path: configPath,
+        data: config.mod.default || config.mod,
+      };
+    }
+
+    return {};
+  }
+}
