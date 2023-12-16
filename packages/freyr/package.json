@@ -14,7 +14,6 @@
   },
   "types": "dist/freyr.d.ts",
   "scripts": {
-    "start": "rm -rf dist && yarn build && echo ======================== && freyr",
     "build": "tsup",
     "lint": "eslint lib"
   },
