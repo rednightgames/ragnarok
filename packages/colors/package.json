@@ -15,6 +15,7 @@
     "tinycolor2": "^1.6.0"
   },
   "devDependencies": {
+    "@rednight/freyr": "*",
     "@types/css-tree": "^2.3.4",
     "@types/node": "^20.10.4",
     "@types/tinycolor2": "^1.4.6",
