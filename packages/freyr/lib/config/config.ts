@@ -4,7 +4,7 @@ import {bundleRequire} from "bundle-require";
 import JoyCon from "joycon";
 
 import {CONFIG_FILES} from "../constants";
-import {Code} from "../logger";
+import {MessageName} from "../logger";
 import {Config, MaybePromise} from "../types";
 import {BundleConfig, ConfigOptions, LoadConfig} from "./types";
 
@@ -20,7 +20,7 @@ export class ConfigProvider {
       const config = await this.loadConfig(process.cwd());
 
       if (!config.path) {
-        opts.logger.reportError(Code.EXCEPTION, "Cannot find config file");
+        opts.logger.reportError(MessageName.EXCEPTION, "Cannot find config file");
       }
 
       return typeof config.data === "function"
