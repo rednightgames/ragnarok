@@ -1,5 +1,5 @@
-import tiny, {Instance as Color} from "tinycolor2";
 import {percentOf} from "@rednight/utils";
+import tiny, {Instance as Color} from "tinycolor2";
 
 export const tint = (color: Color, percent: number) => {
   const rgb = color.toRgb();

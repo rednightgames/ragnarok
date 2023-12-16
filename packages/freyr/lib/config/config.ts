@@ -1,9 +1,11 @@
-import {Config, MaybePromise} from "../types";
-import JoyCon from "joycon";
-import {CONFIG_FILES} from "../constants";
-import {parse} from "path";
+import {parse} from "node:path";
+
 import {bundleRequire} from "bundle-require";
+import JoyCon from "joycon";
+
+import {CONFIG_FILES} from "../constants";
 import {Code} from "../logger";
+import {Config, MaybePromise} from "../types";
 import {BundleConfig, ConfigOptions, LoadConfig} from "./types";
 
 export const defineConfig = (
@@ -14,7 +16,7 @@ export const defineConfig = (
 
 export class ConfigProvider {
   static async load(opts: ConfigOptions) {
-    return await opts.logger.startTimerPromise("Config step", async () => {
+    return opts.logger.startTimerPromise("Config step", async () => {
       const config = await this.loadConfig(process.cwd());
 
       if (!config.path) {
@@ -22,20 +24,20 @@ export class ConfigProvider {
       }
 
       return typeof config.data === "function"
-        ? await config.data()
+        ? config.data()
         : config.data as Config;
     });
   }
 
   private static async bundleConfig(configPath: string): Promise<BundleConfig> {
-    return await bundleRequire({
+    return bundleRequire({
       filepath: configPath,
     });
   }
 
   private static async resolveConfig(cwd: string = process.cwd()): Promise<string | null> {
     const configJoycon = new JoyCon();
-    return await configJoycon.resolve({
+    return configJoycon.resolve({
       files: CONFIG_FILES,
       cwd: cwd,
       stopDir: parse(cwd).root,

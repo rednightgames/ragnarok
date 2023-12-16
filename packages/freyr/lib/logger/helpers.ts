@@ -37,62 +37,6 @@ const colors = new Map<Types, [string, number] | null>([
   [Type.CODE, ["#87afff", 111]],
 ]);
 
-const validateTransform = <T>(spec: {
-  pretty: (val: T) => string;
-}): {
-  pretty: (val: T) => string;
-} => spec;
-
-const transforms = {
-  [Type.ID]: validateTransform({
-    pretty: (value: number | string) => {
-      if (typeof value === "number") {
-        return applyColor(`${value}`, Type.NUMBER);
-      } else {
-        return applyColor(value, Type.CODE);
-      }
-    },
-  }),
-  [Type.NUMBER]: validateTransform({
-    pretty: (value: number) => {
-      return applyColor(`${value}`, Type.NUMBER);
-    },
-  }),
-  [Type.DURATION]: validateTransform({
-    pretty: (duration: number) => {
-      if (duration > 1000 * 60) {
-        const minutes = Math.floor(duration / 1000 / 60);
-        const seconds = Math.ceil((duration - minutes * 60 * 1000) / 1000);
-        return seconds === 0 ? `${minutes}m` : `${minutes}m ${seconds}s`;
-      } else {
-        const seconds = Math.floor(duration / 1000);
-        const milliseconds = duration - seconds * 1000;
-        return milliseconds === 0 ? `${seconds}s` : `${seconds}s ${milliseconds}ms`;
-      }
-    },
-  }),
-}
-
-export const formatCode = (code: Code | null) => {
-  const num = code === null ? 0 : code;
-
-  const label = stringifyMessageName(num);
-  if (code === null) {
-    return pretty(label, "grey");
-  } else {
-    return label;
-  }
-};
-
-export const applyStyle = (text: string, flags: Style): string => {
-  switch (flags) {
-    case Style.BOLD:
-      return chalkInstance.bold(text);
-    default:
-      return text;
-  }
-}
-
 export const applyColor = (value: string, formatType: Types | string): string => {
   const colorSpec = colors.get(formatType as Types);
   if (colorSpec === null) {
@@ -126,6 +70,42 @@ export const applyColor = (value: string, formatType: Types | string): string =>
   return fn(value);
 };
 
+const validateTransform = <T>(spec: {
+  pretty: (val: T) => string;
+}): {
+  pretty: (val: T) => string;
+} => spec;
+
+const transforms = {
+  [Type.ID]: validateTransform({
+    pretty: (value: number | string) => {
+      if (typeof value === "number") {
+        return applyColor(`${value}`, Type.NUMBER);
+      } 
+        return applyColor(value, Type.CODE);
+      
+    },
+  }),
+  [Type.NUMBER]: validateTransform({
+    pretty: (value: number) => {
+      return applyColor(`${value}`, Type.NUMBER);
+    },
+  }),
+  [Type.DURATION]: validateTransform({
+    pretty: (duration: number) => {
+      if (duration > 1000 * 60) {
+        const minutes = Math.floor(duration / 1000 / 60);
+        const seconds = Math.ceil((duration - minutes * 60 * 1000) / 1000);
+        return seconds === 0 ? `${minutes}m` : `${minutes}m ${seconds}s`;
+      } 
+        const seconds = Math.floor(duration / 1000);
+        const milliseconds = duration - seconds * 1000;
+        return milliseconds === 0 ? `${seconds}s` : `${seconds}s ${milliseconds}ms`;
+      
+    },
+  }),
+};
+
 export const pretty = <T extends Types>(value: string | number, formatType: T | string): string => {
   if (value === null) {
     return applyColor("null", Type.NULL);
@@ -138,6 +118,26 @@ export const pretty = <T extends Types>(value: string | number, formatType: T | 
   }
 
   return applyColor(value as string, formatType);
+};
+
+export const formatCode = (code: Code | null) => {
+  const num = code === null ? 0 : code;
+
+  const label = stringifyMessageName(num);
+  if (code === null) {
+    return pretty(label, "grey");
+  } 
+    return label;
+  
+};
+
+export const applyStyle = (text: string, flags: Style): string => {
+  switch (flags) {
+    case Style.BOLD:
+      return chalkInstance.bold(text);
+    default:
+      return text;
+  }
 };
 
 export const getLinePrefix = (index: number, count: number): string => {
@@ -156,7 +156,7 @@ export const getLinePrefix = (index: number, count: number): string => {
   }
 
   return "│ ";
-}
+};
 
 export const valueToString = (value: unknown): string => {
   if (typeof value !== "string") {
@@ -168,4 +168,4 @@ export const valueToString = (value: unknown): string => {
   }
 
   return `"${value}"`;
-}
+};

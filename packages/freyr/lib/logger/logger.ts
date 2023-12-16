@@ -1,9 +1,9 @@
+import CI from "ci-info";
 import {Writable} from "stream";
 
 import {FREYR_VERSION} from "../constants";
 import {Code} from "./codes";
 import {applyStyle, formatCode, pretty, Style, Type} from "./helpers";
-import CI from "ci-info";
 
 export type LoggerOptions = {
   includeFooter?: boolean;
@@ -21,13 +21,27 @@ export type TimerOptions = Pick<SectionOptions, "skipIfEmpty">;
 
 export const SINGLE_LINE_CHAR = "·";
 
-const GROUP = CI.GITHUB_ACTIONS
-  ? {start: (what: string) => `::group::${what}\n`, end: (what: string) => "::endgroup::\n"}
-  : CI.TRAVIS
-    ? {start: (what: string) => `travis_fold:start:${what}\n`, end: (what: string) => `travis_fold:end:${what}\n`}
-    : CI.GITLAB
-      ? {start: (what: string) => `section_start:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}[collapsed=true]\r\x1b[0K${what}\n`, end: (what: string) => `section_end:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}\r\x1b[0K`}
-      : null;
+const GROUP = (() => {
+  if (CI.GITHUB_ACTIONS) {
+    return {
+      start: (what: string) => `::group::${what}\n`,
+      end: () => "::endgroup::\n",
+    };
+  }
+  if (CI.TRAVIS) {
+    return {
+      start: (what: string) => `travis_fold:start:${what}\n`,
+      end: (what: string) => `travis_fold:end:${what}\n`,
+    };
+  }
+  if (CI.GITLAB) {
+    return {
+      start: (what: string) => `section_start:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}[collapsed=true]\r\x1B[0K${what}\n`,
+      end: (what: string) => `section_end:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}\r\x1B[0K`,
+    };
+  }
+  return null;
+})();
 
 export class Logger {
   static async start(opts: LoggerOptions, cb: (report: Logger) => Promise<void>) {
@@ -76,7 +90,7 @@ export class Logger {
   private warningCount: number = 0;
   private errorCount: number = 0;
 
-  private timerFooter: Array<() => void> = [];
+  private timerFooter: (() => void)[] = [];
 
   private startTime: number = Date.now();
 
