@@ -1,19 +1,10 @@
-import {readFileSync} from "node:fs";
+import {readFileSync} from "fs";
 
 const {version} = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url)).toString(),
 );
 
 export const FREYR_VERSION = version as string;
-
-export const CONFIG_FILES = [
-  "freyr.config.js",
-  "freyr.config.mjs",
-  "freyr.config.cjs",
-  "freyr.config.ts",
-  "freyr.config.mts",
-  "freyr.config.cts"
-];
 
 export const AUTO_GENERATE_DISCLAIMER = [
   "/*",
@@ -23,3 +14,12 @@ export const AUTO_GENERATE_DISCLAIMER = [
 ].join("\n");
 
 export const BUTTON_SHADE_NAMES = ["-minor-2", "-minor-1", "", "-major-1", "-major-2", "-major-3", "-contrast"];
+
+export const CONFIG_FILES = [
+  "freyr.config.js",
+  "freyr.config.mjs",
+  "freyr.config.cjs",
+  "freyr.config.ts",
+  "freyr.config.mts",
+  "freyr.config.cts"
+];
