@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsx cli/gen-themes-cli.ts"
+    "build": "freyr"
   },
   "dependencies": {
     "@rednight/utils": "*",
