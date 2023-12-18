@@ -1,7 +1,9 @@
 :root,
 .ui-standard {
-    --primary: #6d4aff;
-    --primary-contrast: white;
+    --signal-primary: #6d4aff;
+    --signal-primary-contrast: white;
+
+    --signal-secondary: #232427;
 
     --signal-danger: #dc3251;
 

@@ -1,7 +1,7 @@
 // @ts-ignore
-import * as carbonTheme from "@rednight/colors/lib/themes/dist/carbon.theme.css?inline";
+import * as carbonTheme from "@rednight/colors/dist/carbon.theme.css?inline";
 // @ts-ignore
-import * as snowTheme from "@rednight/colors/lib/themes/dist/snow.theme.css?inline";
+import * as snowTheme from "@rednight/colors/dist/snow.theme.css?inline";
 
 import {decodeBase64URL, encodeBase64URL} from "../helpers";
 

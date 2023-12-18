@@ -1,5 +1,14 @@
 <svg class="sr-only">
   <defs>
+    <g id="ic-checkmark">
+      <path
+        fill-rule="evenodd"
+        d="M13.854 4.148a.51.51 0 0 1 0 .714l-6.859 6.93a.695.695 0 0 1-.99 0L3.146 8.905a.509.509 0 0 1 0-.714.496.496 0 0 1 .708 0L6.5 10.864l6.646-6.716a.496.496 0 0 1 .708 0Z"
+      />
+    </g>
 
+    <g id="ic-minus">
+      <path fill-rule="evenodd" d="M15 8.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z" />
+    </g>
   </defs>
 </svg>

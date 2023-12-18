@@ -180,7 +180,6 @@ export const core = (): ConfigItem[] => {
         "deprecation/deprecation": "warn",
         "no-only-tests/no-only-tests": "error",
         "es/no-regexp-lookbehind-assertions": "error",
-        "promise/always-return": "error",
         "promise/no-return-wrap": "error",
         "promise/param-names": "error",
         "promise/catch-or-return": "error",

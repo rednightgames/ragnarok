@@ -1,7 +1,7 @@
 import {percentOf} from "@rednight/utils";
 import tiny, {Instance as Color} from "tinycolor2";
 
-const tint = (color: Color, percent: number) => {
+export const tint = (color: Color, percent: number) => {
   const rgb = color.toRgb();
 
   rgb.r = rgb.r + percentOf(percent, 255 - rgb.r);
@@ -11,4 +11,12 @@ const tint = (color: Color, percent: number) => {
   return tiny(rgb);
 };
 
-export default tint;
+export const shade = (color: Color, percent: number) => {
+  const rgb = color.toRgb();
+
+  rgb.r = percentOf(100 - percent, rgb.r);
+  rgb.g = percentOf(100 - percent, rgb.g);
+  rgb.b = percentOf(100 - percent, rgb.b);
+
+  return tiny(rgb);
+};
