@@ -1,12 +1,15 @@
-import {readFileSync} from "fs";
+import {readFileSync, existsSync, mkdirSync} from "fs";
 
 import {Logger, MessageName} from "../logger";
 import {Config, FileConfig, Source, StepOptions} from "../types";
+import {stripFilename} from "./helpers";
 
 export class Resolution {
   static async resolution({logger, config}: StepOptions) {
     let resolution = new Resolution({config, logger});
     return resolution.logger.startTimerPromise("Resolution step", async () => {
+      resolution.getOutputDirs();
+
       return resolution.loadThemes();
     });
   }
@@ -17,6 +20,15 @@ export class Resolution {
   constructor({config, logger}: StepOptions) {
     this.config = config;
     this.logger = logger;
+  }
+
+  private getOutputDirs() {
+    this.config.themes?.forEach((value) => {
+      const dir_name = stripFilename(value.output);
+      if (!existsSync(dir_name)) {
+        mkdirSync(dir_name, {recursive: true});
+      }
+    });
   }
 
   private loadFiles(files: FileConfig[]) {
