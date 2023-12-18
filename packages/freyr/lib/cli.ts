@@ -1,8 +1,6 @@
-import {writeFileSync} from "fs";
-
 import {ConfigProvider} from "./config";
+import {FilesProvider} from "./file";
 import {Logger} from "./logger";
-import {Resolution} from "./resolution";
 import {Transform} from "./transform";
 
 export class Cli {
@@ -12,17 +10,9 @@ export class Cli {
       stdout: process.stdout,
     }, async logger => {
       const config = await ConfigProvider.load({logger});
-      const sources = await Resolution.resolution({logger, config});
-      const transformed = await Transform.transform({config, logger, sources});
-
-      //TODO Move this into a separate class/method
-      transformed.forEach(({promise, dist}) => {
-        promise.then((res) => {
-          writeFileSync(dist, res);
-        }).catch((reason) => {
-          logger.reportException(reason);
-        });
-      });
+      const sources = await FilesProvider.resolution({logger, config});
+      const transformed = await Transform.transform({config, sources});
+      await FilesProvider.write({logger, config, transformed});
     });
 
     return logger.exitCode();

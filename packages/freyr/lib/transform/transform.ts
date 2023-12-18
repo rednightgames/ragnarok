@@ -5,43 +5,38 @@ import tiny, {Instance as Color} from "tinycolor2";
 import tinycolor from "tinycolor2";
 
 import {AUTO_GENERATE_DISCLAIMER} from "../constants";
-import {Logger} from "../logger";
 import {Config, Sources, StepOptions, ThemeType, TransformedSource} from "../types";
 import {shade, tint} from "./helpers";
 
-export interface TransformOptions extends StepOptions {
+export interface TransformOptions extends Omit<StepOptions, "logger"> {
   sources: Sources;
 }
 
 export class Transform {
-  static async transform({logger, config, sources}: TransformOptions) {
-    const transform = new Transform({config, logger});
-    return transform.logger.startTimerPromise("Transform step", async () => {
-      const promises: TransformedSource[] = [];
+  static async transform({config, sources}: TransformOptions) {
+    const transform = new Transform({config});
+    const promises: TransformedSource[] = [];
 
-      transform.config.themes?.map((theme) => {
-        let generatedCssFiles = sources.get(theme.output)?.map((source) => {
-          return transform.generateTheme(source);
-        }) as string[];
+    transform.config.themes?.map((theme) => {
+      let generatedCssFiles = sources.get(theme.output)?.map((source) => {
+        return transform.generateTheme(source);
+      }) as string[];
 
-        let cssFile = [AUTO_GENERATE_DISCLAIMER, ...generatedCssFiles].join("\n\n");
+      let cssFile = [AUTO_GENERATE_DISCLAIMER, ...generatedCssFiles].join("\n\n");
 
-        promises.push({
-          promise: prettier.format(cssFile, {parser: "css"}),
-          dist: theme.output,
-        });
+      promises.push({
+        promise: prettier.format(cssFile, {parser: "css"}),
+        dist: theme.output,
       });
-
-      return promises;
     });
+
+    return promises;
   }
 
   private readonly config: Config;
-  private readonly logger: Logger;
 
-  constructor({config, logger}: StepOptions) {
+  constructor({config}: Omit<StepOptions, "logger">) {
     this.config = config;
-    this.logger = logger;
   }
 
   generateTheme({source, type}: {source: string; type: ThemeType}) {
