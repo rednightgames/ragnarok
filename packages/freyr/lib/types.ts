@@ -1,3 +1,5 @@
+import {Logger} from "./logger";
+
 export type MaybePromise<T> = T | Promise<T>;
 
 export type ThemeType = "light" | "dark";
@@ -18,14 +20,18 @@ export interface Config {
 }
 
 export interface Source {
-  dist: string;
-  path: string;
-  data: string;
+  source: string;
   type: ThemeType;
 }
 
+export type Sources = Map<string, Source[]>;
+
 export interface TransformedSource {
+  promise: Promise<string>;
   dist: string;
-  data: string;
-  type: ThemeType;
+}
+
+export interface StepOptions {
+  logger: Logger;
+  config: Config;
 }
