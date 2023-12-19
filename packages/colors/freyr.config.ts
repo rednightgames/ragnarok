@@ -3,14 +3,14 @@ import {resolve} from "path";
 
 export default defineConfig({
   buttons: [
-    "signal-primary",
-    "signal-secondary",
-    "signal-danger",
-    "signal-warning",
-    "signal-info",
-    "signal-success",
-    "interaction-norm",
-    "interaction-weak",
+    "primary",
+    "secondary",
+    "danger",
+    "warning",
+    "info",
+    "success",
+    "norm",
+    "weak",
   ],
   themes: [
     {

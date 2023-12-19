@@ -38,41 +38,41 @@
   }
 
   &-input:hover + &-fakecheck {
-    border-color: var(--interaction-norm);
+    border-color: var(--norm);
     background-color: var(--field-hover-background-color);
     color: var(--field-hover-text-color);
   }
 
   @supports not selector(:focus-visible) {
     &-input:focus + &-fakecheck {
-      border-color: var(--interaction-norm);
+      border-color: var(--norm);
       box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
       background-color: var(--field-focus-background-color);
       color: var(--field-focus-text-color);
     }
 
     &-input:focus:hover + &-fakecheck {
-      border-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
     }
   }
 
   @supports selector(:focus-visible) {
     &-input:focus-visible + &-fakecheck {
-      border-color: var(--interaction-norm);
+      border-color: var(--norm);
       box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
       background-color: var(--field-focus-background-color);
       color: var(--field-focus-text-color);
     }
 
     &-input:focus-visible:hover + &-fakecheck {
-      border-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
     }
   }
 
   &-input[aria-invalid="true"] + &-fakecheck {
-    border-color: var(--signal-danger);
+    border-color: var(--danger);
     background-color: var(--field-background-color);
-    color: var(--signal-danger);
+    color: var(--danger);
   }
 
   &-input[disabled] + &-fakecheck {
@@ -85,55 +85,55 @@
    * Checked state
    */
   &-input:checked + &-fakecheck {
-    border-color: var(--interaction-norm);
-    background-color: var(--interaction-norm);
-    color: var(--interaction-norm-contrast);
+    border-color: var(--norm);
+    background-color: var(--norm);
+    color: var(--norm-contrast);
   }
 
   &-input:checked:hover + &-fakecheck {
-    border-color: var(--interaction-norm-hover);
-    background-color: var(--interaction-norm-hover);
-    color: var(--interaction-norm-contrast);
+    border-color: var(--norm-hover);
+    background-color: var(--norm-hover);
+    color: var(--norm-contrast);
   }
 
   @supports not selector(:focus-visible) {
     &-input:checked:focus + &-fakecheck {
-      border-color: var(--interaction-norm);
+      border-color: var(--norm);
       box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
-      background-color: var(--interaction-norm);
-      color: var(--interaction-norm-contrast);
+      background-color: var(--norm);
+      color: var(--norm-contrast);
     }
 
     &-input:checked:focus:hover + &-fakecheck {
-      border-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
     }
   }
 
   @supports selector(:focus-visible) {
     &-input:checked:focus-visible + &-fakecheck {
-      border-color: var(--interaction-norm);
+      border-color: var(--norm);
       box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
-      background-color: var(--interaction-norm);
-      color: var(--interaction-norm-contrast);
+      background-color: var(--norm);
+      color: var(--norm-contrast);
     }
 
     &-input:checked:focus-visible:hover + &-fakecheck {
-      border-color: var(--interaction-norm-hover);
-      background-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
+      background-color: var(--norm-hover);
     }
   }
 
   &-input:checked[aria-invalid="true"] + &-fakecheck {
-    border-color: var(--signal-danger);
-    background-color: var(--signal-danger);
-    color: var(--signal-danger-contrast);
+    border-color: var(--danger);
+    background-color: var(--danger);
+    color: var(--danger-contrast);
   }
 
   &-input:checked[disabled] + &-fakecheck,
   &-input:checked[disabled]:indeterminate + &-fakecheck {
     border-color: var(--field-disabled);
     background-color: var(--field-disabled);
-    color: var(--interaction-norm-contrast);
+    color: var(--norm-contrast);
   }
 
   &-input:checked:indeterminate + &-fakecheck {

@@ -8,18 +8,18 @@
 :root,
 .ui-standard,
 .ui-prominent {
-  --signal-danger-hover: var(--signal-danger-major-1);
-  --signal-danger-active: var(--signal-danger-major-2);
-  --signal-warning-hover: var(--signal-warning-major-1);
-  --signal-warning-active: var(--signal-warning-major-2);
-  --signal-success-hover: var(--signal-success-major-1);
-  --signal-success-active: var(--signal-success-major-2);
-  --signal-info-hover: var(--signal-info-major-1);
-  --signal-info-active: var(--signal-info-major-2);
-  --interaction-norm-hover: var(--interaction-norm-major-1);
-  --interaction-norm-active: var(--interaction-norm-major-2);
-  --interaction-weak-hover: var(--interaction-weak-major-1);
-  --interaction-weak-active: var(--interaction-weak-major-2);
+  --danger-hover: var(--danger-major-1);
+  --danger-active: var(--danger-major-2);
+  --warning-hover: var(--warning-major-1);
+  --warning-active: var(--warning-major-2);
+  --success-hover: var(--success-major-1);
+  --success-active: var(--success-major-2);
+  --info-hover: var(--info-major-1);
+  --info-active: var(--info-major-2);
+  --norm-hover: var(--norm-major-1);
+  --norm-active: var(--norm-major-2);
+  --weak-hover: var(--weak-major-1);
+  --weak-active: var(--weak-major-2);
 }
 
 // Other mappings
