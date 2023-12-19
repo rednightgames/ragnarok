@@ -1,0 +1,14 @@
+@each $color in (primary, danger, warning, success, info) {
+  .color-#{$color} {
+    color: var(--#{$color});
+
+    @at-root {
+      .hover\:color-#{$color} {
+        &:hover,
+        &:focus {
+          color: var(--#{$color});
+        }
+      }
+    }
+  }
+}
