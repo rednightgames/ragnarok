@@ -1,7 +1,9 @@
+import "./Avatar.scss";
+
 const Avatar = () => {
   return (
     <div>
-      
+
     </div>
   );
 };
