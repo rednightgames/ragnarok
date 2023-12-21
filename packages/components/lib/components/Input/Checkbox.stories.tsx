@@ -19,7 +19,10 @@ export const Basic = () => {
         </Checkbox>
       </div>
       <div className="my-4">
-        <Checkbox checked disabled>
+        <Checkbox
+          checked
+          disabled
+        >
           checked disabled
         </Checkbox>
       </div>
