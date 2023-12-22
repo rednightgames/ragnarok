@@ -1,8 +1,12 @@
 import "./Avatar.scss";
 
-const Avatar = () => {
+export interface AvatarProps {
+  src: string;
+}
+
+const Avatar = ({src}: AvatarProps) => {
   return (
-    <div />
+    <img src={src} />
   );
 };
 
