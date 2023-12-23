@@ -7,5 +7,5 @@ export default {
 } as Meta<typeof Avatar>;
 
 export const Basic = () => (
-  <Avatar src="https://cdn.rednightgames.com/banners/15e776a7618b9d559f747ef07427a8bf30888eab2ff4aaab488ed2715f999954.webp" />
+  <Avatar src="https://cdn.rednightgames.com/avatars/e8a206ef88bdd3320fc9b370dabda8839523da972c5ca9e20d5754e5243403f6.webp" />
 );

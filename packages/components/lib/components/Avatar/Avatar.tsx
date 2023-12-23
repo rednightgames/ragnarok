@@ -6,7 +6,7 @@ export interface AvatarProps {
 
 const Avatar = ({src}: AvatarProps) => {
   return (
-    <img src={src} />
+    <img className="avatar" src={src} />
   );
 };
 
