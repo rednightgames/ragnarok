@@ -1,3 +1,71 @@
+@use "sass:math";
+@import "@rednight/styles/scss/lib";
+
 .avatar {
-  
+  --focus-outline: var(--norm-major-2);
+  border: em(1);
+
+  width: em(64);
+  height: em(64);
+  transition: 0.15s easing(ease-out-quint),
+    background-position 0s;
+
+  @supports selector(:focus-visible:has(a, b)) {
+    // had to do this because of Safari
+    outline: unset;
+  }
+
+  &,
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:active {
+    text-decoration: none;
+  }
+
+  @supports not selector(:focus-visible:has(a, b)) {
+    &:focus,
+    &:focus-within {
+      & .avatar-img {
+        border-style: solid;
+        border-color: var(--focus-outline);
+      }
+      
+      box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
+      color: var(--primary, inherit);
+    }
+  }
+
+  @supports selector(:focus-visible:has(a, b)) {
+    &:focus {
+      color: var(--primary, inherit);
+    }
+
+    &:focus-visible,
+    &:has(*:focus-visible) {
+      & .avatar-img {
+        border-style: solid;
+        border-color: var(--focus-outline);
+      }
+      box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
+      color: var(--primary, inherit);
+    }
+  }
+}
+
+.avatar-img {
+  width: inherit;
+}
+
+/*
+ * Modifiers
+ */
+.avatar-small {
+  width: em(32);
+  height: em(32);
+}
+
+.avatar-large {
+  width: em(128);
+  height: em(128);
 }

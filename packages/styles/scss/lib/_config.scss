@@ -72,9 +72,6 @@ $use-height-auto-img: true !default;
 $use-height-auto-td: true !default;
 $use-height-auto-table: true !default;
 
-// default config for webpack
-$path-images: "@rednight/styles/assets/img/illustrations/" !default;
-
 // variables for global layouts, allowing you to use calc for components and adapt quickly if needed
 $header-height: 60 !default;
 $header-height-small: 44 !default;
