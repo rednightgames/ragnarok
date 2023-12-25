@@ -2,70 +2,76 @@
 @import "@rednight/styles/scss/lib";
 
 .avatar {
-  --focus-outline: var(--norm-major-2);
-  border: em(1);
+  &-container {
+    --focus-outline: var(--norm-major-2);
 
-  width: em(64);
-  height: em(64);
-  transition: 0.15s easing(ease-out-quint),
-    background-position 0s;
+    border: em(1);
+    width: em(64);
+    height: em(64);
+    transition: 0.15s easing(ease-out-quint),
+      background-position 0s;
 
-  @supports selector(:focus-visible:has(a, b)) {
-    // had to do this because of Safari
-    outline: unset;
-  }
-
-  &,
-  &:hover,
-  &:focus,
-  &:focus-within,
-  &:active {
-    text-decoration: none;
-  }
-
-  @supports not selector(:focus-visible:has(a, b)) {
+    @supports selector(:focus-visible:has(a, b)) {
+      // had to do this because of Safari
+      outline: unset;
+    }
+  
+    &,
+    &:hover,
     &:focus,
-    &:focus-within {
-      & .avatar-img {
-        border-style: solid;
-        border-color: var(--focus-outline);
+    &:focus-within,
+    &:active {
+      text-decoration: none;
+    }
+  
+    @supports not selector(:focus-visible:has(a, b)) {
+      &:focus,
+      &:focus-within {
+        box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
       }
-      
-      box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
-      color: var(--primary, inherit);
+    }
+  
+    @supports selector(:focus-visible:has(a, b)) {
+      &:focus-visible,
+      &:has(*:focus-visible) {
+        box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
+      }
     }
   }
 
-  @supports selector(:focus-visible:has(a, b)) {
-    &:focus {
-      color: var(--primary, inherit);
-    }
-
-    &:focus-visible,
-    &:has(*:focus-visible) {
-      & .avatar-img {
-        border-style: solid;
-        border-color: var(--focus-outline);
-      }
-      box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
-      color: var(--primary, inherit);
-    }
+  &-container:has(.avatar-fallback) {
+    background-color: var(--avatar-color);
   }
-}
 
-.avatar-img {
-  width: inherit;
+  &-img {
+    width: em(64);
+    height: em(64);
+  }
+
+  &-fallback {
+    text-transform: uppercase;
+    color: var(--primary-contrast);
+    font-size: em(32);
+  }
 }
 
 /*
  * Modifiers
  */
-.avatar-small {
+ .avatar-small {
   width: em(32);
   height: em(32);
+
+  & .avatar-fallback {
+    font-size: em(16);
+  }
 }
 
 .avatar-large {
   width: em(128);
   height: em(128);
+
+  & .avatar-fallback {
+    font-size: em(64);
+  }
 }

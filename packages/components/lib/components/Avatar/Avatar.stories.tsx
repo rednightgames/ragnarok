@@ -11,8 +11,8 @@ export const Playground = ({
   ...args
 }) => (
   <Avatar
-    src="https://cdn.rednightgames.com/avatars/e8a206ef88bdd3320fc9b370dabda8839523da972c5ca9e20d5754e5243403f6.webp"
     {...args}
+    src="https://cdn.rednightgames.com/avatars/056b798d3db2fbfb230b357d4028be97e5fd3b84a7697b10c4354c11c95a59aa.webp"
   />
 );
 
@@ -21,7 +21,10 @@ Playground.argTypes = {
     options: ["small", "medium", "large"],
     control: {
       type: "select",
-      defaultValue: "medium"
-    }
-  }
-}
+      defaultValue: "medium",
+    },
+  },
+  fallback: {
+    control: "text",
+  },
+};

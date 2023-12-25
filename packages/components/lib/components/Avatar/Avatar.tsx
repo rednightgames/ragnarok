@@ -1,13 +1,23 @@
-import { PolymorphicPropsWithRef } from "@rednight/react-polymorphic-types";
 import "./Avatar.scss";
 
-import {ElementType, ForwardedRef, HTMLProps, forwardRef} from "react";
-import { clsx } from "@rednight/utils";
+import {PolymorphicPropsWithRef} from "@rednight/react-polymorphic-types";
+import {ElementType, ForwardedRef, forwardRef} from "react";
+
+import AvatarFallback from "./AvatarFallback";
+import AvatarImage from "./AvatarImage";
+import AvatarProvider from "./AvatarProvider";
 
 export type AvatarSize = "small" | "medium" | "large";
 
 interface AvatarOwnProps {
+  /**
+   * User avatar path
+   */
   src: string;
+  /**
+   * Letter displayed when avatar loading error or missing avatar
+   */
+  fallback?: string;
   /**
    * Controls how large the avatar should be.
    */
@@ -21,36 +31,52 @@ AvatarOwnProps,
 
 const defaultElement = "button";
 
+const generateColor = (str?: string) => {
+  if (!str) {
+    return "var(--primary)";
+  }
+
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  
+  let color = "#";
+  for (let j = 0; j < 3; j++) {
+    let value = (hash >> (j * 8)) & 0xFF;
+    color += ("00" + value.toString(16)).slice(-2);
+  }
+  
+  return color;
+};
+
 const Avatar = <E extends ElementType = typeof defaultElement>(
   {
     src,
+    fallback,
     size = "medium",
     as,
     ...restProps
   }: AvatarProps<E>,
   ref: ForwardedRef<Element>,
 ) => {
-  const Element: ElementType = as || defaultElement;
-
-  const avatarClassName = clsx(
-    "avatar",
-    "rounded-full",
-    size !== "medium" && `avatar-${size}`,
-  );
-
   return (
-    <Element
-      className={avatarClassName}
+    <AvatarProvider
+      {...restProps}
+      style={{
+      "--avatar-color": generateColor(fallback),
+      }}
+      size={size}
+      ref={ref}
+      as={as}
     >
-      <img
-        className={clsx(
-        "rounded-full",
-        "avatar-img"
-        )}
+      <AvatarImage
+        alt={fallback}
+        size={size}
         src={src}
-        {...restProps}
       />
-    </Element>
+      <AvatarFallback>{fallback?.charAt(0)}</AvatarFallback>
+    </AvatarProvider>
   );
 };
 
