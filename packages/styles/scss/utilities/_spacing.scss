@@ -51,7 +51,7 @@ $placements: (
 
 @each $propertyname, $property in $properties {
   @each $placementname, $placement in $placements {
-    $cssproperty: if($placementname == 'default', $property, dash-join($property, $placement));
+    $cssproperty: if($placementname == "default", $property, dash-join($property, $placement));
 
     @each $spacingname, $size in $spacings {
       @if not($property == "padding" and $spacingname == "auto") {
