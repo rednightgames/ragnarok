@@ -43,8 +43,6 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
   rotate?: number;
   /** Applied as inline css "color" attribute on the svg element */
   color?: string;
-  /** Icon name prefix */
-  nameSpaceSvg?: string;
 }
 
 const Icon = forwardRef<SVGSVGElement, IconProps>((

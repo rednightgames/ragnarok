@@ -19,9 +19,9 @@
    */
 
   @each $variable, $default in (
-    link-norm  : var(--interaction-norm),
-    link-hover : var(--interaction-norm-hover),
-    link-active: var(--interaction-norm-active),
+    link-norm  : var(--norm),
+    link-hover : var(--norm-hover),
+    link-active: var(--norm-active),
 
     selection-background-color: var(--primary),
     selection-text-color      : var(--primary-contrast),
@@ -29,7 +29,7 @@
     header-background-color : var(--background-norm),
     sidebar-background-color: var(--background-norm),
 
-    navigation-current-item-marker-color    : var(--interaction-norm),
+    navigation-current-item-marker-color    : var(--norm),
     navigation-current-item-background-color: var(--interaction-default-hover),
     navigation-current-item-text-color      : var(--text-norm),
 
@@ -52,24 +52,6 @@
 
     background-elevated     : var(--background-norm),
     background-lowered      : var(--background-weak),
-
-    email-item-unread-background-color     : var(--background-norm),
-    email-item-unread-text-color           : var(--text-norm),
-    email-item-unread-icon-background-color: var(--background-strong),
-    email-item-unread-icon-text-color      : inherit,
-
-    email-item-read-background-color     : var(--background-weak),
-    email-item-read-text-color           : var(--text-norm),
-    email-item-read-icon-background-color: var(--background-strong),
-    email-item-read-icon-text-color      : inherit,
-
-    email-item-selected-background-color     : var(--interaction-norm),
-    email-item-selected-text-color           : var(--interaction-norm-contrast),
-    email-item-selected-icon-background-color: var(--interaction-norm-major-2),
-    email-item-selected-icon-text-color      : inherit,
-
-    email-message-view-background-color: var(--background-norm),
-    email-message-view-comfort-background-color: var(--background-norm),
 
     field-background-color : var(--background-norm),
     field-text-color       : var(--text-norm),
@@ -112,7 +94,6 @@
     promotion-background-start: rgb(109 74 255 / 0.15),
     promotion-background-end: rgb(70 26 255 / 0.04),
   ) {
-    // --link-norm: var(--optional-link-norm, var(--interaction-norm));
     --#{$variable}: var(--optional-#{$variable}, #{$default});
   }
 }

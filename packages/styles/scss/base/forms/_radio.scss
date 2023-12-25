@@ -20,7 +20,7 @@
   }
 
   &:hover + &-fakeradio {
-    border-color: var(--interaction-norm);
+    border-color: var(--norm);
     background-color: var(
       --field-focus-background-color,
       var(--background-norm)
@@ -29,32 +29,32 @@
 
   @supports not selector(:focus-visible) {
     &:focus + &-fakeradio {
-      border-color: var(--interaction-norm);
+      border-color: var(--norm);
       box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
       background-color: var(--field-focus-background-color);
       color: var(--field-focus-text-color);
     }
 
     &:focus:hover + &-fakeradio {
-      border-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
     }
   }
 
   @supports selector(:focus-visible) {
     &:focus-visible + &-fakeradio {
-      border-color: var(--interaction-norm);
+      border-color: var(--norm);
       box-shadow: 0 0 0 #{$focus-ring-size} var(--focus-ring);
       background-color: var(--field-focus-background-color);
       color: var(--field-focus-text-color);
     }
 
     &:focus-visible:hover + &-fakeradio {
-      border-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
     }
   }
 
   &[aria-invalid="true"] + &-fakeradio {
-    border-color: var(--signal-danger);
+    border-color: var(--danger);
     background-color: var(--field-background-color);
   }
 
@@ -72,32 +72,32 @@
   &:checked + &-fakeradio {
     &::before {
       transform: scale(1);
-      background-color: var(--interaction-norm);
+      background-color: var(--norm);
     }
   }
 
   @supports not selector(:focus-visible) {
     &:checked:focus:hover + &-fakeradio {
-      border-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
 
       &::before {
-        background-color: var(--interaction-norm-hover);
+        background-color: var(--norm-hover);
       }
     }
   }
 
   @supports selector(:focus-visible) {
     &:checked:focus-visible:hover + &-fakeradio {
-      border-color: var(--interaction-norm-hover);
+      border-color: var(--norm-hover);
 
       &::before {
-        background-color: var(--interaction-norm-hover);
+        background-color: var(--norm-hover);
       }
     }
   }
 
   &:checked[aria-invalid="true"] + &-fakeradio::before {
-    background-color: var(--signal-danger);
+    background-color: var(--danger);
   }
 
   &:checked[disabled] + &-fakeradio::before {

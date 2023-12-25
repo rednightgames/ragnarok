@@ -1,20 +1,20 @@
 :root,
 .ui-standard {
-    --signal-primary: #9747FF;
+    --primary: #9747FF;
 
-    --signal-secondary: #232427;
+    --secondary: #232427;
 
-    --signal-danger: #f5385a;
+    --danger: #f5385a;
 
-    --signal-warning: #ff9900;
+    --warning: #ff9900;
 
-    --signal-success: #1ea885;
+    --success: #1ea885;
 
-    --signal-info: #239ece;
+    --info: #239ece;
 
-    --interaction-norm: #9747ff;
+    --norm: #9747ff;
 
-    --interaction-weak: #4a4658;
+    --weak: #4a4658;
 
     --text-norm: white;
     --text-weak: #a7a4b5;

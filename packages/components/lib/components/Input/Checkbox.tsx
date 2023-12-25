@@ -1,8 +1,8 @@
-import {InputHTMLAttributes, LabelHTMLAttributes, Ref, forwardRef, useEffect, useRef} from "react";
-
-import {Icon} from "../Icon";
 import {useCombinedRefs} from "@rednight/hooks";
 import {clsx, generateUID} from "@rednight/utils";
+import {forwardRef, InputHTMLAttributes, LabelHTMLAttributes, Ref, useEffect, useRef} from "react";
+
+import {Icon} from "../Icon";
 
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -24,7 +24,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   color?: string;
   indeterminate?: boolean;
   labelOnClick?: (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => void;
-  labelProps?: LabelHTMLAttributes<HTMLLabelElement> & { 'data-testid': string };
+  labelProps?: LabelHTMLAttributes<HTMLLabelElement> & {"data-testid": string};
 }
 
 const Checkbox = (
@@ -44,7 +44,7 @@ const Checkbox = (
     labelProps,
     ...rest
   }: CheckboxProps,
-  ref: Ref<HTMLInputElement>
+  ref: Ref<HTMLInputElement>,
 ) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const combinedRef = useCombinedRefs(inputRef, ref);
@@ -62,7 +62,7 @@ const Checkbox = (
       className={clsx(
         "checkbox-container",
         !className?.includes("increase-click-surface") && "relative",
-        className
+        className,
       )}
       title={title}
       onClick={labelOnClick}
@@ -78,12 +78,21 @@ const Checkbox = (
       />
       <span
         className={clsx("checkbox-fakecheck", children ? "mr-2" : "")}
-        style={{ borderColor, background: backgroundColor, color }}
+        style={{borderColor, background: backgroundColor, color}}
       >
         {indeterminate === false ? (
-          <Icon className="checkbox-fakecheck-img" size={16} name="checkmark" color={color} />
+          <Icon
+            className="checkbox-fakecheck-img"
+            size={16}
+            name="checkmark"
+            color={color}
+          />
         ) : (
-          <Icon className="checkbox-fakecheck-img color-disabled" size={16} name="minus" />
+          <Icon
+            className="checkbox-fakecheck-img color-disabled"
+            size={16}
+            name="minus"
+          />
         )}
       </span>
       {children}
