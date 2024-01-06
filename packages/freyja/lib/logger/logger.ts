@@ -1,7 +1,7 @@
 import CI from "ci-info";
 import {Writable} from "stream";
 
-import {FREYR_VERSION} from "../constants";
+import {FREYJA_VERSION} from "../constants";
 import {applyStyle, formatCode, pretty, Style, Type} from "./helpers";
 import {MessageName} from "./messageNames";
 
@@ -64,7 +64,7 @@ export class Logger {
     };
 
     if (opts.includeVersion) {
-      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Freyr ${FREYR_VERSION}`, Style.BOLD));
+      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Freyr ${FREYJA_VERSION}`, Style.BOLD));
     }
 
     try {

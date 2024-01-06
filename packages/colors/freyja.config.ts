@@ -1,4 +1,4 @@
-import {defineConfig} from "@rednight/freyr";
+import {defineConfig} from "@rednight/freyja";
 import {resolve} from "path";
 
 export default defineConfig({

@@ -1,18 +1,18 @@
 {
-  "name": "@rednight/freyr",
+  "name": "@rednight/freyja",
   "description": "CLI for color computation for Rednight design system",
   "license": "AGPL-3.0",
   "author": "Rednight Inc.",
   "version": "1.0.0",
   "type": "module",
-  "bin": "bin/freyr.js",
+  "bin": "bin/freyja.js",
   "main": "dist/shared.js",
   "exports": {
     ".": {
-      "import": "./dist/freyr.js"
+      "import": "./dist/freyja.js"
     }
   },
-  "types": "dist/freyr.d.ts",
+  "types": "dist/freyja.d.ts",
   "scripts": {
     "build": "tsup",
     "lint": "eslint lib"

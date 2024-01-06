@@ -6,10 +6,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "freyr"
+    "build": "freyja"
   },
   "devDependencies": {
-    "@rednight/freyr": "*",
+    "@rednight/freyja": "*",
     "typescript": "^5.3.3"
   }
 }

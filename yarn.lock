@@ -3374,7 +3374,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rednight/colors@workspace:packages/colors"
   dependencies:
-    "@rednight/freyr": "npm:*"
+    "@rednight/freyja": "npm:*"
     typescript: "npm:^5.3.3"
   languageName: unknown
   linkType: soft
@@ -3473,9 +3473,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rednight/freyr@npm:*, @rednight/freyr@workspace:packages/freyr":
+"@rednight/freyja@npm:*, @rednight/freyja@workspace:packages/freyja":
   version: 0.0.0-use.local
-  resolution: "@rednight/freyr@workspace:packages/freyr"
+  resolution: "@rednight/freyja@workspace:packages/freyja"
   dependencies:
     "@rednight/eslint-config-rednight": "npm:*"
     "@rednight/utils": "npm:*"
@@ -3497,7 +3497,7 @@ __metadata:
     typanion: "npm:^3.14.0"
     typescript: "npm:^5.3.3"
   bin:
-    freyr: bin/freyr.js
+    freyja: bin/freyja.js
   languageName: unknown
   linkType: soft
 
