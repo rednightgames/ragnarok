@@ -3424,6 +3424,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rednight/console@workspace:applications/console":
+  version: 0.0.0-use.local
+  resolution: "@rednight/console@workspace:applications/console"
+  languageName: unknown
+  linkType: soft
+
 "@rednight/crypto@npm:*, @rednight/crypto@workspace:packages/crypto":
   version: 0.0.0-use.local
   resolution: "@rednight/crypto@workspace:packages/crypto"
