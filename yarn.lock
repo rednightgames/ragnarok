@@ -3370,6 +3370,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rednight/account@workspace:applications/account":
+  version: 0.0.0-use.local
+  resolution: "@rednight/account@workspace:applications/account"
+  languageName: unknown
+  linkType: soft
+
 "@rednight/colors@npm:*, @rednight/colors@workspace:packages/colors":
   version: 0.0.0-use.local
   resolution: "@rednight/colors@workspace:packages/colors"
