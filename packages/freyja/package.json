@@ -24,7 +24,7 @@
     "clipanion": "^4.0.0-rc.2",
     "color-support": "^1.1.3",
     "css-tree": "^2.3.1",
-    "esbuild": "^0.19.10",
+    "esbuild": "^0.19.11",
     "joycon": "^3.1.1",
     "prettier": "^3.1.1",
     "supports-color": "^9.4.0",
