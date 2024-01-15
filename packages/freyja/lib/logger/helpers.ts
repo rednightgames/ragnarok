@@ -1,5 +1,4 @@
-import chalk from "chalk";
-import CI from "ci-info";
+import {Chalk} from "chalk";
 
 import {MessageName} from "./messageNames";
 
@@ -22,17 +21,7 @@ export enum Style {
   BOLD = 1 << 1
 }
 
-const chalkOptions = (() => {
-  if (CI.GITHUB_ACTIONS) {
-    return {level: 2};
-  }
-  if (chalk.supportsColor) {
-    return {level: chalk.supportsColor.level};
-  }
-  return {level: 0};
-})();
-
-const chalkInstance = new chalk.Instance(chalkOptions);
+const chalkInstance = new Chalk();
 
 const colors = new Map<Types, [string, number] | null>([
   [Type.NO_HINT, null],
@@ -51,7 +40,7 @@ export const applyColor = (value: string, formatType: Types | string): string =>
     if (typeof colorSpec === "undefined") {
       return formatType;
     }
-    if (chalkOptions.level >= 3) {
+    if (chalkInstance.level >= 3) {
       return colorSpec[0];
     }
     return colorSpec[1];

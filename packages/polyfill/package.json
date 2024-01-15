@@ -1,0 +1,19 @@
+{
+  "name": "@rednight/polyfill",
+  "description": "Polyfill set used by rednight",
+  "author": "Rednight Inc.",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@rednight/eslint-config-rednight": "*",
+    "abortcontroller-polyfill": "^1.7.5",
+    "core-js": "^3.35.0",
+    "resize-observer": "^1.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  }
+}

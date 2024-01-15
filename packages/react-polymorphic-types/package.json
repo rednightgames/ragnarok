@@ -21,10 +21,10 @@
   },
   "devDependencies": {
     "@rednight/eslint-config-rednight": "*",
-    "@types/react": "^18.2.47",
+    "@types/react": "^18.2.48",
     "typescript": "^5.3.3",
     "vite": "^5.0.11",
-    "vite-plugin-dts": "^3.7.0"
+    "vite-plugin-dts": "^3.7.1"
   },
   "peerDependencies": {
     "@types/react": ">=16.14.52"
