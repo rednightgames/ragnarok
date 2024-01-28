@@ -10,7 +10,7 @@
   "dependencies": {
     "@rednight/eslint-config-rednight": "*",
     "abortcontroller-polyfill": "^1.7.5",
-    "core-js": "^3.35.0",
+    "core-js": "^3.35.1",
     "resize-observer": "^1.0.4"
   },
   "devDependencies": {
