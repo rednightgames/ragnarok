@@ -1,7 +1,7 @@
 import "./Avatar.scss";
 
 import {PolymorphicPropsWithRef} from "@rednight/react-polymorphic-types";
-import {ElementType, Ref, forwardRef} from "react";
+import {ElementType, forwardRef, Ref} from "react";
 
 import AvatarFallback from "./AvatarFallback";
 import AvatarImage from "./AvatarImage";
@@ -74,15 +74,15 @@ const Avatar = <E extends ElementType = typeof defaultElement>(
       size={size}
       ref={ref}
       as={as}
-      data-testid={dataTestId}
+      data-testid={`${dataTestId}-provider`}
     >
       <AvatarImage
         alt={fallback}
         size={size}
         src={src}
-        data-testid={dataTestId}
+        data-testid={`${dataTestId}-image`}
       />
-      <AvatarFallback data-testid={dataTestId}>{fallback?.charAt(0)}</AvatarFallback>
+      <AvatarFallback data-testid={`${dataTestId}-fallback`}>{fallback?.charAt(0)}</AvatarFallback>
     </AvatarProvider>
   );
 };
