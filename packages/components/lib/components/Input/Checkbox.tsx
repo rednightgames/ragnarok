@@ -4,7 +4,6 @@ import {forwardRef, InputHTMLAttributes, LabelHTMLAttributes, Ref, useEffect, us
 
 import {Icon} from "../Icon";
 
-
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
    * Interactions will be blocked while loading is true
@@ -24,7 +23,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   color?: string;
   indeterminate?: boolean;
   labelOnClick?: (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => void;
-  labelProps?: LabelHTMLAttributes<HTMLLabelElement> & {"data-testid": string};
+  labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
 }
 
 const Checkbox = (
@@ -66,6 +65,7 @@ const Checkbox = (
       )}
       title={title}
       onClick={labelOnClick}
+      data-testid="checkbox-label"
     >
       <input
         ref={combinedRef}
@@ -74,11 +74,13 @@ const Checkbox = (
         type="checkbox"
         className="checkbox-input"
         checked={checked}
+        data-testid="checkbox-input"
         {...rest}
       />
       <span
         className={clsx("checkbox-fakecheck", children ? "mr-2" : "")}
         style={{borderColor, background: backgroundColor, color}}
+        data-testid="checkbox-span"
       >
         {indeterminate === false ? (
           <Icon
