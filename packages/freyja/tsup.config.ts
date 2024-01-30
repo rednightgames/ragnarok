@@ -1,9 +1,9 @@
 import {defineConfig} from "tsup";
 
 export default defineConfig({
-  name: "freyr",
+  name: "freyja",
   bundle: true,
-  entry: ["lib/freyr.ts"],
+  entry: ["lib/freyja.ts"],
   splitting: false,
   treeshake: false,
   format: ["esm"],

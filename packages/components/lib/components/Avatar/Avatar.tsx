@@ -1,7 +1,7 @@
 import "./Avatar.scss";
 
 import {PolymorphicPropsWithRef} from "@rednight/react-polymorphic-types";
-import {ElementType, ForwardedRef, forwardRef} from "react";
+import {ElementType, forwardRef, Ref} from "react";
 
 import AvatarFallback from "./AvatarFallback";
 import AvatarImage from "./AvatarImage";
@@ -22,6 +22,10 @@ interface AvatarOwnProps {
    * Controls how large the avatar should be.
    */
   size?: AvatarSize;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
 export type AvatarProps<E extends ElementType> = PolymorphicPropsWithRef<
@@ -56,9 +60,10 @@ const Avatar = <E extends ElementType = typeof defaultElement>(
     fallback,
     size = "medium",
     as,
+    "data-testid": dataTestId,
     ...restProps
   }: AvatarProps<E>,
-  ref: ForwardedRef<Element>,
+  ref: Ref<Element>,
 ) => {
   return (
     <AvatarProvider
@@ -69,13 +74,15 @@ const Avatar = <E extends ElementType = typeof defaultElement>(
       size={size}
       ref={ref}
       as={as}
+      data-testid={`${dataTestId}-provider`}
     >
       <AvatarImage
         alt={fallback}
         size={size}
         src={src}
+        data-testid={`${dataTestId}-image`}
       />
-      <AvatarFallback>{fallback?.charAt(0)}</AvatarFallback>
+      <AvatarFallback data-testid={`${dataTestId}-fallback`}>{fallback?.charAt(0)}</AvatarFallback>
     </AvatarProvider>
   );
 };

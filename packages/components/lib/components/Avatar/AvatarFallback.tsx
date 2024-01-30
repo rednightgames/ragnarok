@@ -7,6 +7,10 @@ import AvatarContext from "./AvatarContext";
 
 interface AvatarFallbackProps extends HTMLProps<HTMLSpanElement> {
   delayMs?: number;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
 const AvatarFallback = (
