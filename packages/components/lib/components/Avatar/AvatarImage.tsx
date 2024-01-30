@@ -7,9 +7,22 @@ import {AvatarSize} from "./Avatar";
 import AvatarContext, {ImageLoadingStatus} from "./AvatarContext";
 
 interface AvatarImageProps {
+  /**
+   * User avatar path
+   */
   src: string;
+  /**
+   * Letter displayed when avatar loading error or missing avatar
+   */
   alt?: string;
+  /**
+   * Controls how large the avatar should be.
+   */
   size?: AvatarSize;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
 const useImageLoadingStatus = (src?: string) => {

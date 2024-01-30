@@ -24,6 +24,7 @@ const Radio = ({
         disabled && "opacity-50 no-pointer-events",
         className,
       ])}
+      data-testid="radio-label"
     >
       <input
         id={id}
@@ -31,9 +32,13 @@ const Radio = ({
         className="radio"
         name={name}
         disabled={disabled}
+        data-testid="radio-input"
         {...rest}
       />
-      <span className={clsx("radio-fakeradio shrink-0", children ? "mr-2" : "")} />
+      <span
+        className={clsx("radio-fakeradio shrink-0", children ? "mr-2" : "")}
+        data-testid="radio-span"
+      />
       {children}
     </label>
   );
