@@ -31,17 +31,29 @@ export type IconName =
   | "minus";
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
-  /** Determines which icon to render based on its name */
+  /**
+   * Determines which icon to render based on its name
+   * */
   name: IconName;
-  /** If specified, renders a sr-only element for screenreaders */
+  /**
+   * If specified, renders a sr-only element for screenreaders
+   * */
   alt?: string;
-  /** If specified, renders an inline title element */
+  /**
+   * If specified, renders an inline title element
+   * */
   title?: string;
-  /** The size of the icon */
+  /**
+   * The size of the icon
+   * */
   size?: IconSize;
-  /** How many degrees the icon should be rotated */
+  /**
+   * How many degrees the icon should be rotated
+   * */
   rotate?: number;
-  /** Applied as inline css "color" attribute on the svg element */
+  /**
+   * Applied as inline css "color" attribute on the svg element
+   * */
   color?: string;
 }
 
@@ -74,6 +86,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>((
           focusable="false"
           ref={ref}
           aria-hidden="true"
+          data-testid="icon"
           {...rest}
         >
           {title ? <title>{title}</title> : null}

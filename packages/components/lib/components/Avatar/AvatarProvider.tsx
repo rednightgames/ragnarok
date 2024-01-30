@@ -8,7 +8,14 @@ import {AvatarSize} from "./Avatar";
 import AvatarContext, {ImageLoadingStatus} from "./AvatarContext";
 
 type AvatarProviderOwnProps = {
+  /**
+   * Controls how large the avatar should be.
+   */
   size?: AvatarSize;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 };
 
 export type AvatarProviderProps<E extends ElementType> = PolymorphicPropsWithRef<
