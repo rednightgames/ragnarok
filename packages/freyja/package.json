@@ -26,7 +26,7 @@
     "css-tree": "^2.3.1",
     "esbuild": "^0.20.0",
     "joycon": "^3.1.1",
-    "prettier": "^3.2.4",
+    "prettier": "^3.2.5",
     "supports-color": "^9.4.0",
     "tinycolor2": "^1.6.0",
     "typanion": "^3.14.0"
@@ -36,7 +36,7 @@
     "@types/color-support": "^1.1.4",
     "@types/css-tree": "^2.3.5",
     "@types/eslint": "^8.56.2",
-    "@types/node": "^20.11.9",
+    "@types/node": "^20.11.17",
     "@types/tinycolor2": "^1.4.6",
     "eslint": "^8.56.0",
     "terser": "^5.27.0",
