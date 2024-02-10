@@ -14,7 +14,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc && vite build",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix"
   },
   "dependencies": {
     "react": "^18.2.0"

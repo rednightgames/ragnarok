@@ -15,7 +15,8 @@
   "types": "dist/freyja.d.ts",
   "scripts": {
     "build": "tsup",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix"
   },
   "dependencies": {
     "@rednight/utils": "*",

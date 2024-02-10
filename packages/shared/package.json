@@ -15,7 +15,8 @@
   "scripts": {
     "build:watch": "tsc && vite build --watch",
     "build": "tsc && vite build",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix"
   },
   "dependencies": {
     "@rednight/colors": "*",

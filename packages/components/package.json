@@ -17,6 +17,7 @@
     "build:storybook": "storybook build",
     "build": "tsc && vite build",
     "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix",
     "test": "vitest run --passWithNoTests",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev --no-open -p 6006"

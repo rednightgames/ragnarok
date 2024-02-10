@@ -16,6 +16,7 @@
     "build:watch": "tsc && vite build --watch",
     "build": "tsc && vite build",
     "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix",
     "test": "vitest run --passWithNoTests"
   },
   "devDependencies": {
