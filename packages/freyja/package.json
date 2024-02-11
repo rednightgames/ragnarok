@@ -41,7 +41,7 @@
     "@types/tinycolor2": "^1.4.6",
     "eslint": "^8.56.0",
     "terser": "^5.27.0",
-    "tsup": "^8.0.1",
+    "tsup": "^8.0.2",
     "typescript": "^5.3.3"
   }
 }
