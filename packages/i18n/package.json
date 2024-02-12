@@ -1,0 +1,12 @@
+{
+	"name": "@rednight/i18n",
+	"description": "CLI to extract/validate translations from the code",
+	"license": "ISC",
+	"author": "Rednight Inc.",
+	"dependencies": {
+		"@rednight/eslint-config-rednight": "*"
+	},
+	"devDependencies": {
+		"eslint": "^8.56.0"
+	}
+}

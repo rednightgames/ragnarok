@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint lib",
+    "lint:fix": "eslint lib --fix"
   },
   "dependencies": {
     "@rednight/eslint-config-rednight": "*",
