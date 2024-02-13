@@ -3547,6 +3547,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rednight/i18n@workspace:packages/i18n":
+  version: 0.0.0-use.local
+  resolution: "@rednight/i18n@workspace:packages/i18n"
+  dependencies:
+    "@rednight/eslint-config-rednight": "npm:*"
+    eslint: "npm:^8.56.0"
+  languageName: unknown
+  linkType: soft
+
 "@rednight/react-polymorphic-types@npm:*, @rednight/react-polymorphic-types@workspace:packages/react-polymorphic-types":
   version: 0.0.0-use.local
   resolution: "@rednight/react-polymorphic-types@workspace:packages/react-polymorphic-types"
