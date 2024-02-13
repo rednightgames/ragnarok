@@ -1,4 +1,5 @@
-import {Chalk} from "chalk";
+import chalk, {Chalk, Options} from "chalk";
+import CI from "ci-info";
 
 import {MessageName} from "./messageNames";
 
@@ -21,7 +22,17 @@ export enum Style {
   BOLD = 1 << 1
 }
 
-const chalkInstance = new Chalk();
+const chalkOptions = (() => {
+  if (CI.GITHUB_ACTIONS) {
+    return {level: 2};
+  }
+  if (chalk.level) {
+    return {level: chalk.level};
+  }
+  return {level: 0};
+})();
+
+const chalkInstance = new Chalk(chalkOptions as Options);
 
 const colors = new Map<Types, [string, number] | null>([
   [Type.NO_HINT, null],
