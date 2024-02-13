@@ -64,7 +64,7 @@ export class Logger {
     };
 
     if (opts.includeVersion) {
-      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Freyr ${FREYJA_VERSION}`, Style.BOLD));
+      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Freyja ${FREYJA_VERSION}`, Style.BOLD));
     }
 
     try {

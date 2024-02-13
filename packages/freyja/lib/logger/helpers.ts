@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import chalk, {Chalk, Options} from "chalk";
 import CI from "ci-info";
 
 import {MessageName} from "./messageNames";
@@ -26,13 +26,13 @@ const chalkOptions = (() => {
   if (CI.GITHUB_ACTIONS) {
     return {level: 2};
   }
-  if (chalk.supportsColor) {
-    return {level: chalk.supportsColor.level};
+  if (chalk.level) {
+    return {level: chalk.level};
   }
   return {level: 0};
 })();
 
-const chalkInstance = new chalk.Instance(chalkOptions);
+const chalkInstance = new Chalk(chalkOptions as Options);
 
 const colors = new Map<Types, [string, number] | null>([
   [Type.NO_HINT, null],
