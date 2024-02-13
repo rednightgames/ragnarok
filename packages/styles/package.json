@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "inter-ui": "^4.0.0"
+    "inter-ui": "^4.0.2"
   },
   "devDependencies": {
     "include-media": "^2.0.0"
