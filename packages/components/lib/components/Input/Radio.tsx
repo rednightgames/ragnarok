@@ -1,15 +1,19 @@
-import {clsx} from "@rednight/utils";
+import {clsx, generateUID} from "@rednight/utils";
 import {InputHTMLAttributes} from "react";
 
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
-  id: string;
-  className?: string;
+  /**
+   * Controls the name of the radio.
+   */
   name: string;
+  /**
+   * Puts the radio in a disabled state.
+   */
   disabled?: boolean;
 }
 
 const Radio = ({
-  id,
+  id = generateUID("radio"),
   children,
   className = "inline-flex",
   name,

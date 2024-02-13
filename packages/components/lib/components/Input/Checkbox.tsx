@@ -6,19 +6,19 @@ import {Icon} from "../Icon";
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
-   * Interactions will be blocked while loading is true
+   * Interactions will be blocked while loading is true.
    */
   loading?: boolean;
   /**
-   * Background color can be set using a css color (e.g. #ff0000 or rgb(255, 0, 0))
+   * Background color can be set using a css color (e.g. #ff0000 or rgb(255, 0, 0)).
    */
   backgroundColor?: string;
   /**
-   * Border color can be set using a css color (e.g. #ff0000 or rgb(255, 0, 0))
+   * Border color can be set using a css color (e.g. #ff0000 or rgb(255, 0, 0)).
    */
   borderColor?: string;
   /**
-   * Color can be set using a css color (e.g. #ff0000 or rgb(255, 0, 0))
+   * Color can be set using a css color (e.g. #ff0000 or rgb(255, 0, 0)).
    */
   color?: string;
   indeterminate?: boolean;

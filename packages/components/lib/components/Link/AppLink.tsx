@@ -4,8 +4,17 @@ import {AnchorHTMLAttributes, forwardRef, Ref} from "react";
 import {Link as ReactRouterLink} from "react-router-dom";
 
 type AppLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "color"> & {
+  /**
+   * Provide the link href.
+   */
   to: string;
+  /**
+   * Controls link target app.
+   */
   toApp?: APP_NAMES;
+  /**
+   * Controls self opening.
+   */
   selfOpening?: boolean;
 };
 

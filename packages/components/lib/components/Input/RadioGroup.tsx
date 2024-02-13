@@ -4,14 +4,27 @@ import {Key, ReactNode} from "react";
 import Radio from "./Radio";
 
 export interface RadioGroupProps<T> {
+  /**
+   * Controls the name of the radio.
+   */
   name: string;
+  /**
+   * Array of radio buttons.
+   */
   options: {
     key?: Key;
     value: T;
     label: ReactNode;
     disabled?: boolean;
   }[];
+  /**
+   * Callback for change selected radio
+   * @param value from options
+   */
   onChange: (value: T) => void;
+  /**
+   * The current checked value
+   */
   value: T;
   className?: string;
   ["aria-describedby"]?: string;

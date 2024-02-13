@@ -8,7 +8,13 @@ import {FocusProvider} from "../focus";
 import {ThemeProvider} from "../theme";
 
 interface AppProps {
+  /**
+   * Config of application config.
+   */
   config: RednightConfig;
+  /**
+   * children of app.
+   */
   children: ReactNode;
 }
 

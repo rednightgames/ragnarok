@@ -8,11 +8,11 @@ import AvatarContext, {ImageLoadingStatus} from "./AvatarContext";
 
 interface AvatarImageProps {
   /**
-   * User avatar path
+   * User avatar path.
    */
   src: string;
   /**
-   * Letter displayed when avatar loading error or missing avatar
+   * Letter displayed when avatar loading error or missing avatar.
    */
   alt?: string;
   /**

@@ -6,6 +6,9 @@ import {ComponentPropsWithoutRef} from "react";
 export type CircleLoaderSize = "small" | "medium" | "large";
 
 export interface CircleLoaderProps extends ComponentPropsWithoutRef<"svg"> {
+  /**
+   * Controls how large the loader should be.
+   */
   size?: CircleLoaderSize;
 }
 
