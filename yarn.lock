@@ -3999,6 +3999,7 @@ __metadata:
   dependencies:
     "@rednight/eslint-config-rednight": "npm:*"
     "@types/gettext-parser": "npm:^4.0.4"
+    eslint: "npm:^8.56.0"
     gettext-parser: "npm:^8.0.0"
     terser: "npm:^5.27.0"
     tsup: "npm:^8.0.2"
