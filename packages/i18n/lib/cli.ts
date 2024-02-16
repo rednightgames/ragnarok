@@ -14,21 +14,10 @@ export class Cli {
       await this.extract(options[0]);
     }
 
-    if (is("validate")) {
-      const flags = { isVerbose: options.includes("--verbose") };
-      const args = options.filter((val) => !val.startsWith("--"));
-
-      await this.validate(args[1], flags);
-    }
-
     process.exit(0);
   }
 
   async extract(app = "app") {
-
-  }
-  
-  async validate(dir: string, flags: {isVerbose: boolean}) {
 
   }
 }
