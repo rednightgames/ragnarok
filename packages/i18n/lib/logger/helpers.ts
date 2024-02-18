@@ -4,7 +4,7 @@ import CI from "ci-info";
 import {MessageName} from "./messageNames";
 
 export const stringifyMessageName = (code: MessageName | number): string => {
-  return `FR${code.toString(10).padStart(4, "0")}`;
+  return `ED${code.toString(10).padStart(4, "0")}`;
 };
 
 export const Type = {

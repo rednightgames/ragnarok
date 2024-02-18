@@ -3,21 +3,18 @@
 	"description": "CLI to extract/validate translations from the code",
 	"license": "MIT",
 	"author": "Rednight Inc.",
+	"version": "1.0.0",
 	"type": "module",
 	"bin": "bin/i18n.js",
-	"exports": {
-		".": {
-			"import": "./dist/i18n.js"
-		}
-	},
-	"types": "dist/i18n.d.ts",
 	"scripts": {
 		"build": "tsup",
 		"lint": "eslint lib",
-		"lint:fix": "eslint lib --fix",
-		"test": "./test/test-linter.sh* && ./test/test-validator.sh"
+		"lint:fix": "eslint lib --fix"
 	},
 	"dependencies": {
+		"chalk": "^5.3.0",
+		"ci-info": "^4.0.0",
+		"execa": "^8.0.1",
 		"gettext-parser": "^8.0.0",
 		"ttag-cli": "^1.10.10"
 	},
