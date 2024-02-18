@@ -18,7 +18,7 @@
     "lint": "eslint lib"
   },
   "dependencies": {
-    "@rednight/utils": "*",
+    "@rednight/utils": "workspace:packages/utils",
     "bundle-require": "^4.0.2",
     "chalk": "5.3.0",
     "clipanion": "^4.0.0-rc.3",
@@ -32,7 +32,7 @@
     "typanion": "^3.14.0"
   },
   "devDependencies": {
-    "@rednight/eslint-config-rednight": "*",
+    "@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
     "@types/color-support": "^1.1.4",
     "@types/css-tree": "^2.3.6",
     "@types/tinycolor2": "^1.4.6",
