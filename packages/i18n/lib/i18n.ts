@@ -1,5 +1,5 @@
 import {Cli} from "./cli";
-import {Logger, MessageName} from './logger';
+import {Logger, MessageName} from "./logger";
 
 Logger.start({
   includeVersion: true,
