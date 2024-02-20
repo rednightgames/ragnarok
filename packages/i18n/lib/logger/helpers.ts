@@ -74,37 +74,25 @@ export const applyColor = (value: string, formatType: Types | string): string =>
   return fn(value);
 };
 
-const validateTransform = <T>(spec: {
-  pretty: (val: T) => string;
-}): {
-  pretty: (val: T) => string;
-} => spec;
+const validateTransform = <T>(spec: {pretty: (val: T) => string}): {pretty: (val: T) => string} => spec;
 
 const transforms = {
   [Type.ID]: validateTransform({
     pretty: (value: number | string) => {
       if (typeof value === "number") {
         return applyColor(`${value}`, Type.NUMBER);
-      } 
-        return applyColor(value, Type.CODE);
-      
+      }
+      return applyColor(value, Type.CODE);
     },
   }),
   [Type.NUMBER]: validateTransform({
-    pretty: (value: number) => {
-      return applyColor(`${value}`, Type.NUMBER);
-    },
+    pretty: (value: number) => applyColor(`${value}`, Type.NUMBER),
   }),
   [Type.DURATION]: validateTransform({
     pretty: (duration: number) => {
-      if (duration > 1000 * 60) {
-        const minutes = Math.floor(duration / 1000 / 60);
-        const seconds = Math.ceil((duration - minutes * 60 * 1000) / 1000);
-        return seconds === 0 ? `${minutes}m` : `${minutes}m ${seconds}s`;
-      } 
-        const seconds = Math.floor(duration / 1000);
-        const milliseconds = duration - seconds * 1000;
-        return milliseconds === 0 ? `${seconds}s` : `${seconds}s ${milliseconds}ms`;
+      const minutes = Math.floor(duration / 1000 / 60);
+      const seconds = Math.ceil((duration - minutes * 60 * 1000) / 1000);
+      return (minutes > 0 ? `${minutes}m ` : "") + `${seconds}s`;
     },
   }),
 };
@@ -125,13 +113,8 @@ export const pretty = <T extends Types>(value: string | number, formatType: T | 
 
 export const formatCode = (name: MessageName | null) => {
   const num = name === null ? 0 : name;
-
   const label = stringifyMessageName(num);
-  if (name === null) {
-    return pretty(label, "grey");
-  } 
-    return label;
-  
+  return name === null ? applyColor(label, "grey") : label;
 };
 
 export const applyStyle = (text: string, flags: Style): string => {
@@ -150,25 +133,14 @@ export const getLinePrefix = (index: number, count: number): string => {
   if (isFirst && isLast) {
     return "";
   }
-
+  
   if (isFirst) {
     return "┌ ";
   }
+  
   if (isLast) {
     return "└ ";
   }
 
   return "│ ";
-};
-
-export const valueToString = (value: unknown): string => {
-  if (typeof value !== "string") {
-    return `${value}`;
-  }
-
-  if (value.match(/^[a-zA-Z][a-zA-Z0-9_]+$/)) {
-    return value;
-  }
-
-  return `"${value}"`;
 };

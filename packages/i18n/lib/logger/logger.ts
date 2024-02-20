@@ -18,7 +18,7 @@ export type SectionOptions = {
 
 export type TimerOptions = Pick<SectionOptions, "skipIfEmpty">;
 
-export const SINGLE_LINE_CHAR = "·";
+const SINGLE_LINE_CHAR = "·";
 
 const GROUP = (() => {
   if (CI.GITHUB_ACTIONS) {
@@ -35,64 +35,31 @@ const GROUP = (() => {
   }
   if (CI.GITLAB) {
     return {
-      start: (what: string) => `section_start:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}[collapsed=true]\r\x1B[0K${what}\n`,
-      end: (what: string) => `section_end:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}\r\x1B[0K`,
+      start: (what: string) =>
+        `section_start:${Math.floor(Date.now() / 1000)}:${what
+          .toLowerCase()
+          .replace(/\W+/g, "_")}[collapsed=true]\r\x1B[0K${what}\n`,
+      end: (what: string) =>
+        `section_end:${Math.floor(Date.now() / 1000)}:${what
+          .toLowerCase()
+          .replace(/\W+/g, "_")}\r\x1B[0K`,
     };
   }
   return null;
 })();
 
 export class Logger {
-  static async start(opts: LoggerOptions, cb: (report: Logger) => Promise<void>) {
-    const logger = new this(opts);
-
-    const emitWarning = process.emitWarning;
-    process.emitWarning = (message, name) => {
-      if (typeof message !== "string") {
-        const error = message;
-
-        message = error.message;
-        name = name ?? error.name;
-      }
-
-      const fullMessage = typeof name !== "undefined"
-        ? `${name}: ${message}`
-        : message;
-
-      logger.reportWarning(MessageName.UNNAMED, fullMessage);
-    };
-
-    if (opts.includeVersion) {
-      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Edda ${EDDA_VERSION}`, Style.BOLD));
-    }
-
-    try {
-      await cb(logger);
-    } catch (error) {
-      logger.reportException(error as Error);
-    } finally {
-      await logger.finalize();
-      process.emitWarning = emitWarning;
-    }
-
-    return logger;
-  }
-
-  private readonly includeFooter: boolean;
+  private includeFooter: boolean;
   private stdout: Writable;
-
-  private uncommitted = new Set<{
+  private uncommitted: Set<{
     committed: boolean;
     action: () => void;
-  }>();
+  }> = new Set();
 
   private warningCount: number = 0;
   private errorCount: number = 0;
-
   private timerFooter: (() => void)[] = [];
-
   private startTime: number = Date.now();
-
   private indent: number = 0;
   private level: number = 0;
 
@@ -112,10 +79,39 @@ export class Logger {
     return this.hasErrors() ? 1 : 0;
   }
 
-  startSectionSync<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => T) {
-    const mark = {committed: false, action: () => {
-        reportHeader?.();
-      }};
+  static async start(opts: LoggerOptions, cb: (report: Logger) => Promise<void>): Promise<Logger> {
+    const logger = new Logger(opts);
+
+    const emitWarning = process.emitWarning;
+    process.emitWarning = (message, name) => {
+      if (typeof message !== "string") {
+        const error = message;
+        message = error.message;
+        name = name ?? error.name;
+      }
+
+      const fullMessage = typeof name !== "undefined" ? `${name}: ${message}` : message;
+      logger.reportWarning(MessageName.UNNAMED, fullMessage);
+    };
+
+    if (opts.includeVersion) {
+      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Edda ${EDDA_VERSION}`, Style.BOLD));
+    }
+
+    try {
+      await cb(logger);
+    } catch (error) {
+      logger.reportException(error as Error);
+    } finally {
+      await logger.finalize();
+      process.emitWarning = emitWarning;
+    }
+
+    return logger;
+  }
+
+  startSection<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => T): T {
+    const mark = {committed: false, action: () => reportHeader?.()};
 
     if (skipIfEmpty) {
       this.uncommitted.add(mark);
@@ -141,10 +137,8 @@ export class Logger {
     }
   }
 
-  async startSectionPromise<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => Promise<T>) {
-    const mark = {committed: false, action: () => {
-        reportHeader?.();
-      }};
+  async startSectionAsync<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => Promise<T>): Promise<T> {
+    const mark = {committed: false, action: () => reportHeader?.()};
 
     if (skipIfEmpty) {
       this.uncommitted.add(mark);
@@ -196,11 +190,8 @@ export class Logger {
           }
         }
 
-        if (elapsedTime > 200) {
-          this.reportInfo(null, `└ Completed in ${pretty(elapsedTime, Type.DURATION)}`);
-        } else {
-          this.reportInfo(null, "└ Completed");
-        }
+        const completedMessage = elapsedTime > 200 ? `└ Completed in ${pretty(elapsedTime, Type.DURATION)}` : "└ Completed";
+        this.reportInfo(null, completedMessage);
 
         this.level -= 1;
       },
@@ -208,18 +199,18 @@ export class Logger {
     } as SectionOptions & {cb: Callback};
   }
 
-  startTimerSync<T>(what: string, opts: TimerOptions, cb: () => T): T;
-  startTimerSync<T>(what: string, cb: () => T): T;
-  startTimerSync<T>(what: string, opts: TimerOptions | (() => T), cb?: () => T) {
+  startTimer<T>(what: string, opts: TimerOptions, cb: () => T): T;
+  startTimer<T>(what: string, cb: () => T): T;
+  startTimer<T>(what: string, opts: TimerOptions | (() => T), cb?: () => T) {
     const {cb: realCb, ...sectionOps} = this.startTimerImpl(what, opts, cb);
-    return this.startSectionSync(sectionOps, realCb);
+    return this.startSection(sectionOps, realCb);
   }
 
-  async startTimerPromise<T>(what: string, opts: TimerOptions, cb: () => Promise<T>): Promise<T>;
-  async startTimerPromise<T>(what: string, cb: () => Promise<T>): Promise<T>;
-  async startTimerPromise<T>(what: string, opts: TimerOptions | (() => Promise<T>), cb?: () => Promise<T>) {
+  async startTimerAsync<T>(what: string, opts: TimerOptions, cb: () => Promise<T>): Promise<T>;
+  async startTimerAsync<T>(what: string, cb: () => Promise<T>): Promise<T>;
+  async startTimerAsync<T>(what: string, opts: TimerOptions | (() => Promise<T>), cb?: () => Promise<T>): Promise<T> {
     const {cb: realCb, ...sectionOps} = this.startTimerImpl(what, opts, cb);
-    return this.startSectionPromise(sectionOps, realCb);
+    return this.startSectionAsync(sectionOps, realCb);
   }
 
   reportSeparator() {
@@ -254,7 +245,6 @@ export class Logger {
   reportError(name: MessageName, text: string) {
     this.errorCount += 1;
     this.timerFooter.push(() => this.reportErrorImpl(name, text));
-
     this.reportErrorImpl(name, text);
   }
 
@@ -302,11 +292,9 @@ export class Logger {
   }
 
   private formatIndent() {
-    return (() => {
-      if (this.level > 0) {
-        return "│ ".repeat(this.indent);
-      }
-      return `${SINGLE_LINE_CHAR} `;
-    })();
+    if (this.level > 0) {
+      return "│ ".repeat(this.indent);
+    }
+    return `${SINGLE_LINE_CHAR} `;
   }
 }
