@@ -17,6 +17,9 @@ export default defineConfig(() => {
     target: "node20",
     minify: false,
     clean: true,
+    noExternal: [
+      "lodash/throttle"
+    ],
     define: {
       EDDA_VERSION: JSON.stringify(version)
     }

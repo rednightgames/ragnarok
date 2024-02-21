@@ -16,11 +16,13 @@
 		"ci-info": "^4.0.0",
 		"execa": "^8.0.1",
 		"gettext-parser": "^8.0.0",
+		"lodash": "^4.17.21",
 		"ttag-cli": "^1.10.10"
 	},
 	"devDependencies": {
 		"@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
 		"@types/gettext-parser": "^4.0.4",
+		"@types/lodash": "^4.14.202",
 		"eslint": "^8.56.0",
 		"terser": "^5.27.0",
 		"tsup": "^8.0.2",
