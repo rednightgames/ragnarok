@@ -6,7 +6,6 @@
   "version": "1.0.0",
   "type": "module",
   "bin": "bin/freyja.js",
-  "main": "dist/shared.js",
   "exports": {
     ".": {
       "import": "./dist/freyja.js"
