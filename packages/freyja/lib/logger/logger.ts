@@ -1,7 +1,6 @@
 import CI from "ci-info";
 import {Writable} from "stream";
 
-import {FREYJA_VERSION} from "../constants";
 import {applyStyle, formatCode, pretty, Style, Type} from "./helpers";
 import {MessageName} from "./messageNames";
 
