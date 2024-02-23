@@ -3570,6 +3570,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rednight/i18n@workspace:packages/i18n":
+  version: 0.0.0-use.local
+  resolution: "@rednight/i18n@workspace:packages/i18n"
+  dependencies:
+    "@rednight/eslint-config-rednight": "npm:*"
+    eslint: "npm:^8.56.0"
+  languageName: unknown
+  linkType: soft
+
+"@rednight/polyfill@workspace:packages/polyfill":
+  version: 0.0.0-use.local
+  resolution: "@rednight/polyfill@workspace:packages/polyfill"
+  dependencies:
+    "@rednight/eslint-config-rednight": "npm:*"
+    abortcontroller-polyfill: "npm:^1.7.5"
+    core-js: "npm:^3.35.1"
+    eslint: "npm:^8.56.0"
+    resize-observer: "npm:^1.0.4"
+  languageName: unknown
+  linkType: soft
+
 "@rednight/react-polymorphic-types@npm:*, @rednight/react-polymorphic-types@workspace:packages/react-polymorphic-types":
   version: 0.0.0-use.local
   resolution: "@rednight/react-polymorphic-types@workspace:packages/react-polymorphic-types"
@@ -6020,6 +6041,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"abortcontroller-polyfill@npm:^1.7.5":
+  version: 1.7.5
+  resolution: "abortcontroller-polyfill@npm:1.7.5"
+  checksum: 10c0/d7a5ab6fda4f9a54f22ddeb233a2564d2f4f857ec17be25fee21a91bb5090bee57c630c454634b5c4b93fc06bd90d592d1f2fc69f77cd28791ac0fe361feb7d2
+  languageName: node
+  linkType: hard
+
 "accepts@npm:~1.3.5, accepts@npm:~1.3.8":
   version: 1.3.8
   resolution: "accepts@npm:1.3.8"
@@ -7488,6 +7516,13 @@ __metadata:
   dependencies:
     browserslist: "npm:^4.22.2"
   checksum: 10c0/c3b872e1f9703aa9554cce816207d85730da4703f1776c540b4da11bbbef6d9a1e6041625b5c1f58d2ada3d05f4a2b92897b7de5315c5ecd5d33d50dec86cca7
+  languageName: node
+  linkType: hard
+
+"core-js@npm:^3.35.1":
+  version: 3.36.0
+  resolution: "core-js@npm:3.36.0"
+  checksum: 10c0/62dcb41ba79ead581e4c5b2740ae18bfe6ee230e853893736d16edb01b580574d8645ff6c5513d1c75d59620f8451aee45c119d3c4f5ebc66cff5f003a816864
   languageName: node
   linkType: hard
 
@@ -14184,6 +14219,13 @@ __metadata:
   version: 1.0.0
   resolution: "requires-port@npm:1.0.0"
   checksum: 10c0/b2bfdd09db16c082c4326e573a82c0771daaf7b53b9ce8ad60ea46aa6e30aaf475fe9b164800b89f93b748d2c234d8abff945d2551ba47bf5698e04cd7713267
+  languageName: node
+  linkType: hard
+
+"resize-observer@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "resize-observer@npm:1.0.4"
+  checksum: 10c0/b257144ea7f63f3de9eb6d760a7d334e3917cb229c286a1079260b83d2361b218b9a1e5716aed6cfcb16979504b43f8c52f08ee53f5c07a8453fb1ff10af9af2
   languageName: node
   linkType: hard
 
