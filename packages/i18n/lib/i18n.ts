@@ -1,9 +1,5 @@
-import {Cli} from "./cli";
-import {Logger, MessageName} from "./logger";
+import {runExit} from "./lib";
 
-Logger.start({
-  includeVersion: true,
-  stdout: process.stdout,
-}, async (report) => {
-  await new Cli(process.argv).run().catch((e) => report.reportError(MessageName.ERROR, e));
-});
+runExit(process.argv.slice(2), {
+  cwd: process.cwd()
+})
