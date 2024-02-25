@@ -4002,6 +4002,7 @@ __metadata:
     "@types/lodash": "npm:^4.14.202"
     chalk: "npm:^5.3.0"
     ci-info: "npm:^4.0.0"
+    clipanion: "npm:^4.0.0-rc.3"
     eslint: "npm:^8.56.0"
     execa: "npm:^8.0.1"
     gettext-parser: "npm:^8.0.0"
