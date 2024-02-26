@@ -1,8 +1,9 @@
 import {Cli, UsageError} from "clipanion";
 import {resolve} from "path";
 
-import {CommandContext} from "./types";
 import {HelpCommand, VersionCommand} from "./commands";
+import {satisfiesWithPrereleases} from "./helpers";
+import {CommandContext} from "./types";
 
 export type EddaCli = ReturnType<typeof getBaseCli>;
 
@@ -35,6 +36,10 @@ const validateNodejsVersion = (cli: EddaCli) => {
   // - 18.12 is the first LTS release
   const range = `>=18.12.0`;
 
+  if (satisfiesWithPrereleases(version, range)) {
+return true;
+}
+
   const error = new UsageError(`This tool requires a Node version compatible with ${range} (got ${version}). Upgrade Node.`);
   Cli.defaultContext.stdout.write(cli.error(error));
 
@@ -64,6 +69,10 @@ const checkCwd = (cli: EddaCli, argv: string[]) => {
 };
 
 const run = async (cli: EddaCli, argv: string[]) => {
+  if (!validateNodejsVersion(cli)) {
+return 1;
+}
+
   const postCwdArgv = checkCwd(cli, argv);
 
   const command = cli.process(postCwdArgv, cli.defaultContext);

@@ -18,6 +18,7 @@
 		"execa": "^8.0.1",
 		"gettext-parser": "^8.0.0",
 		"lodash": "^4.17.21",
+		"semver": "^7.6.0",
 		"ttag-cli": "^1.10.10"
 	},
 	"devDependencies": {
