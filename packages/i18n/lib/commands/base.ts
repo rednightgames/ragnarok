@@ -1,7 +1,7 @@
 import {Command, Option, UsageError} from "clipanion";
-import {CommandContext} from "lib/types";
+import {CliContext} from "../lib";
 
-export abstract class BaseCommand extends Command<CommandContext> {
+export abstract class BaseCommand extends Command<CliContext> {
   cwd = Option.String(`--cwd`, {hidden: true});
 
   abstract execute(): Promise<number | void>;

@@ -1,14 +1,17 @@
-import {Cli, UsageError} from "clipanion";
+import {BaseContext, Cli, UsageError} from "clipanion";
 import {resolve} from "path";
 
 import {HelpCommand, VersionCommand} from "./commands";
 import {satisfiesWithPrereleases} from "./helpers";
-import {CommandContext} from "./types";
 
 export type EddaCli = ReturnType<typeof getBaseCli>;
 
+export interface CliContext extends BaseContext {
+  cwd: string,
+}
+
 const getBaseCli = (cwd: string) => {
-  const cli = new Cli<CommandContext>({
+  const cli = new Cli<CliContext>({
     binaryLabel: `Edda cli to extract/validate translations`,
     binaryName: `i18n`,
     binaryVersion: EDDA_VERSION ?? `<unknown>`,
@@ -21,10 +24,6 @@ const getBaseCli = (cwd: string) => {
     defaultContext: {
       ...Cli.defaultContext,
       cwd,
-      quiet: false,
-      stdin: process.stdin,
-      stdout: process.stdout,
-      stderr: process.stderr,
     },
   });
 };
