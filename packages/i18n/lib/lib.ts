@@ -36,8 +36,8 @@ const validateNodejsVersion = (cli: EddaCli) => {
   const range = `>=18.12.0`;
 
   if (satisfiesWithPrereleases(version, range)) {
-return true;
-}
+    return true;
+  }
 
   const error = new UsageError(`This tool requires a Node version compatible with ${range} (got ${version}). Upgrade Node.`);
   Cli.defaultContext.stdout.write(cli.error(error));
