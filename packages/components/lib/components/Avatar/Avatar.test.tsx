@@ -22,7 +22,7 @@ beforeAll(() => {
 
 describe("Avatar Component", () => {
   it("renders with provided good src", async () => {
-    const src = "https://cdn.rednightgames.com/avatars/good";
+    const src = "https://cdn.rednightgames.com/avatars/153435384675569664";
     const fallback = "F";
 
     render(
@@ -33,9 +33,6 @@ describe("Avatar Component", () => {
       />,
     );
 
-    const avatarFallback = screen.getByText(fallback);
-    expect(avatarFallback).toBeInTheDocument();
-
     await waitFor(() => {
       const avatarImage = screen.getByAltText(fallback);
       expect(avatarImage).toBeInTheDocument();
@@ -43,7 +40,7 @@ describe("Avatar Component", () => {
     });
   });
 
-  it("renders with provided bad src", () => {
+  it("renders with provided bad src", async () => {
     const src = "https://cdn.rednightgames.com/avatars/bad";
     const fallback = "F";
 
@@ -55,12 +52,14 @@ describe("Avatar Component", () => {
       />,
     );
 
-    const avatarFallback = screen.getByTestId("avatar-fallback");
-    expect(avatarFallback).toBeInTheDocument();
+    await waitFor(() => {
+      const avatarFallback = screen.getByTestId("avatar-fallback");
+      expect(avatarFallback).toBeInTheDocument();
+    });
   });
 
   it("renders with default size if size prop is not provided", () => {
-    const src = "https://cdn.rednightgames.com/avatars/130338604252660200";
+    const src = "https://cdn.rednightgames.com/avatars/153435384675569664";
     const fallback = "F";
 
     render(
@@ -77,7 +76,7 @@ describe("Avatar Component", () => {
   });
 
   it("renders with provided size", () => {
-    const src = "path/to/avatar.png";
+    const src = "https://cdn.rednightgames.com/avatars/153435384675569664";
     const fallback = "F";
     const size = "large";
 
@@ -95,7 +94,7 @@ describe("Avatar Component", () => {
   });
 
   it("renders with default color if fallback is not provided", () => {
-    const src = "path/to/avatar.png";
+    const src = "https://cdn.rednightgames.com/avatars/153435384675569664";
 
     render(
       <Avatar
@@ -119,7 +118,7 @@ describe("Avatar Component", () => {
         data-testid="avatar"
       />,
     );
-    
+
     const avatarProvider = screen.getByTestId("avatar-provider");
     expect(avatarProvider).toHaveStyle(`--avatar-color: #460000`);
   });

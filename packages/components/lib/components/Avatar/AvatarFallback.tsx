@@ -6,9 +6,6 @@ import {ForwardedRef, forwardRef, HTMLProps, useContext, useEffect, useState} fr
 import AvatarContext from "./AvatarContext";
 
 interface AvatarFallbackProps extends HTMLProps<HTMLSpanElement> {
-  /**
-   * Delay for fallback is show.
-   */
   delayMs?: number;
   /**
    * Locator for e2e tests.
@@ -18,7 +15,7 @@ interface AvatarFallbackProps extends HTMLProps<HTMLSpanElement> {
 
 const AvatarFallback = (
   {
-    delayMs,
+    delayMs = 20,
     ...restProps
   }: AvatarFallbackProps,
   ref: ForwardedRef<HTMLSpanElement>,

@@ -12,7 +12,6 @@ export const Playground = ({
 }) => (
   <Avatar
     {...args}
-    src="https://cdn.rednightgames.com/avatars/056b798d3db2fbfb230b357d4028be97e5fd3b84a7697b10c4354c11c95a59aa.webp"
   />
 );
 
@@ -23,6 +22,10 @@ Playground.argTypes = {
       type: "select",
       defaultValue: "medium",
     },
+  },
+  src: {
+    control: "text",
+    default: "https://cdn.rednightgames.com/avatars/056b798d3db2fbfb230b357d4028be97e5fd3b84a7697b10c4354c11c95a59aa.webp",
   },
   fallback: {
     control: "text",

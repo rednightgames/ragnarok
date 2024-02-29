@@ -11,11 +11,11 @@ export type AvatarSize = "small" | "medium" | "large";
 
 interface AvatarOwnProps {
   /**
-   * User avatar path.
+   * User avatar path
    */
   src: string;
   /**
-   * Letter displayed when avatar loading error or missing avatar.
+   * Letter displayed when avatar loading error or missing avatar
    */
   fallback?: string;
   /**
