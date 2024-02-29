@@ -9,7 +9,7 @@
     "build": "freyja"
   },
   "devDependencies": {
-    "@rednight/freyja": "*",
+    "@rednight/freyja": "workspace:packages/freyja",
     "typescript": "^5.3.3"
   }
 }

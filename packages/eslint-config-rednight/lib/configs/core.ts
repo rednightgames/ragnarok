@@ -25,9 +25,7 @@ export const core = (): ConfigItem[] => {
         "accessor-pairs": "off",
         "block-scoped-var": "error",
         "complexity": ["off", 20],
-        "class-methods-use-this": ["error", {
-          exceptMethods: [],
-        }],
+        "class-methods-use-this": ["off"],
         "default-case": ["error", {commentPattern: "^no default$"}],
         "default-case-last": "error",
         "default-param-last": "off",

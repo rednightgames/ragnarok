@@ -47,7 +47,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@rednight/eslint-config-rednight": "*",
+    "@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
     "@types/eslint": "^8.56.2",
     "@types/node": "^20.11.17",
     "eslint": "^8.56.0",
