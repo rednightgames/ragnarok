@@ -19,14 +19,14 @@
     "lint:fix": "eslint lib --fix"
   },
   "dependencies": {
-    "@rednight/colors": "*",
-    "@rednight/crypto": "*",
-    "@rednight/utils": "*",
+    "@rednight/colors": "workspace:packages/colors",
+    "@rednight/crypto": "workspace:packages/crypto",
+    "@rednight/utils": "workspace:packages/utils",
     "jsbi": "^4.3.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@rednight/eslint-config-rednight": "*",
+    "@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.11.17",
     "eslint": "^8.56.0",
