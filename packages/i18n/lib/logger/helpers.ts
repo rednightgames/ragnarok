@@ -133,14 +133,25 @@ export const getLinePrefix = (index: number, count: number): string => {
   if (isFirst && isLast) {
     return "";
   }
-  
+
   if (isFirst) {
     return "┌ ";
   }
-  
+
   if (isLast) {
     return "└ ";
   }
 
   return "│ ";
+};
+
+export const formatName = (name: MessageName | null) => {
+  const num = name === null ? 0 : name;
+  const label = stringifyMessageName(num);
+
+  if (name === null) {
+    return pretty(label, `grey`);
+  } 
+    return label;
+  
 };

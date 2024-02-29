@@ -1,7 +1,7 @@
 import {BaseContext, Cli, UsageError} from "clipanion";
 import {resolve} from "path";
 
-import {HelpCommand, VersionCommand} from "./commands";
+import {ExtractCommand, HelpCommand, VersionCommand} from "./commands";
 import {satisfiesWithPrereleases} from "./helpers";
 
 export type EddaCli = ReturnType<typeof getBaseCli>;
@@ -17,6 +17,7 @@ const getBaseCli = (cwd: string) => {
     binaryVersion: EDDA_VERSION ?? `<unknown>`,
   });
 
+  cli.register(ExtractCommand);
   cli.register(HelpCommand);
   cli.register(VersionCommand);
 

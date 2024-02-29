@@ -1,4 +1,5 @@
 import {Command, Option, UsageError} from "clipanion";
+
 import {CliContext} from "../lib";
 
 export abstract class BaseCommand extends Command<CliContext> {
