@@ -44,13 +44,13 @@ const generateColor = (str?: string) => {
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
-  
+
   let color = "#";
   for (let j = 0; j < 3; j++) {
     let value = (hash >> (j * 8)) & 0xFF;
     color += ("00" + value.toString(16)).slice(-2);
   }
-  
+
   return color;
 };
 
@@ -69,7 +69,7 @@ const Avatar = <E extends ElementType = typeof defaultElement>(
     <AvatarProvider
       {...restProps}
       style={{
-      "--avatar-color": generateColor(fallback),
+        "--avatar-color": generateColor(fallback),
       }}
       size={size}
       ref={ref}

@@ -18,6 +18,11 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "baseUrl": ".",
+    "paths": {
+      "@rednight/styles/*": [
+        "./packages/styles/*"
+      ]
+    },
   },
   "exclude": [
     "**/node_modules"
