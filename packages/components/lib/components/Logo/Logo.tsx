@@ -42,15 +42,18 @@ const Logo = <E extends ElementType = typeof defaultElement>(
     <Element
       className="logo"
       ref={ref}
+      data-testid="logo"
       {...restProps}
     >
       <img src={redEagle} />
+
       {sublogo !== "default" && (
         <svg
           width="1"
           height="20"
           viewBox="0 0 1 20"
           fill="none"
+          data-testid=""
           xmlns="http://www.w3.org/2000/svg"
         >
           <rect
