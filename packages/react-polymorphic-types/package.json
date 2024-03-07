@@ -14,7 +14,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc && vite build",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "pretty": "prettier --check $(find . -path ./node_modules -prune -o -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx')",
+    "pretty:fix": "prettier --write $(find . -path ./node_modules -prune -o -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx')"
   },
   "dependencies": {
     "react": "^18.2.0"

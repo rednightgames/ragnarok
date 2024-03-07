@@ -1,6 +1,8 @@
 import {Ref, useCallback} from "react";
 
-const useCombinedRefs = <T extends any>(...refs: (Ref<T> | undefined)[]): Ref<T> =>
+const useCombinedRefs = <T extends any>(
+  ...refs: (Ref<T> | undefined)[]
+): Ref<T> =>
   useCallback(
     (element: T) =>
       refs.forEach((ref) => {
@@ -11,7 +13,7 @@ const useCombinedRefs = <T extends any>(...refs: (Ref<T> | undefined)[]): Ref<T>
         if (typeof ref === "function") {
           return ref(element);
         }
-        
+
         (ref as any).current = element;
       }),
     refs,

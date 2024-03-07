@@ -14,15 +14,10 @@ export const Basic = () => {
         <Checkbox>checkbox</Checkbox>
       </div>
       <div className="my-4">
-        <Checkbox checked>
-          checked
-        </Checkbox>
+        <Checkbox checked>checked</Checkbox>
       </div>
       <div className="my-4">
-        <Checkbox
-          checked
-          disabled
-        >
+        <Checkbox checked disabled>
           checked disabled
         </Checkbox>
       </div>

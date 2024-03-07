@@ -7,14 +7,7 @@ export default {
   title: "components/Logo",
 } as Meta<typeof Logo>;
 
-export const Playground = ({
-  ...args
-}) => (
-  <Logo
-    as="button"
-    {...args}
-  />
-);
+export const Playground = ({...args}) => <Logo as="button" {...args} />;
 
 Playground.argTypes = {
   sublogo: {

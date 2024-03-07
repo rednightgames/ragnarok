@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 
 import {render} from "@testing-library/react";
+
 import Logo from "./Logo";
 
 describe("Logo Component", () => {
@@ -11,7 +12,7 @@ describe("Logo Component", () => {
 
   it("renders with account sublogo", () => {
     const {getByTestId} = render(<Logo sublogo="account" />);
-    expect(getByTestId('logo')).toBeInTheDocument();
+    expect(getByTestId("logo")).toBeInTheDocument();
   });
 
   it("renders with custom element", () => {

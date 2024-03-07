@@ -9,8 +9,10 @@ export abstract class BaseCommand extends Command<CliContext> {
 
   validateAndExecute(): Promise<number> {
     if (typeof this.cwd !== `undefined`) {
-throw new UsageError(`The --cwd option is ambiguous when used anywhere else than the very first parameter provided in the command line, before even the command path`);
-}
+      throw new UsageError(
+        `The --cwd option is ambiguous when used anywhere else than the very first parameter provided in the command line, before even the command path`,
+      );
+    }
 
     return super.validateAndExecute();
   }

@@ -1,6 +1,13 @@
 import {useCombinedRefs} from "@rednight/hooks";
 import {clsx, generateUID} from "@rednight/utils";
-import {forwardRef, InputHTMLAttributes, LabelHTMLAttributes, Ref, useEffect, useRef} from "react";
+import {
+  forwardRef,
+  InputHTMLAttributes,
+  LabelHTMLAttributes,
+  Ref,
+  useEffect,
+  useRef,
+} from "react";
 
 import {Icon} from "../Icon";
 
@@ -22,7 +29,9 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
    */
   color?: string;
   indeterminate?: boolean;
-  labelOnClick?: (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => void;
+  labelOnClick?: (
+    event: React.MouseEvent<HTMLLabelElement, MouseEvent>,
+  ) => void;
   labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
 }
 

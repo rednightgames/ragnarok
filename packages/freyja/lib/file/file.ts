@@ -1,7 +1,13 @@
 import {existsSync, mkdirSync, readFileSync, writeFileSync} from "fs";
 
 import {Logger, MessageName} from "../logger";
-import {Config, FileConfig, Source, StepOptions, TransformedSource} from "../types";
+import {
+  Config,
+  FileConfig,
+  Source,
+  StepOptions,
+  TransformedSource,
+} from "../types";
 import {stripFilename} from "./helpers";
 
 export interface WriteOptions extends StepOptions {
@@ -11,18 +17,24 @@ export interface WriteOptions extends StepOptions {
 export class FilesProvider {
   static async resolution({logger, config}: StepOptions) {
     let file_provider = new FilesProvider({config, logger});
-    return file_provider.logger.startTimerPromise("Resolution step", async () => {
-      file_provider.getOutputDirs();
+    return file_provider.logger.startTimerPromise(
+      "Resolution step",
+      async () => {
+        file_provider.getOutputDirs();
 
-      return file_provider.loadThemes();
-    });
+        return file_provider.loadThemes();
+      },
+    );
   }
 
   static async write({logger, config, transformed}: WriteOptions) {
     let file_provider = new FilesProvider({config, logger});
-    return file_provider.logger.startTimerPromise("Save themes step", async () => {
-      return file_provider.writeTransformed(transformed);
-    });
+    return file_provider.logger.startTimerPromise(
+      "Save themes step",
+      async () => {
+        return file_provider.writeTransformed(transformed);
+      },
+    );
   }
 
   private readonly config: Config;
@@ -35,11 +47,13 @@ export class FilesProvider {
 
   private writeTransformed(transformed: TransformedSource[]) {
     transformed.forEach(({promise, dist}) => {
-      promise.then((res) => {
-        writeFileSync(dist, res);
-      }).catch((reason) => {
-        this.logger.reportException(reason);
-      });
+      promise
+        .then((res) => {
+          writeFileSync(dist, res);
+        })
+        .catch((reason) => {
+          this.logger.reportException(reason);
+        });
     });
   }
 
@@ -61,7 +75,10 @@ export class FilesProvider {
       try {
         source = readFileSync(path, {encoding: "utf-8"});
       } catch (e) {
-        this.logger.reportError(MessageName.EXCEPTION, `no such file, open ${path}`);
+        this.logger.reportError(
+          MessageName.EXCEPTION,
+          `no such file, open ${path}`,
+        );
       }
 
       sources.push({

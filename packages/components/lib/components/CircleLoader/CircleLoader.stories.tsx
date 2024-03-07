@@ -2,7 +2,6 @@ import {Meta} from "@storybook/react";
 
 import CircleLoader from "./CircleLoader";
 
-
 export default {
   component: CircleLoader,
   title: "components/CircleLoader",
@@ -12,15 +11,9 @@ export const Basic = () => (
   <>
     <CircleLoader />
     <br />
-    <CircleLoader
-      size="medium"
-      className="color-primary"
-    />
+    <CircleLoader size="medium" className="color-primary" />
     <br />
-    <CircleLoader
-      size="large"
-      className="color-danger"
-    />
+    <CircleLoader size="large" className="color-danger" />
   </>
 );
 

@@ -1,10 +1,22 @@
 import {isPackageExists} from "local-pkg";
 
-import {core, ignores, react, sortKeys, stylistic, typescript, unicorn} from "./configs";
+import {
+  core,
+  ignores,
+  prettier,
+  react,
+  sortKeys,
+  stylistic,
+  typescript,
+  unicorn,
+} from "./configs";
 import {ConfigItem, OptionsConfig} from "./types";
 import {combine} from "./utils";
 
-export const rednight = (options: OptionsConfig & ConfigItem = {}, ...userConfigs: (ConfigItem | ConfigItem[])[]): ConfigItem[] => {
+export const rednight = (
+  options: OptionsConfig & ConfigItem = {},
+  ...userConfigs: (ConfigItem | ConfigItem[])[]
+): ConfigItem[] => {
   const {
     react: enableReact = isPackageExists("react"),
     typescript: enableTypeScript = isPackageExists("typescript"),
@@ -15,19 +27,17 @@ export const rednight = (options: OptionsConfig & ConfigItem = {}, ...userConfig
   const configs: ConfigItem[][] = [];
 
   if (enableTypeScript) {
-    configs.push(typescript({
-      ...typeof enableTypeScript !== "boolean"
-        ? enableTypeScript
-        : {},
-      componentExts,
-      overrides: overrides.typescript,
-    }));
+    configs.push(
+      typescript({
+        ...(typeof enableTypeScript !== "boolean" ? enableTypeScript : {}),
+        componentExts,
+        overrides: overrides.typescript,
+      }),
+    );
   }
 
   if (enableReact) {
-    configs.push(
-      react(),
-    );
+    configs.push(react());
   }
 
   // Base configs
@@ -37,10 +47,8 @@ export const rednight = (options: OptionsConfig & ConfigItem = {}, ...userConfig
     stylistic(),
     unicorn(),
     sortKeys(),
+    prettier(),
   );
 
-  return combine(
-    ...configs,
-    ...userConfigs,
-  );
+  return combine(...configs, ...userConfigs);
 };

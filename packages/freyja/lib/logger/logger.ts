@@ -35,15 +35,20 @@ const GROUP = (() => {
   }
   if (CI.GITLAB) {
     return {
-      start: (what: string) => `section_start:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}[collapsed=true]\r\x1B[0K${what}\n`,
-      end: (what: string) => `section_end:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}\r\x1B[0K`,
+      start: (what: string) =>
+        `section_start:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}[collapsed=true]\r\x1B[0K${what}\n`,
+      end: (what: string) =>
+        `section_end:${Math.floor(Date.now() / 1000)}:${what.toLowerCase().replace(/\W+/g, "_")}\r\x1B[0K`,
     };
   }
   return null;
 })();
 
 export class Logger {
-  static async start(opts: LoggerOptions, cb: (report: Logger) => Promise<void>) {
+  static async start(
+    opts: LoggerOptions,
+    cb: (report: Logger) => Promise<void>,
+  ) {
     const logger = new this(opts);
 
     const emitWarning = process.emitWarning;
@@ -55,15 +60,17 @@ export class Logger {
         name = name ?? error.name;
       }
 
-      const fullMessage = typeof name !== "undefined"
-        ? `${name}: ${message}`
-        : message;
+      const fullMessage =
+        typeof name !== "undefined" ? `${name}: ${message}` : message;
 
       logger.reportWarning(MessageName.UNNAMED, fullMessage);
     };
 
     if (opts.includeVersion) {
-      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Freyja ${FREYJA_VERSION}`, Style.BOLD));
+      logger.reportInfo(
+        MessageName.UNNAMED,
+        applyStyle(`Freyja ${FREYJA_VERSION}`, Style.BOLD),
+      );
     }
 
     try {
@@ -96,10 +103,7 @@ export class Logger {
   private indent: number = 0;
   private level: number = 0;
 
-  constructor({
-    stdout,
-    includeFooter = true,
-  }: LoggerOptions) {
+  constructor({stdout, includeFooter = true}: LoggerOptions) {
     this.includeFooter = includeFooter;
     this.stdout = stdout;
   }
@@ -112,10 +116,16 @@ export class Logger {
     return this.hasErrors() ? 1 : 0;
   }
 
-  startSectionSync<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => T) {
-    const mark = {committed: false, action: () => {
+  startSectionSync<T>(
+    {reportHeader, reportFooter, skipIfEmpty}: SectionOptions,
+    cb: () => T,
+  ) {
+    const mark = {
+      committed: false,
+      action: () => {
         reportHeader?.();
-      }};
+      },
+    };
 
     if (skipIfEmpty) {
       this.uncommitted.add(mark);
@@ -141,10 +151,16 @@ export class Logger {
     }
   }
 
-  async startSectionPromise<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => Promise<T>) {
-    const mark = {committed: false, action: () => {
+  async startSectionPromise<T>(
+    {reportHeader, reportFooter, skipIfEmpty}: SectionOptions,
+    cb: () => Promise<T>,
+  ) {
+    const mark = {
+      committed: false,
+      action: () => {
         reportHeader?.();
-      }};
+      },
+    };
 
     if (skipIfEmpty) {
       this.uncommitted.add(mark);
@@ -170,7 +186,11 @@ export class Logger {
     }
   }
 
-  private startTimerImpl<Callback extends Function>(what: string, opts: TimerOptions | Callback, cb?: Callback) {
+  private startTimerImpl<Callback extends Function>(
+    what: string,
+    opts: TimerOptions | Callback,
+    cb?: Callback,
+  ) {
     const realOpts = typeof opts === "function" ? {} : opts;
     const realCb = typeof opts === "function" ? opts : cb!;
 
@@ -186,7 +206,7 @@ export class Logger {
           this.stdout.write(GROUP.start(what));
         }
       },
-      reportFooter: elapsedTime => {
+      reportFooter: (elapsedTime) => {
         this.indent -= 1;
 
         if (GROUP !== null) {
@@ -197,7 +217,10 @@ export class Logger {
         }
 
         if (elapsedTime > 200) {
-          this.reportInfo(null, `└ Completed in ${pretty(elapsedTime, Type.DURATION)}`);
+          this.reportInfo(
+            null,
+            `└ Completed in ${pretty(elapsedTime, Type.DURATION)}`,
+          );
         } else {
           this.reportInfo(null, "└ Completed");
         }
@@ -210,14 +233,26 @@ export class Logger {
 
   startTimerSync<T>(what: string, opts: TimerOptions, cb: () => T): T;
   startTimerSync<T>(what: string, cb: () => T): T;
-  startTimerSync<T>(what: string, opts: TimerOptions | (() => T), cb?: () => T) {
+  startTimerSync<T>(
+    what: string,
+    opts: TimerOptions | (() => T),
+    cb?: () => T,
+  ) {
     const {cb: realCb, ...sectionOps} = this.startTimerImpl(what, opts, cb);
     return this.startSectionSync(sectionOps, realCb);
   }
 
-  async startTimerPromise<T>(what: string, opts: TimerOptions, cb: () => Promise<T>): Promise<T>;
+  async startTimerPromise<T>(
+    what: string,
+    opts: TimerOptions,
+    cb: () => Promise<T>,
+  ): Promise<T>;
   async startTimerPromise<T>(what: string, cb: () => Promise<T>): Promise<T>;
-  async startTimerPromise<T>(what: string, opts: TimerOptions | (() => Promise<T>), cb?: () => Promise<T>) {
+  async startTimerPromise<T>(
+    what: string,
+    opts: TimerOptions | (() => Promise<T>),
+    cb?: () => Promise<T>,
+  ) {
     const {cb: realCb, ...sectionOps} = this.startTimerImpl(what, opts, cb);
     return this.startSectionPromise(sectionOps, realCb);
   }

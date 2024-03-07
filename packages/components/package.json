@@ -17,6 +17,8 @@
     "build:storybook": "storybook build",
     "build": "tsc && vite build",
     "lint": "eslint lib",
+    "pretty": "prettier --check $(find . -path ./node_modules -prune -o -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx')",
+    "pretty:fix": "prettier --write $(find . -path ./node_modules -prune -o -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx')",
     "test": "vitest run --passWithNoTests",
     "coverage": "vitest run --coverage",
     "storybook": "storybook dev --no-open -p 6006"

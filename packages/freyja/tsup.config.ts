@@ -1,8 +1,6 @@
 import {defineConfig} from "tsup";
 import {readFileSync} from "fs";
 
-
-
 export default defineConfig(() => {
   const {version} = JSON.parse(
     readFileSync(new URL("./package.json", import.meta.url)).toString(),
@@ -23,7 +21,7 @@ export default defineConfig(() => {
       resolve: true,
     },
     define: {
-      FREYJA_VERSION: JSON.stringify(version)
-    }
-  }
+      FREYJA_VERSION: JSON.stringify(version),
+    },
+  };
 });

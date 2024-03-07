@@ -34,7 +34,7 @@ const FocusProvider: FC<FocusProps> = ({children}) => {
       }
 
       setHadKeyboardEvent(false);
-      EventTypes.map(type => {
+      EventTypes.map((type) => {
         document.removeEventListener(type, onInitialPointerMove);
       });
     };
@@ -50,7 +50,7 @@ const FocusProvider: FC<FocusProps> = ({children}) => {
     const onVisibilityChange = () => {
       if (document.visibilityState === "hidden") {
         setHadKeyboardEvent(true);
-        EventTypes.map(type => {
+        EventTypes.map((type) => {
           document.addEventListener(type, onInitialPointerMove);
         });
       }
@@ -62,7 +62,7 @@ const FocusProvider: FC<FocusProps> = ({children}) => {
     document.addEventListener("touchstart", onPointerDown, true);
     document.addEventListener("visibilitychange", onVisibilityChange, true);
 
-    EventTypes.map(type => {
+    EventTypes.map((type) => {
       document.addEventListener(type, onInitialPointerMove);
     });
 
@@ -77,7 +77,7 @@ const FocusProvider: FC<FocusProps> = ({children}) => {
         true,
       );
 
-      EventTypes.map(type => {
+      EventTypes.map((type) => {
         document.removeEventListener(type, onInitialPointerMove);
       });
     };

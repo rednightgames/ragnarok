@@ -18,7 +18,7 @@ const Radio = ({
   className = "inline-flex",
   name,
   disabled = false,
-    ...rest
+  ...rest
 }: RadioProps) => {
   return (
     <label

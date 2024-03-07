@@ -8,7 +8,9 @@ import {decodeBase64, encodeBase64} from "@rednight/crypto";
  * @dev Therefore, if the argument string has a length not divisible by three, the returned string will be padded with one or two '=' characters
  */
 export const encodeBase64URL = (str: string, removePadding = true) => {
-  const base64String = encodeBase64(str).replace(/\+/g, "-").replace(/\//g, "_");
+  const base64String = encodeBase64(str)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
 
   return removePadding ? base64String.replace(/=/g, "") : base64String;
 };
@@ -18,5 +20,9 @@ export const encodeBase64URL = (str: string, removePadding = true) => {
  * @param str
  */
 export const decodeBase64URL = (str: string) => {
-  return decodeBase64((str + "===".slice((str.length + 3) % 4)).replace(/-/g, "+").replace(/_/g, "/"));
+  return decodeBase64(
+    (str + "===".slice((str.length + 3) % 4))
+      .replace(/-/g, "+")
+      .replace(/_/g, "/"),
+  );
 };

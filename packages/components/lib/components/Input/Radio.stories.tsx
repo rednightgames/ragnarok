@@ -11,7 +11,9 @@ export default {
 const themes = ["Dark", "Light", "Auto"] as const;
 
 export const Basic = () => {
-  const [selectedColor, setSelectedColor] = useState<(typeof themes)[number] | undefined>(undefined);
+  const [selectedColor, setSelectedColor] = useState<
+    (typeof themes)[number] | undefined
+  >(undefined);
 
   return (
     <div>

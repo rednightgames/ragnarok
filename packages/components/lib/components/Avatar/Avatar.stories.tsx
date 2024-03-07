@@ -7,13 +7,7 @@ export default {
   title: "components/Avatar",
 } as Meta<typeof Avatar>;
 
-export const Playground = ({
-  ...args
-}) => (
-  <Avatar
-    {...args}
-  />
-);
+export const Playground = ({...args}) => <Avatar {...args} />;
 
 Playground.argTypes = {
   size: {
@@ -25,7 +19,8 @@ Playground.argTypes = {
   },
   src: {
     control: "text",
-    default: "https://cdn.rednightgames.com/avatars/056b798d3db2fbfb230b357d4028be97e5fd3b84a7697b10c4354c11c95a59aa.webp",
+    default:
+      "https://cdn.rednightgames.com/avatars/056b798d3db2fbfb230b357d4028be97e5fd3b84a7697b10c4354c11c95a59aa.webp",
   },
   fallback: {
     control: "text",

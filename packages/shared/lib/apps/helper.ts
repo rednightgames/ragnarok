@@ -4,8 +4,8 @@ import {APP_NAMES, APPS, APPS_CONFIGURATION} from "../constants";
 
 export const getAppHrefBundle = (to: string, toApp: APP_NAMES) => {
   const path = [APPS_CONFIGURATION[toApp].publicPath, to]
-    .map(s => stripLeadingAndTrailingSlash(s))
-    .filter(s => isTruthy(s))
+    .map((s) => stripLeadingAndTrailingSlash(s))
+    .filter((s) => isTruthy(s))
     .join("/");
   return `/${path}`;
 };

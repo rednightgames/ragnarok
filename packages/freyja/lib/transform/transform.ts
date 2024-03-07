@@ -5,7 +5,13 @@ import tiny, {Instance as Color} from "tinycolor2";
 import tinycolor from "tinycolor2";
 
 import {AUTO_GENERATE_DISCLAIMER} from "../constants";
-import {Config, Sources, StepOptions, ThemeType, TransformedSource} from "../types";
+import {
+  Config,
+  Sources,
+  StepOptions,
+  ThemeType,
+  TransformedSource,
+} from "../types";
 import {shade, tint} from "./helpers";
 
 export interface TransformOptions extends Omit<StepOptions, "logger"> {
@@ -22,7 +28,9 @@ export class Transform {
         return transform.generateTheme(source);
       }) as string[];
 
-      let cssFile = [AUTO_GENERATE_DISCLAIMER, ...generatedCssFiles].join("\n\n");
+      let cssFile = [AUTO_GENERATE_DISCLAIMER, ...generatedCssFiles].join(
+        "\n\n",
+      );
 
       promises.push({
         promise: prettier.format(cssFile, {parser: "css"}),
@@ -40,11 +48,19 @@ export class Transform {
   }
 
   generateTheme({source, type}: {source: string; type: ThemeType}) {
-    const buttonShadeNames = ["-minor-2", "-minor-1", "", "-major-1", "-major-2", "-major-3", "-contrast"];
+    const buttonShadeNames = [
+      "-minor-2",
+      "-minor-1",
+      "",
+      "-major-1",
+      "-major-2",
+      "-major-3",
+      "-contrast",
+    ];
 
     const ast = cssTree.parse(source);
 
-    const buttonBases = [...this.config.buttons as string[]];
+    const buttonBases = [...(this.config.buttons as string[])];
 
     cssTree.walk(ast, (node, item, list) => {
       if (node.type !== "Declaration") {
@@ -74,7 +90,11 @@ export class Transform {
       const buttonShades = Transform.genButtonShades(base, isLight);
 
       /* here we don't use tiny.mostReadable to prioritize white against black color. */
-      const buttonContrast = tiny(tiny.isReadable(base, "white", {level: "AA", size: "large"}) ? "white" : "black");
+      const buttonContrast = tiny(
+        tiny.isReadable(base, "white", {level: "AA", size: "large"})
+          ? "white"
+          : "black",
+      );
 
       // use original input when color contains alpha channel (opacity, e.g. rgba)
       const declarations = [...buttonShades, buttonContrast].map((color, i) =>
@@ -82,7 +102,11 @@ export class Transform {
           type: "Declaration",
           important: false,
           property: "--" + baseName + buttonShadeNames[i],
-          value: {type: "Raw", value: color.getAlpha() === 1 ? color.toHexString() : color.toString()},
+          value: {
+            type: "Raw",
+            value:
+              color.getAlpha() === 1 ? color.toHexString() : color.toString(),
+          },
         }),
       );
 
@@ -109,20 +133,26 @@ export class Transform {
 
     if (hsv.s <= 0.3) {
       if (light) {
-        return [70, 50, 0, -5, -10, -15].map(Transform.genMutation(base)) as tinycolor.Instance[];
+        return [70, 50, 0, -5, -10, -15].map(
+          Transform.genMutation(base),
+        ) as tinycolor.Instance[];
       }
-      return [-70, -50, 0, 10, 20, 30].map(Transform.genMutation(base)) as tinycolor.Instance[];
+      return [-70, -50, 0, 10, 20, 30].map(
+        Transform.genMutation(base),
+      ) as tinycolor.Instance[];
     }
 
     if (isBetween(hsv.h, 30, 60)) {
       if (light) {
         const tinted = [90, 80, 0].map(this.genMutation(base));
 
-        const shaded = [-5, -10, -15].map(this.genMutation(base)).map((c, i) => {
-          const hsl = c.toHsl();
-          hsl.h = hsl.h - 5 * (i + 1);
-          return tinycolor(hsl) ;
-        });
+        const shaded = [-5, -10, -15]
+          .map(this.genMutation(base))
+          .map((c, i) => {
+            const hsl = c.toHsl();
+            hsl.h = hsl.h - 5 * (i + 1);
+            return tinycolor(hsl);
+          });
 
         return [...tinted, ...shaded];
       }
@@ -142,14 +172,15 @@ export class Transform {
       return [90, 80, 0, -10, -20, -30].map(this.genMutation(base));
     }
     return [-80, -70, 0, 10, 20, 30].map(this.genMutation(base));
-
   }
 
   private static genMutation(color: Color) {
     return (mutation: number) => {
       const clone = color.clone();
 
-      return mutation > 0 ? tint(clone, mutation) : shade(clone, Math.abs(mutation));
+      return mutation > 0
+        ? tint(clone, mutation)
+        : shade(clone, Math.abs(mutation));
     };
   }
 }

@@ -24,21 +24,10 @@ const CircleLoader = ({size, className, ...rest}: CircleLoaderProps) => {
       {...rest}
     >
       <defs>
-        <circle
-          id={uid}
-          cx="8"
-          cy="8"
-          r="7"
-        />
+        <circle id={uid} cx="8" cy="8" r="7" />
       </defs>
-      <use
-        href={`#${uid}`}
-        className="circle-loader-track"
-      />
-      <use
-        href={`#${uid}`}
-        className="circle-loader-circle"
-      />
+      <use href={`#${uid}`} className="circle-loader-track" />
+      <use href={`#${uid}`} className="circle-loader-circle" />
     </svg>
   );
 };

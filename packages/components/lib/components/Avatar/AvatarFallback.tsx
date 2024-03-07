@@ -1,7 +1,14 @@
 import "./Avatar.scss";
 
 import {clsx} from "@rednight/utils";
-import {ForwardedRef, forwardRef, HTMLProps, useContext, useEffect, useState} from "react";
+import {
+  ForwardedRef,
+  forwardRef,
+  HTMLProps,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import AvatarContext from "./AvatarContext";
 
@@ -14,10 +21,7 @@ interface AvatarFallbackProps extends HTMLProps<HTMLSpanElement> {
 }
 
 const AvatarFallback = (
-  {
-    delayMs = 20,
-    ...restProps
-  }: AvatarFallbackProps,
+  {delayMs = 20, ...restProps}: AvatarFallbackProps,
   ref: ForwardedRef<HTMLSpanElement>,
 ) => {
   const {imageLoadingStatus} = useContext(AvatarContext);

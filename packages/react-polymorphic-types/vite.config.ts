@@ -20,12 +20,8 @@ export default defineConfig({
     },
     minify: "esbuild",
     rollupOptions: {
-      external: [
-        "react",
-        "react/jsx-runtime"
-      ],
+      external: ["react", "react/jsx-runtime"],
     },
   },
-  resolve: {
-  },
+  resolve: {},
 });

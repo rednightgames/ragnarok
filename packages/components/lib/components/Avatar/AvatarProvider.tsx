@@ -18,22 +18,17 @@ type AvatarProviderOwnProps = {
   "data-testid"?: string;
 };
 
-export type AvatarProviderProps<E extends ElementType> = PolymorphicPropsWithRef<
-AvatarProviderOwnProps,
-  E
->;
+export type AvatarProviderProps<E extends ElementType> =
+  PolymorphicPropsWithRef<AvatarProviderOwnProps, E>;
 
 const defaultElement = "button";
 
 const AvatarProvider = <E extends ElementType = typeof defaultElement>(
-  {
-    as,
-    size = "medium",
-    ...restProps
-  }: AvatarProviderProps<E>,
+  {as, size = "medium", ...restProps}: AvatarProviderProps<E>,
   ref: ForwardedRef<Element>,
 ) => {
-  const [imageLoadingStatus, setImageLoadingStatus] = useState<ImageLoadingStatus>("idle");
+  const [imageLoadingStatus, setImageLoadingStatus] =
+    useState<ImageLoadingStatus>("idle");
 
   const Element: ElementType = as || defaultElement;
 
@@ -45,16 +40,15 @@ const AvatarProvider = <E extends ElementType = typeof defaultElement>(
 
   return (
     <AvatarContext.Provider
-      value={useMemo(() => ({
-        imageLoadingStatus: imageLoadingStatus,
-        onImageLoadingStatusChange: setImageLoadingStatus,
-      }), [imageLoadingStatus])}
+      value={useMemo(
+        () => ({
+          imageLoadingStatus: imageLoadingStatus,
+          onImageLoadingStatusChange: setImageLoadingStatus,
+        }),
+        [imageLoadingStatus],
+      )}
     >
-      <Element
-        className={avatarClassName}
-        ref={ref}
-        {...restProps}
-      />
+      <Element className={avatarClassName} ref={ref} {...restProps} />
     </AvatarContext.Provider>
   );
 };

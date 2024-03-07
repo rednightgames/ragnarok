@@ -25,10 +25,7 @@ export type IconSize =
   | 100
   | 110;
 
-export type IconName =
-  | "account"
-  | "checkmark"
-  | "minus";
+export type IconName = "account" | "checkmark" | "minus";
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
   /**
@@ -57,20 +54,21 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
   color?: string;
 }
 
-const Icon = forwardRef<SVGSVGElement, IconProps>((
-  {
-    name,
-    alt,
-    title,
-    color,
-    className = "",
-    viewBox = "0 0 16 16",
-    size = 16,
-    rotate = 0,
-    ...rest
-  },
-  ref,
-) => {
+const Icon = forwardRef<SVGSVGElement, IconProps>(
+  (
+    {
+      name,
+      alt,
+      title,
+      color,
+      className = "",
+      viewBox = "0 0 16 16",
+      size = 16,
+      rotate = 0,
+      ...rest
+    },
+    ref,
+  ) => {
     const style = {
       ...(color && {color}),
       ...(rotate && {transform: `rotate(${rotate}deg)`}),

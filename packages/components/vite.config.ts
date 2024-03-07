@@ -9,7 +9,12 @@ export default defineConfig({
   plugins: [
     dts({
       outDir: ["dist"],
-      exclude: ["vite.config.ts", "vitest.config.ts", "**/tests/**", "**/**.test.ts"],
+      exclude: [
+        "vite.config.ts",
+        "vitest.config.ts",
+        "**/tests/**",
+        "**/**.test.ts",
+      ],
       rollupTypes: true,
       clearPureImport: true,
     }),

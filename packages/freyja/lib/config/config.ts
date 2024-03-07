@@ -8,11 +8,8 @@ import {MessageName} from "../logger";
 import {Config, MaybePromise} from "../types";
 import {BundleConfig, ConfigOptions, LoadConfig} from "./types";
 
-export const defineConfig = (
-  options:
-    | Config
-    | (() => MaybePromise<Config>),
-) => options;
+export const defineConfig = (options: Config | (() => MaybePromise<Config>)) =>
+  options;
 
 export class ConfigProvider {
   static async load(opts: ConfigOptions) {
@@ -20,12 +17,15 @@ export class ConfigProvider {
       const config = await this.loadConfig(process.cwd());
 
       if (!config.path) {
-        opts.logger.reportError(MessageName.EXCEPTION, "Cannot find config file");
+        opts.logger.reportError(
+          MessageName.EXCEPTION,
+          "Cannot find config file",
+        );
       }
 
       return typeof config.data === "function"
         ? config.data()
-        : config.data as Config;
+        : (config.data as Config);
     });
   }
 
@@ -35,7 +35,9 @@ export class ConfigProvider {
     });
   }
 
-  private static async resolveConfig(cwd: string = process.cwd()): Promise<string | null> {
+  private static async resolveConfig(
+    cwd: string = process.cwd(),
+  ): Promise<string | null> {
     const configJoycon = new JoyCon();
     return configJoycon.resolve({
       files: CONFIG_FILES,

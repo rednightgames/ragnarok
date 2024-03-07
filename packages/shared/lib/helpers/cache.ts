@@ -1,6 +1,8 @@
 import {createListeners, Listeners} from "./listeners";
 
-export interface Cache<K, V> extends Pick<Listeners<[K, V | undefined], void>, "subscribe">, Map<K, V> {
+export interface Cache<K, V>
+  extends Pick<Listeners<[K, V | undefined], void>, "subscribe">,
+    Map<K, V> {
   clearListeners: () => void;
 }
 
@@ -14,7 +16,10 @@ export const createCache = <K, V>(map = new Map<K, V>()): Cache<K, V> => {
     get size() {
       return map.size;
     },
-    forEach(callbackfn: (value: V, key: K, map: Map<K, V>) => void, thisArg?: any) {
+    forEach(
+      callbackfn: (value: V, key: K, map: Map<K, V>) => void,
+      thisArg?: any,
+    ) {
       return map.forEach(callbackfn, thisArg);
     },
     has: (key: K) => map.has(key),

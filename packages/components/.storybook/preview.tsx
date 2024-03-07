@@ -15,7 +15,7 @@ const config: RednightConfig = {
   COMMIT: "",
   DATE_VERSION: "",
   LOCALES: {},
-  VERSION_PATH: ""
+  VERSION_PATH: "",
 };
 
 const preview: Preview = {
@@ -27,7 +27,7 @@ const preview: Preview = {
           <Story />
         </FocusProvider>
       </ConfigProvider>
-    )
+    ),
   ],
   parameters: {
     actions: {argTypesRegex: "^on[A-Z].*"},

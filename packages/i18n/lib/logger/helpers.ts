@@ -19,7 +19,7 @@ export const Type = {
 export type Types = keyof typeof Type;
 
 export enum Style {
-  BOLD = 1 << 1
+  BOLD = 1 << 1,
 }
 
 const chalkOptions = (() => {
@@ -41,7 +41,10 @@ const colors = new Map<Types, [string, number] | null>([
   [Type.CODE, ["#87afff", 111]],
 ]);
 
-export const applyColor = (value: string, formatType: Types | string): string => {
+export const applyColor = (
+  value: string,
+  formatType: Types | string,
+): string => {
   const colorSpec = colors.get(formatType as Types);
   if (colorSpec === null) {
     return value;
@@ -74,7 +77,9 @@ export const applyColor = (value: string, formatType: Types | string): string =>
   return fn(value);
 };
 
-const validateTransform = <T>(spec: {pretty: (val: T) => string}): {pretty: (val: T) => string} => spec;
+const validateTransform = <T>(spec: {
+  pretty: (val: T) => string;
+}): {pretty: (val: T) => string} => spec;
 
 const transforms = {
   [Type.ID]: validateTransform({
@@ -97,14 +102,20 @@ const transforms = {
   }),
 };
 
-export const pretty = <T extends Types>(value: string | number, formatType: T | string): string => {
+export const pretty = <T extends Types>(
+  value: string | number,
+  formatType: T | string,
+): string => {
   if (value === null) {
     return applyColor("null", Type.NULL);
   }
 
   if (Object.hasOwn(transforms, formatType)) {
     const transform = transforms[formatType as keyof typeof transforms];
-    const typedTransform = transform as Extract<typeof transform, {pretty: (val: Types) => any}>;
+    const typedTransform = transform as Extract<
+      typeof transform,
+      {pretty: (val: Types) => any}
+    >;
     return typedTransform.pretty(value);
   }
 
@@ -151,7 +162,6 @@ export const formatName = (name: MessageName | null) => {
 
   if (name === null) {
     return pretty(label, `grey`);
-  } 
-    return label;
-  
+  }
+  return label;
 };

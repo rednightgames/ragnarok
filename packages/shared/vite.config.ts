@@ -19,10 +19,7 @@ export default defineConfig({
     },
     minify: "esbuild",
     rollupOptions: {
-      external: [
-        "@rednight/crypto",
-        "@rednight/utils",
-      ],
+      external: ["@rednight/crypto", "@rednight/utils"],
     },
   },
 });

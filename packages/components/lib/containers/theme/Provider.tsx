@@ -1,13 +1,33 @@
 import {
   clearBit,
-  ColorScheme, createListeners, DEFAULT_THEME, getCookie, getDarkThemes,
+  ColorScheme,
+  createListeners,
+  DEFAULT_THEME,
+  getCookie,
+  getDarkThemes,
   getDefaultThemeSetting,
-  getParsedThemeSetting, getSecondLevelDomain, getThemeType,
-  isDeepEqual, serializeThemeSetting, setBit, setCookie, ThemeFeatureSetting, ThemeFontSizeSetting,
-  ThemeModeSetting, THEMES_MAP,
-  ThemeSetting, ThemeTypes,
+  getParsedThemeSetting,
+  getSecondLevelDomain,
+  getThemeType,
+  isDeepEqual,
+  serializeThemeSetting,
+  setBit,
+  setCookie,
+  ThemeFeatureSetting,
+  ThemeFontSizeSetting,
+  ThemeModeSetting,
+  THEMES_MAP,
+  ThemeSetting,
+  ThemeTypes,
 } from "@rednight/shared";
-import {ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useState} from "react";
+import {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import ThemeContext from "./themeContext";
 
@@ -16,7 +36,10 @@ interface ThemeProviderProps {
 }
 
 export const getThemeStyle = (themeType: ThemeTypes = DEFAULT_THEME) => {
-  return THEMES_MAP[themeType]?.theme.default || THEMES_MAP[DEFAULT_THEME].theme.default;
+  return (
+    THEMES_MAP[themeType]?.theme.default ||
+    THEMES_MAP[DEFAULT_THEME].theme.default
+  );
 };
 
 const THEME_COOKIE_NAME = "theme";
@@ -39,14 +62,17 @@ const ThemeProvider = ({children}: ThemeProviderProps) => {
   const [themeSetting, setThemeSettingDefault] = useState(() => {
     return getParsedThemeSetting(storedTheme);
   });
-  const setThemeSetting = useCallback((theme: ThemeSetting = getDefaultThemeSetting()) => {
-    setThemeSettingDefault((oldTheme: ThemeSetting) => {
-      if (isDeepEqual(theme, oldTheme)) {
-        return oldTheme;
-      }
-      return theme;
-    });
-  }, []);
+  const setThemeSetting = useCallback(
+    (theme: ThemeSetting = getDefaultThemeSetting()) => {
+      setThemeSettingDefault((oldTheme: ThemeSetting) => {
+        if (isDeepEqual(theme, oldTheme)) {
+          return oldTheme;
+        }
+        return theme;
+      });
+    },
+    [],
+  );
   const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
     return getColorScheme(matchMediaScheme.matches);
   });
@@ -73,15 +99,24 @@ const ThemeProvider = ({children}: ThemeProviderProps) => {
       syncThemeSettingValue({
         ...themeSetting,
         Mode: ThemeModeSetting.Auto,
-        [mode === ThemeModeSetting.Dark ? "DarkTheme" : "LightTheme"]: themeType,
+        [mode === ThemeModeSetting.Dark ? "DarkTheme" : "LightTheme"]:
+          themeType,
       });
       return;
     }
 
     if (darkThemes.includes(themeType)) {
-      syncThemeSettingValue({...themeSetting, Mode: ThemeModeSetting.Dark, DarkTheme: themeType});
+      syncThemeSettingValue({
+        ...themeSetting,
+        Mode: ThemeModeSetting.Dark,
+        DarkTheme: themeType,
+      });
     } else {
-      syncThemeSettingValue({...themeSetting, Mode: ThemeModeSetting.Light, LightTheme: themeType});
+      syncThemeSettingValue({
+        ...themeSetting,
+        Mode: ThemeModeSetting.Light,
+        LightTheme: themeType,
+      });
     }
   };
 
@@ -91,7 +126,10 @@ const ThemeProvider = ({children}: ThemeProviderProps) => {
     } else {
       syncThemeSettingValue({
         ...themeSetting,
-        Mode: colorScheme === ColorScheme.Light ? ThemeModeSetting.Light : ThemeModeSetting.Dark,
+        Mode:
+          colorScheme === ColorScheme.Light
+            ? ThemeModeSetting.Light
+            : ThemeModeSetting.Dark,
       });
     }
   };
@@ -103,7 +141,9 @@ const ThemeProvider = ({children}: ThemeProviderProps) => {
   const setFeature = (featureBit: ThemeFeatureSetting, toggle: boolean) => {
     syncThemeSettingValue({
       ...themeSetting,
-      Features: toggle ? setBit(themeSetting.Features, featureBit) : clearBit(themeSetting.Features, featureBit),
+      Features: toggle
+        ? setBit(themeSetting.Features, featureBit)
+        : clearBit(themeSetting.Features, featureBit),
     });
   };
 
@@ -116,7 +156,10 @@ const ThemeProvider = ({children}: ThemeProviderProps) => {
       const themeMeta = document.querySelector(`meta[name="theme-color"]`);
       const uiProminentElement = document.querySelector(".ui-prominent");
       const themeColor = uiProminentElement
-        ? window.getComputedStyle(uiProminentElement).getPropertyValue("--background-norm").trim()
+        ? window
+            .getComputedStyle(uiProminentElement)
+            .getPropertyValue("--background-norm")
+            .trim()
         : "";
 
       if (themeMeta && themeColor) {
@@ -151,15 +194,18 @@ const ThemeProvider = ({children}: ThemeProviderProps) => {
 
   return (
     <ThemeContext.Provider
-      value={useMemo(() => ({
-        settings: themeSetting,
-        setTheme,
-        setThemeSetting,
-        setAutoTheme,
-        setFontSize,
-        setFeature,
-        addListener: listeners.subscribe,
-      }), [])}
+      value={useMemo(
+        () => ({
+          settings: themeSetting,
+          setTheme,
+          setThemeSetting,
+          setAutoTheme,
+          setFontSize,
+          setFeature,
+          addListener: listeners.subscribe,
+        }),
+        [],
+      )}
     >
       <style id={THEME_ID}>{style}</style>
       {children}

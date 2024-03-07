@@ -1,5 +1,5 @@
 import {AuthenticationStore} from "@rednight/shared";
 
-export interface PrivateAuthenticationStore extends AuthenticationStore {
+export type PrivateAuthenticationStore = AuthenticationStore & {
   UID: string;
-}
+};

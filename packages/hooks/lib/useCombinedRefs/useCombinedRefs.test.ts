@@ -6,7 +6,10 @@ import useCombinedRefs from "./useCombinedRefs";
 describe("useCombinedRefs", () => {
   it("should correctly combine refs into one ref", async () => {
     const cbRef = vitest.fn();
-    const refs: {a: null | HTMLDivElement; b: null | HTMLDivElement} = {a: null, b: null};
+    const refs: {a: null | HTMLDivElement; b: null | HTMLDivElement} = {
+      a: null,
+      b: null,
+    };
 
     const Test = () => {
       const refA = useRef<HTMLDivElement>(null);

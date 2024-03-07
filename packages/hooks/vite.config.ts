@@ -21,12 +21,7 @@ export default defineConfig({
     },
     minify: "esbuild",
     rollupOptions: {
-      external: [
-        "react",
-        "react-is",
-        "react-dom",
-        "react/jsx-runtime",
-      ],
+      external: ["react", "react-is", "react-dom", "react/jsx-runtime"],
     },
   },
 });

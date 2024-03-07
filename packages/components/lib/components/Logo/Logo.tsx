@@ -13,8 +13,8 @@ import {ElementType, forwardRef, Ref} from "react";
 export type LogoSublogo = "default" | "account";
 
 const Sublogos = {
-  "default": rednightLogo,
-  "account": accountLogo,
+  default: {src: rednightLogo, alt: ""},
+  account: {src: accountLogo, alt: "Account"},
 } as const;
 
 interface LogoOwnProps {
@@ -22,30 +22,21 @@ interface LogoOwnProps {
 }
 
 export type LogoProps<E extends ElementType> = PolymorphicPropsWithRef<
-LogoOwnProps,
+  LogoOwnProps,
   E
 >;
 
 const defaultElement = "div";
 
 const Logo = <E extends ElementType = typeof defaultElement>(
-  {
-    as,
-    sublogo = "default",
-    ...restProps
-  }: LogoProps<E>,
+  {as, sublogo = "default", ...restProps}: LogoProps<E>,
   ref: Ref<Element>,
 ) => {
   const Element: ElementType = as || defaultElement;
 
   return (
-    <Element
-      className="logo"
-      ref={ref}
-      data-testid="logo"
-      {...restProps}
-    >
-      <img src={redEagle} />
+    <Element className="logo" ref={ref} data-testid="logo" {...restProps}>
+      <img src={redEagle} alt="Rednight" />
 
       {sublogo !== "default" && (
         <svg
@@ -56,16 +47,13 @@ const Logo = <E extends ElementType = typeof defaultElement>(
           data-testid=""
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect
-            width="1"
-            height="20"
-            fill="white"
-          />
+          <rect width="1" height="20" fill="white" />
         </svg>
-)}
+      )}
       <img
         className={clsx(sublogo !== "default" && "sublogo")}
-        src={Sublogos[sublogo]}
+        src={Sublogos[sublogo].src}
+        alt={Sublogos[sublogo].alt}
       />
     </Element>
   );

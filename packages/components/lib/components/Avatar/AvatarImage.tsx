@@ -1,7 +1,13 @@
 import "./Avatar.scss";
 
 import {clsx} from "@rednight/utils";
-import {ForwardedRef, forwardRef, useContext, useLayoutEffect, useState} from "react";
+import {
+  ForwardedRef,
+  forwardRef,
+  useContext,
+  useLayoutEffect,
+  useState,
+} from "react";
 
 import {AvatarSize} from "./Avatar";
 import AvatarContext, {ImageLoadingStatus} from "./AvatarContext";
@@ -26,7 +32,8 @@ interface AvatarImageProps {
 }
 
 const useImageLoadingStatus = (src?: string) => {
-  const [loadingStatus, setLoadingStatus] = useState<ImageLoadingStatus>("idle");
+  const [loadingStatus, setLoadingStatus] =
+    useState<ImageLoadingStatus>("idle");
 
   useLayoutEffect(() => {
     if (!src) {
@@ -41,7 +48,7 @@ const useImageLoadingStatus = (src?: string) => {
       if (!isMounted) {
         return;
       }
-      
+
       setLoadingStatus(status);
     };
 
@@ -59,12 +66,7 @@ const useImageLoadingStatus = (src?: string) => {
 };
 
 const AvatarImage = (
-  {
-    src,
-    alt,
-    size = "medium",
-    ...restProps
-  }: AvatarImageProps,
+  {src, alt, size = "medium", ...restProps}: AvatarImageProps,
   ref: ForwardedRef<HTMLImageElement>,
 ) => {
   const {onImageLoadingStatusChange} = useContext(AvatarContext);

@@ -15,7 +15,7 @@ export const getCookie = (name: string, cookies = document.cookie) => {
 export enum CookieSameSiteAttribute {
   Lax = "lax",
   Strict = "strict",
-  None = "none"
+  None = "none",
 }
 
 export interface SetCookieArguments {
@@ -46,7 +46,8 @@ export const setCookie = ({
     expirationDate = new Date(2147483647000).toUTCString();
   }
 
-  expirationDate = maybeCookieValue === undefined ? new Date(0).toUTCString() : expirationDate;
+  expirationDate =
+    maybeCookieValue === undefined ? new Date(0).toUTCString() : expirationDate;
 
   document.cookie = [
     `${cookieName}=${cookieValue}`,

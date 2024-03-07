@@ -8,7 +8,7 @@ export type ConfigItem = Omit<FlatESLintConfigItem, "plugins"> & {
   /**
    * Custom name of each config item
    */
-  name?: string
+  name?: string;
 
   // Relax plugins type limitation, as most of the plugins did not have correct type info yet.
   /**
@@ -16,7 +16,7 @@ export type ConfigItem = Omit<FlatESLintConfigItem, "plugins"> & {
    *
    * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
    */
-  plugins?: Record<string, any>
+  plugins?: Record<string, any>;
 };
 
 export interface OptionsComponentExts {
@@ -26,18 +26,18 @@ export interface OptionsComponentExts {
    * @example ['vue']
    * @default []
    */
-  componentExts?: string[]
+  componentExts?: string[];
 }
 
 export interface OptionsTypeScriptParserOptions {
   /**
    * Additional parser options for TypeScript.
    */
-  parserOptions?: Partial<ParserOptions>
+  parserOptions?: Partial<ParserOptions>;
 }
 
 export interface OptionsOverrides {
-  overrides?: ConfigItem["rules"]
+  overrides?: ConfigItem["rules"];
 }
 
 export interface OptionsConfig extends OptionsComponentExts {
@@ -48,19 +48,19 @@ export interface OptionsConfig extends OptionsComponentExts {
    *
    * @default auto-detect based on the dependencies
    */
-  typescript?: boolean | OptionsTypeScriptParserOptions
+  typescript?: boolean | OptionsTypeScriptParserOptions;
 
   /**
    * Enable React support.
    *
    * @default auto-detect based on the dependencies
    */
-  react?: boolean
+  react?: boolean;
 
   /**
    * Provide overrides for rules for each integration.
    */
   overrides?: {
-    typescript?: ConfigItem["rules"]
-  }
+    typescript?: ConfigItem["rules"];
+  };
 }

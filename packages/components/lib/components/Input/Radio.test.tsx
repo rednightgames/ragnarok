@@ -7,10 +7,7 @@ import Radio from "./Radio";
 describe("Radio component tests", () => {
   it("renders Radio component correctly", () => {
     const {getByLabelText} = render(
-      <Radio
-        id="radioId"
-        name="radioName"
-      >
+      <Radio id="radioId" name="radioName">
         Radio Label
       </Radio>,
     );
@@ -22,11 +19,7 @@ describe("Radio component tests", () => {
 
   it("applies custom class correctly", () => {
     render(
-      <Radio
-        id="radio"
-        name="radioName"
-        className="custom-class"
-      >
+      <Radio id="radio" name="radioName" className="custom-class">
         Radio Label
       </Radio>,
     );
@@ -37,11 +30,7 @@ describe("Radio component tests", () => {
 
   it("handles disabled state correctly", () => {
     render(
-      <Radio
-        id="radioId"
-        name="radioName"
-        disabled
-      >
+      <Radio id="radioId" name="radioName" disabled>
         Radio Label
       </Radio>,
     );
@@ -52,13 +41,9 @@ describe("Radio component tests", () => {
 
   it("fires onChange event correctly", () => {
     const handleChange = vi.fn();
-    
+
     render(
-      <Radio
-        id="radioId"
-        name="radioName"
-        onChange={handleChange}
-      >
+      <Radio id="radioId" name="radioName" onChange={handleChange}>
         Radio Label
       </Radio>,
     );
@@ -68,4 +53,3 @@ describe("Radio component tests", () => {
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
 });
-

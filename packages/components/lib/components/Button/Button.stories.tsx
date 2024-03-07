@@ -7,15 +7,7 @@ export default {
   title: "components/Button",
 } as Meta<typeof Button>;
 
-export const Playground = ({
-  ...args
-}) => (
-  <Button
-    {...args}
-  >
-    test
-  </Button>
-);
+export const Playground = ({...args}) => <Button {...args}>test</Button>;
 
 Playground.argTypes = {
   size: {

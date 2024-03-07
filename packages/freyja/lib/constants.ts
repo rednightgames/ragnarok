@@ -5,7 +5,15 @@ export const AUTO_GENERATE_DISCLAIMER = [
   " */",
 ].join("\n");
 
-export const BUTTON_SHADE_NAMES = ["-minor-2", "-minor-1", "", "-major-1", "-major-2", "-major-3", "-contrast"];
+export const BUTTON_SHADE_NAMES = [
+  "-minor-2",
+  "-minor-1",
+  "",
+  "-major-1",
+  "-major-2",
+  "-major-3",
+  "-contrast",
+];
 
 export const CONFIG_FILES = [
   "freyja.config.js",
@@ -13,5 +21,5 @@ export const CONFIG_FILES = [
   "freyja.config.cjs",
   "freyja.config.ts",
   "freyja.config.mts",
-  "freyja.config.cts"
+  "freyja.config.cts",
 ];

@@ -9,11 +9,15 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "lerna run lint --parallel",
+    "lint:fix": "lerna run lint:fix --parallel",
+    "pretty": "lerna run pretty --parallel",
+    "pretty:fix": "lerna run pretty:fix --parallel",
     "test": "lerna run test --parallel"
   },
   "packageManager": "yarn@4.1.0",
   "devDependencies": {
     "lerna": "^8.1.2",
+    "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   },
   "engines": {

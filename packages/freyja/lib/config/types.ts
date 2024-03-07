@@ -1,7 +1,6 @@
 import {Logger} from "../logger";
 import {defineConfig} from "./config";
 
-
 export interface ConfigOptions {
   logger: Logger;
 }

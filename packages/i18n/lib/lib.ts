@@ -7,7 +7,7 @@ import {satisfiesWithPrereleases} from "./helpers";
 export type EddaCli = ReturnType<typeof getBaseCli>;
 
 export interface CliContext extends BaseContext {
-  cwd: string,
+  cwd: string;
 }
 
 const getBaseCli = (cwd: string) => {
@@ -40,7 +40,9 @@ const validateNodejsVersion = (cli: EddaCli) => {
     return true;
   }
 
-  const error = new UsageError(`This tool requires a Node version compatible with ${range} (got ${version}). Upgrade Node.`);
+  const error = new UsageError(
+    `This tool requires a Node version compatible with ${range} (got ${version}). Upgrade Node.`,
+  );
   Cli.defaultContext.stdout.write(cli.error(error));
 
   return false;
@@ -61,17 +63,15 @@ const checkCwd = (cli: EddaCli, argv: string[]) => {
     postCwdArgv = argv.slice(0, argv.length - 2);
   }
 
-  cli.defaultContext.cwd = cwd !== null
-    ? resolve(cwd)
-    : process.cwd();
+  cli.defaultContext.cwd = cwd !== null ? resolve(cwd) : process.cwd();
 
   return postCwdArgv;
 };
 
 const run = async (cli: EddaCli, argv: string[]) => {
   if (!validateNodejsVersion(cli)) {
-return 1;
-}
+    return 1;
+  }
 
   const postCwdArgv = checkCwd(cli, argv);
 
@@ -80,7 +80,10 @@ return 1;
   return cli.run(command, cli.defaultContext);
 };
 
-export const runExit = async (argv: string[], {cwd = process.cwd()}: {cwd: string}) => {
+export const runExit = async (
+  argv: string[],
+  {cwd = process.cwd()}: {cwd: string},
+) => {
   const cli = getBaseCli(cwd);
 
   try {

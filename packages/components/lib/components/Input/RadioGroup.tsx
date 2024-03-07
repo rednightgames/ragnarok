@@ -47,7 +47,10 @@ const RadioGroup = <T,>({
           onChange={() => onChange(option.value)}
           checked={value === option.value}
           name={name}
-          className={clsx("inline-flex children-self-center mr-8 mb-2", className)}
+          className={clsx(
+            "inline-flex children-self-center mr-8 mb-2",
+            className,
+          )}
           disabled={option.disabled}
           aria-describedby={ariaDescribedBy}
         >

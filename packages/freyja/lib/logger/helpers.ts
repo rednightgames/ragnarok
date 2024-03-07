@@ -19,7 +19,7 @@ export const Type = {
 export type Types = keyof typeof Type;
 
 export enum Style {
-  BOLD = 1 << 1
+  BOLD = 1 << 1,
 }
 
 const chalkOptions = (() => {
@@ -41,7 +41,10 @@ const colors = new Map<Types, [string, number] | null>([
   [Type.CODE, ["#87afff", 111]],
 ]);
 
-export const applyColor = (value: string, formatType: Types | string): string => {
+export const applyColor = (
+  value: string,
+  formatType: Types | string,
+): string => {
   const colorSpec = colors.get(formatType as Types);
   if (colorSpec === null) {
     return value;
@@ -85,9 +88,8 @@ const transforms = {
     pretty: (value: number | string) => {
       if (typeof value === "number") {
         return applyColor(`${value}`, Type.NUMBER);
-      } 
-        return applyColor(value, Type.CODE);
-      
+      }
+      return applyColor(value, Type.CODE);
     },
   }),
   [Type.NUMBER]: validateTransform({
@@ -101,23 +103,30 @@ const transforms = {
         const minutes = Math.floor(duration / 1000 / 60);
         const seconds = Math.ceil((duration - minutes * 60 * 1000) / 1000);
         return seconds === 0 ? `${minutes}m` : `${minutes}m ${seconds}s`;
-      } 
-        const seconds = Math.floor(duration / 1000);
-        const milliseconds = duration - seconds * 1000;
-        return milliseconds === 0 ? `${seconds}s` : `${seconds}s ${milliseconds}ms`;
-      
+      }
+      const seconds = Math.floor(duration / 1000);
+      const milliseconds = duration - seconds * 1000;
+      return milliseconds === 0
+        ? `${seconds}s`
+        : `${seconds}s ${milliseconds}ms`;
     },
   }),
 };
 
-export const pretty = <T extends Types>(value: string | number, formatType: T | string): string => {
+export const pretty = <T extends Types>(
+  value: string | number,
+  formatType: T | string,
+): string => {
   if (value === null) {
     return applyColor("null", Type.NULL);
   }
 
   if (Object.hasOwn(transforms, formatType)) {
     const transform = transforms[formatType as keyof typeof transforms];
-    const typedTransform = transform as Extract<typeof transform, {pretty: (val: Types) => any}>;
+    const typedTransform = transform as Extract<
+      typeof transform,
+      {pretty: (val: Types) => any}
+    >;
     return typedTransform.pretty(value);
   }
 
@@ -130,9 +139,8 @@ export const formatCode = (name: MessageName | null) => {
   const label = stringifyMessageName(num);
   if (name === null) {
     return pretty(label, "grey");
-  } 
-    return label;
-  
+  }
+  return label;
 };
 
 export const applyStyle = (text: string, flags: Style): string => {

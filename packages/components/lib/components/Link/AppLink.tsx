@@ -30,23 +30,14 @@ const AppLink = (
     const href = getAppHrefBundle(to, targetApp);
 
     return (
-      <a
-        ref={ref}
-        target="_self"
-        {...rest}
-        href={href}
-      >
+      <a ref={ref} target="_self" {...rest} href={href}>
         {children}
       </a>
     );
   }
 
   return (
-    <ReactRouterLink
-      ref={ref}
-      to={to}
-      {...rest}
-    >
+    <ReactRouterLink ref={ref} to={to} {...rest}>
       {children}
     </ReactRouterLink>
   );

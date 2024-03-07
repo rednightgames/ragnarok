@@ -29,7 +29,7 @@ interface AvatarOwnProps {
 }
 
 export type AvatarProps<E extends ElementType> = PolymorphicPropsWithRef<
-AvatarOwnProps,
+  AvatarOwnProps,
   E
 >;
 
@@ -47,7 +47,7 @@ const generateColor = (str?: string) => {
 
   let color = "#";
   for (let j = 0; j < 3; j++) {
-    let value = (hash >> (j * 8)) & 0xFF;
+    let value = (hash >> (j * 8)) & 0xff;
     color += ("00" + value.toString(16)).slice(-2);
   }
 
@@ -82,7 +82,9 @@ const Avatar = <E extends ElementType = typeof defaultElement>(
         src={src}
         data-testid={`${dataTestId}-image`}
       />
-      <AvatarFallback data-testid={`${dataTestId}-fallback`}>{fallback?.charAt(0)}</AvatarFallback>
+      <AvatarFallback data-testid={`${dataTestId}-fallback`}>
+        {fallback?.charAt(0)}
+      </AvatarFallback>
     </AvatarProvider>
   );
 };

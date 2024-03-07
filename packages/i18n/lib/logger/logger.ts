@@ -4,7 +4,14 @@ import CI from "ci-info";
 import throttle from "lodash/throttle";
 import {Writable} from "stream";
 
-import {applyStyle, formatCode, formatName, pretty, Style, Type} from "./helpers";
+import {
+  applyStyle,
+  formatCode,
+  formatName,
+  pretty,
+  Style,
+  Type,
+} from "./helpers";
 import {MessageName} from "./messageNames";
 
 export type LoggerOptions = {
@@ -81,22 +88,22 @@ export class Logger {
   private indent: number = 0;
   private level: number = 0;
 
-  private progress: Map<ProgressIterable, {
-    definition: ProgressDefinition;
-    lastScaledSize?: number;
-    lastTitle?: string;
-  }> = new Map();
+  private progress: Map<
+    ProgressIterable,
+    {
+      definition: ProgressDefinition;
+      lastScaledSize?: number;
+      lastTitle?: string;
+    }
+  > = new Map();
 
   private progressTime: number = 0;
   private progressFrame: number = 0;
   private progressTimeout: ReturnType<typeof setTimeout> | null = null;
-  private progressStyle: {date?: number[], chars: string[], size: number};
+  private progressStyle: {date?: number[]; chars: string[]; size: number};
   private progressMaxScaledSize: number | null = null;
 
-  constructor({
-    stdout,
-    includeFooter = true,
-  }: LoggerOptions) {
+  constructor({stdout, includeFooter = true}: LoggerOptions) {
     this.includeFooter = includeFooter;
     this.stdout = stdout;
 
@@ -105,7 +112,9 @@ export class Logger {
       size: 80,
     };
     const maxWidth = Math.min(this.getRecommendedLength(), 80);
-    this.progressMaxScaledSize = Math.floor(this.progressStyle.size * maxWidth / 80);
+    this.progressMaxScaledSize = Math.floor(
+      (this.progressStyle.size * maxWidth) / 80,
+    );
   }
 
   hasErrors() {
@@ -121,7 +130,10 @@ export class Logger {
     return Math.max(40, 180 - PREFIX_SIZE - this.indent * 2);
   }
 
-  static async start(opts: LoggerOptions, cb: (report: Logger) => Promise<void>): Promise<Logger> {
+  static async start(
+    opts: LoggerOptions,
+    cb: (report: Logger) => Promise<void>,
+  ): Promise<Logger> {
     const logger = new Logger(opts);
 
     const emitWarning = process.emitWarning;
@@ -132,12 +144,16 @@ export class Logger {
         name = name ?? error.name;
       }
 
-      const fullMessage = typeof name !== "undefined" ? `${name}: ${message}` : message;
+      const fullMessage =
+        typeof name !== "undefined" ? `${name}: ${message}` : message;
       logger.reportWarning(MessageName.UNNAMED, fullMessage);
     };
 
     if (opts.includeVersion) {
-      logger.reportInfo(MessageName.UNNAMED, applyStyle(`Edda ${EDDA_VERSION}`, Style.BOLD));
+      logger.reportInfo(
+        MessageName.UNNAMED,
+        applyStyle(`Edda ${EDDA_VERSION}`, Style.BOLD),
+      );
     }
 
     try {
@@ -152,7 +168,10 @@ export class Logger {
     return logger;
   }
 
-  startSection<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => T): T {
+  startSection<T>(
+    {reportHeader, reportFooter, skipIfEmpty}: SectionOptions,
+    cb: () => T,
+  ): T {
     const mark = {committed: false, action: () => reportHeader?.()};
 
     if (skipIfEmpty) {
@@ -179,7 +198,10 @@ export class Logger {
     }
   }
 
-  async startSectionAsync<T>({reportHeader, reportFooter, skipIfEmpty}: SectionOptions, cb: () => Promise<T>): Promise<T> {
+  async startSectionAsync<T>(
+    {reportHeader, reportFooter, skipIfEmpty}: SectionOptions,
+    cb: () => Promise<T>,
+  ): Promise<T> {
     const mark = {committed: false, action: () => reportHeader?.()};
 
     if (skipIfEmpty) {
@@ -206,7 +228,11 @@ export class Logger {
     }
   }
 
-  private startTimerImpl<Callback extends Function>(what: string, opts: TimerOptions | Callback, cb?: Callback) {
+  private startTimerImpl<Callback extends Function>(
+    what: string,
+    opts: TimerOptions | Callback,
+    cb?: Callback,
+  ) {
     const realOpts = typeof opts === "function" ? {} : opts;
     const realCb = typeof opts === "function" ? opts : cb!;
 
@@ -222,7 +248,7 @@ export class Logger {
           this.stdout.write(GROUP.start(what));
         }
       },
-      reportFooter: elapsedTime => {
+      reportFooter: (elapsedTime) => {
         this.indent -= 1;
 
         if (GROUP !== null) {
@@ -232,7 +258,10 @@ export class Logger {
           }
         }
 
-        const completedMessage = elapsedTime > 200 ? `└ Completed in ${pretty(elapsedTime, Type.DURATION)}` : "└ Completed";
+        const completedMessage =
+          elapsedTime > 200
+            ? `└ Completed in ${pretty(elapsedTime, Type.DURATION)}`
+            : "└ Completed";
         this.reportInfo(null, completedMessage);
 
         this.level -= 1;
@@ -248,9 +277,17 @@ export class Logger {
     return this.startSection(sectionOps, realCb);
   }
 
-  async startTimerAsync<T>(what: string, opts: TimerOptions, cb: () => Promise<T>): Promise<T>;
+  async startTimerAsync<T>(
+    what: string,
+    opts: TimerOptions,
+    cb: () => Promise<T>,
+  ): Promise<T>;
   async startTimerAsync<T>(what: string, cb: () => Promise<T>): Promise<T>;
-  async startTimerAsync<T>(what: string, opts: TimerOptions | (() => Promise<T>), cb?: () => Promise<T>): Promise<T> {
+  async startTimerAsync<T>(
+    what: string,
+    opts: TimerOptions | (() => Promise<T>),
+    cb?: () => Promise<T>,
+  ): Promise<T> {
     const {cb: realCb, ...sectionOps} = this.startTimerImpl(what, opts, cb);
     return this.startSectionAsync(sectionOps, realCb);
   }
@@ -299,7 +336,9 @@ export class Logger {
 
   reportProgress(progressIt: ProgressIterable) {
     if (progressIt.hasProgress && progressIt.hasTitle) {
-      throw new Error(`Unimplemented: Progress bars can't have both progress and titles.`);
+      throw new Error(
+        `Unimplemented: Progress bars can't have both progress and titles.`,
+      );
     }
 
     let stopped = false;
@@ -334,7 +373,10 @@ export class Logger {
           continue;
         }
 
-        if (progressDefinition.progress === progress && progressDefinition.title === title) {
+        if (
+          progressDefinition.progress === progress &&
+          progressDefinition.title === title
+        ) {
           continue;
         }
 
@@ -378,10 +420,16 @@ export class Logger {
     }
   }
 
-  private clearProgress({delta = 0, clear = false}: {delta?: number, clear?: boolean}) {
+  private clearProgress({
+    delta = 0,
+    clear = false,
+  }: {
+    delta?: number;
+    clear?: boolean;
+  }) {
     if (this.progressStyle === null) {
-return;
-}
+      return;
+    }
 
     if (this.progress.size + delta > 0) {
       this.stdout.write(`\x1B[${this.progress.size + delta}A`);
@@ -393,14 +441,14 @@ return;
 
   private writeProgress() {
     if (this.progressTimeout !== null) {
-clearTimeout(this.progressTimeout);
-}
+      clearTimeout(this.progressTimeout);
+    }
 
     this.progressTimeout = null;
 
     if (this.progress.size === 0) {
-return;
-}
+      return;
+    }
 
     const now = Date.now();
 
@@ -416,15 +464,21 @@ return;
 
       if (typeof progress.lastScaledSize !== `undefined`) {
         const ok = this.progressStyle.chars[0].repeat(progress.lastScaledSize);
-        const ko = this.progressStyle.chars[1].repeat(this.progressMaxScaledSize! - progress.lastScaledSize);
+        const ko = this.progressStyle.chars[1].repeat(
+          this.progressMaxScaledSize! - progress.lastScaledSize,
+        );
         progressBar = ` ${ok}${ko}`;
       }
 
       const formattedName = formatName(null);
       const prefix = formattedName ? `${formattedName}: ` : ``;
-      const title = progress.definition.title ? ` ${progress.definition.title}` : ``;
+      const title = progress.definition.title
+        ? ` ${progress.definition.title}`
+        : ``;
 
-      this.stdout.write(`${pretty(`➤`, `blueBright`)} ${prefix}${spinner}${progressBar}${title}\n`);
+      this.stdout.write(
+        `${pretty(`➤`, `blueBright`)} ${prefix}${spinner}${progressBar}${title}\n`,
+      );
     }
 
     this.progressTimeout = setTimeout(() => {
@@ -432,7 +486,10 @@ return;
     }, PROGRESS_INTERVAL);
   }
 
-  private refreshProgress({delta = 0, force = false}: {delta?: number, force?: boolean} = {}) {
+  private refreshProgress({
+    delta = 0,
+    force = false,
+  }: {delta?: number; force?: boolean} = {}) {
     let needsUpdate = false;
     let needsClear = false;
 
@@ -440,9 +497,12 @@ return;
       needsUpdate = true;
     } else {
       for (const progress of this.progress.values()) {
-        const refreshedScaledSize = typeof progress.definition.progress !== `undefined`
-          ? Math.trunc(this.progressMaxScaledSize! * progress.definition.progress)
-          : undefined;
+        const refreshedScaledSize =
+          typeof progress.definition.progress !== `undefined`
+            ? Math.trunc(
+                this.progressMaxScaledSize! * progress.definition.progress,
+              )
+            : undefined;
 
         const previousScaledSize = progress.lastScaledSize;
         progress.lastScaledSize = refreshedScaledSize;
@@ -450,7 +510,10 @@ return;
         const previousTitle = progress.lastTitle;
         progress.lastTitle = progress.definition.title;
 
-        if ((refreshedScaledSize !== previousScaledSize) || (needsClear = previousTitle !== progress.definition.title)) {
+        if (
+          refreshedScaledSize !== previousScaledSize ||
+          (needsClear = previousTitle !== progress.definition.title)
+        ) {
           needsUpdate = true;
           break;
         }
@@ -467,14 +530,14 @@ return;
     let current = 0;
 
     let unlock: () => void;
-    let lock = new Promise<void>(resolve => {
+    let lock = new Promise<void>((resolve) => {
       unlock = resolve;
     });
 
     const set = (n: number) => {
       const thisUnlock = unlock;
 
-      lock = new Promise<void>(resolve => {
+      lock = new Promise<void>((resolve) => {
         unlock = resolve;
       });
 
@@ -486,14 +549,14 @@ return;
       set(current + 1);
     };
 
-    const gen = (async function * () {
+    const gen = (async function* () {
       while (current < max) {
         await lock;
         yield {
           progress: current / max,
         };
       }
-    }());
+    })();
 
     return {
       [Symbol.asyncIterator]() {
@@ -510,14 +573,14 @@ return;
     let currentTitle: string | undefined;
 
     let unlock: () => void;
-    let lock = new Promise<void>(resolve => {
+    let lock = new Promise<void>((resolve) => {
       unlock = resolve;
     });
 
     const setTitle: (title: string) => void = throttle((title: string) => {
       const thisUnlock = unlock;
 
-      lock = new Promise<void>(resolve => {
+      lock = new Promise<void>((resolve) => {
         unlock = resolve;
       });
 
@@ -525,14 +588,14 @@ return;
       thisUnlock();
     }, 1000 / TITLE_PROGRESS_FPS);
 
-    const gen = (async function * () {
+    const gen = (async function* () {
       while (true) {
         await lock;
         yield {
           title: currentTitle,
         };
       }
-    }());
+    })();
 
     return {
       [Symbol.asyncIterator]() {
@@ -544,7 +607,10 @@ return;
     };
   }
 
-  async startProgressAsync<T, P extends ProgressIterable>(progressIt: P, cb: (progressIt: P) => Promise<T>): Promise<T> {
+  async startProgressAsync<T, P extends ProgressIterable>(
+    progressIt: P,
+    cb: (progressIt: P) => Promise<T>,
+  ): Promise<T> {
     const reportedProgress = this.reportProgress(progressIt);
 
     try {
@@ -554,7 +620,10 @@ return;
     }
   }
 
-  startProgress<T, P extends ProgressIterable>(progressIt: P, cb: (progressIt: P) => T): T {
+  startProgress<T, P extends ProgressIterable>(
+    progressIt: P,
+    cb: (progressIt: P) => T,
+  ): T {
     const reportedProgress = this.reportProgress(progressIt);
 
     try {

@@ -21,9 +21,9 @@ describe("Checkbox component", () => {
     const handleChange = vi.fn();
     render(<Checkbox onChange={handleChange} />);
     const checkbox = screen.getByRole("checkbox");
-    
+
     fireEvent.click(checkbox);
-    
+
     expect(handleChange).toHaveBeenCalled();
   });
 

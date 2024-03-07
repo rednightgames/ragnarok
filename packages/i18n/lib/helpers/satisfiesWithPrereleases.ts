@@ -2,7 +2,11 @@ import semver from "semver";
 
 const satisfiesWithPrereleasesCache = new Map<string, semver.Range | null>();
 
-const satisfiesWithPrereleases = (version: string | null, range: string, loose: boolean = false) => {
+const satisfiesWithPrereleases = (
+  version: string | null,
+  range: string,
+  loose: boolean = false,
+) => {
   if (!version) {
     return false;
   }
@@ -36,14 +40,14 @@ const satisfiesWithPrereleases = (version: string | null, range: string, loose: 
     semverVersion.prerelease = [];
   }
 
-  return semverRange.set.some(comparatorSet => {
+  return semverRange.set.some((comparatorSet) => {
     for (const comparator of comparatorSet) {
       if (comparator.semver.prerelease) {
         comparator.semver.prerelease = [];
       }
     }
 
-    return comparatorSet.every(comparator => {
+    return comparatorSet.every((comparator) => {
       return comparator.test(semverVersion);
     });
   });
