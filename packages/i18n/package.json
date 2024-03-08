@@ -10,8 +10,8 @@
 		"build": "tsup",
 		"lint": "eslint lib",
 		"lint:fix": "eslint lib --fix",
-		"pretty": "prettier --check $(find . -path ./node_modules -prune -o -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx')",
-		"pretty:fix": "prettier --write $(find . -path ./node_modules -prune -o -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx')"
+    "pretty": "prettier --check $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)",
+    "pretty:fix": "prettier --write $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)"
 	},
 	"dependencies": {
 		"chalk": "^5.3.0",

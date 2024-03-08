@@ -1,3 +1,5 @@
+/* eslint-disable ts/no-unused-vars */
+
 interface Arguments {
   initialAuth?: boolean;
   store: {

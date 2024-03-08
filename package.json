@@ -12,10 +12,12 @@
     "lint:fix": "lerna run lint:fix --parallel",
     "pretty": "lerna run pretty --parallel",
     "pretty:fix": "lerna run pretty:fix --parallel",
-    "test": "lerna run test --parallel"
+    "test": "lerna run test --parallel",
+    "prepare": "husky"
   },
   "packageManager": "yarn@4.1.0",
   "devDependencies": {
+    "husky": "^9.0.11",
     "lerna": "^8.1.2",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3"
