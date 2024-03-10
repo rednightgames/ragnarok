@@ -10,8 +10,8 @@
 		"build": "tsup",
 		"lint": "eslint lib",
 		"lint:fix": "eslint lib --fix",
-    "pretty": "prettier --check $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)",
-    "pretty:fix": "prettier --write $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)"
+		"pretty": "prettier --check $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)",
+		"pretty:fix": "prettier --write $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)"
 	},
 	"dependencies": {
 		"chalk": "^5.3.0",
@@ -21,15 +21,15 @@
 		"gettext-parser": "^8.0.0",
 		"lodash": "^4.17.21",
 		"semver": "^7.6.0",
-		"ttag-cli": "^1.10.10"
+		"ttag-cli": "^1.10.11"
 	},
 	"devDependencies": {
 		"@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
 		"@types/gettext-parser": "^4.0.4",
 		"@types/lodash": "^4.14.202",
-		"eslint": "^8.56.0",
-		"terser": "^5.27.0",
+		"eslint": "^8.57.0",
+		"terser": "^5.29.1",
 		"tsup": "^8.0.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.4.2"
 	}
 }
