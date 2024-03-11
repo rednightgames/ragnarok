@@ -16,7 +16,6 @@ export const getPersistedSession = (
     return {
       UserID: parsedValue.UserID || "",
       UID: parsedValue.UID || "",
-      blob: parsedValue.blob || "",
       persistent:
         typeof parsedValue.persistent === "boolean"
           ? parsedValue.persistent

@@ -5,7 +5,6 @@ export interface PersistedSessionBlob {
 export interface PersistedSession {
   UserID: string;
   UID: string;
-  blob?: string;
   persistent: boolean;
   trusted: boolean;
   payloadVersion: 1;
