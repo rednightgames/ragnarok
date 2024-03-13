@@ -19,3 +19,48 @@ export const encodeUtf8Base64 = ifDefined((input: string) =>
 export const decodeUtf8Base64 = ifDefined((input: string) =>
   decodeUtf8(decodeBase64(input)),
 );
+
+const isString = (data: any): data is string | String => {
+  return typeof data === "string" || data instanceof String;
+};
+
+/**
+ * Convert a string to an array of 8-bit integers
+ * @param str String to convert
+ * @returns An array of 8-bit integers
+ */
+export const binaryStringToArray = (str: string) => {
+  if (!isString(str)) {
+    throw new Error(
+      "binaryStringToArray: Data must be in the form of a string",
+    );
+  }
+
+  const result = new Uint8Array(str.length);
+  for (let i = 0; i < str.length; i++) {
+    result[i] = str.charCodeAt(i);
+  }
+  return result;
+};
+
+/**
+ * Encode an array of 8-bit integers as a string
+ * @param bytes data to encode
+ * @return string-encoded bytes
+ */
+export const arrayToBinaryString = (bytes: Uint8Array) => {
+  const result = [];
+  const bs = 1 << 14;
+  const j = bytes.length;
+
+  for (let i = 0; i < j; i += bs) {
+    result.push(
+      String.fromCharCode.apply(
+        String,
+        // @ts-ignore Uint8Array treated as number[]
+        bytes.subarray(i, i + bs < j ? i + bs : j),
+      ),
+    );
+  }
+  return result.join("");
+};

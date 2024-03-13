@@ -1,4 +1,13 @@
-import {decodeBase64, encodeBase64} from "@rednight/crypto";
+import {
+  arrayToBinaryString,
+  binaryStringToArray,
+  decodeBase64,
+  encodeBase64,
+} from "@rednight/crypto";
+
+export const uint8ArrayToString = arrayToBinaryString;
+
+export const stringToUint8Array = binaryStringToArray;
 
 /**
  * Encode a binary string in the so-called base64 URL (https://tools.ietf.org/html/rfc4648#section-5)
