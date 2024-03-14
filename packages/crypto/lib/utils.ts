@@ -64,3 +64,31 @@ export const arrayToBinaryString = (bytes: Uint8Array) => {
   }
   return result.join("");
 };
+
+/**
+ * Convert a hex string to an array of 8-bit integers
+ * @param hex  A hex string to convert
+ * @returns An array of 8-bit integers
+ */
+export const hexStringToArray = (hex: string) => {
+  const result = new Uint8Array(hex.length >> 1);
+  for (let k = 0; k < result.length; k++) {
+    const i = k << 1;
+    result[k] = Number.parseInt(hex.substring(i, i + 2), 16);
+  }
+  return result;
+};
+
+/**
+ * Convert an array of 8-bit integers to a hex string
+ * @param bytes Array of 8-bit integers to convert
+ * @returns Hexadecimal representation of the array
+ */
+export const arrayToHexString = (bytes: Uint8Array) => {
+  const res = [];
+  for (let c = 0; c < bytes.length; c++) {
+    const hex = bytes[c].toString(16);
+    res.push(hex.length < 2 ? "0" + hex : hex);
+  }
+  return res.join("");
+};

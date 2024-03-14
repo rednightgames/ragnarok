@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "skipLibCheck": true,
     "types": ["vitest/globals"]
   },
   "extends": "../../tsconfig.base.json"

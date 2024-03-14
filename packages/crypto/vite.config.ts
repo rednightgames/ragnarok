@@ -12,6 +12,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    minify: "esbuild",
     lib: {
       entry: resolve(__dirname, "lib/index.ts"),
       name: "rednight-crypto",

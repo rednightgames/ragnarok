@@ -20,6 +20,9 @@
     "pretty:fix": "prettier --write $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)",
     "test": "vitest run --passWithNoTests"
   },
+  "dependencies": {
+    "@protontech/openpgp": "^5.11.1-0"
+  },
   "devDependencies": {
     "@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
     "eslint": "^8.57.0",
