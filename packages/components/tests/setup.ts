@@ -1,6 +1,8 @@
 import {cleanup} from "@testing-library/react";
-import {afterEach} from "vitest";
+import {TextEncoder, TextDecoder} from "text-encoding-utf-8";
 
-afterEach(() => {
+Object.assign(global, {TextDecoder, TextEncoder});
+
+afterEach(async () => {
   cleanup();
 });

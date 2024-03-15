@@ -3196,6 +3196,7 @@ __metadata:
     "@types/node": "npm:^20.11.28"
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
+    "@types/text-encoding-utf-8": "npm:^1.0.5"
     "@vitejs/plugin-react": "npm:^4.2.1"
     "@vitest/coverage-v8": "npm:^1.4.0"
     eslint: "npm:^8.57.0"
@@ -3207,6 +3208,7 @@ __metadata:
     react-router-dom: "npm:^6.22.3"
     sass: "npm:^1.72.0"
     storybook: "npm:^8.0.0"
+    text-encoding-utf-8: "npm:^1.0.2"
     typescript: "npm:^5.4.2"
     vite: "npm:^5.1.6"
     vite-plugin-dts: "npm:^3.7.3"
@@ -5084,6 +5086,13 @@ __metadata:
     "@types/mime": "npm:*"
     "@types/node": "npm:*"
   checksum: 10c0/811d1a2f7e74a872195e7a013bcd87a2fb1edf07eaedcb9dcfd20c1eb4bc56ad4ea0d52141c13192c91ccda7c8aeb8a530d8a7e60b9c27f5990d7e62e0fecb03
+  languageName: node
+  linkType: hard
+
+"@types/text-encoding-utf-8@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "@types/text-encoding-utf-8@npm:1.0.5"
+  checksum: 10c0/d217e3b06fd49846bc3843b33d68858e8925940d0b8bfbf2cef875debc5efab9a03a6b38a90d16c61508fd21958408a90178268e939c7f82efe8dd03afcb0d10
   languageName: node
   linkType: hard
 
@@ -15758,6 +15767,13 @@ __metadata:
     glob: "npm:^7.1.4"
     minimatch: "npm:^3.0.4"
   checksum: 10c0/019d33d81adff3f9f1bfcff18125fb2d3c65564f437d9be539270ee74b994986abb8260c7c2ce90e8f30162178b09dbbce33c6389273afac4f36069c48521f57
+  languageName: node
+  linkType: hard
+
+"text-encoding-utf-8@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "text-encoding-utf-8@npm:1.0.2"
+  checksum: 10c0/87a64b394c850e8387c2ca7fc6929a26ce97fb598f1c55cd0fdaec4b8e2c3ed6770f65b2f3309c9175ef64ac5e403c8e48b53ceeb86d2897940c5e19cc00bb99
   languageName: node
   linkType: hard
 
