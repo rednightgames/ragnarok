@@ -26,9 +26,9 @@
 	"devDependencies": {
 		"@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
 		"@types/gettext-parser": "^4.0.4",
-		"@types/lodash": "^4.14.202",
+		"@types/lodash": "^4.17.0",
 		"eslint": "^8.57.0",
-		"terser": "^5.29.1",
+		"terser": "^5.29.2",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.2"
 	}
