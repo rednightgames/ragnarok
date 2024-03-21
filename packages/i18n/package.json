@@ -3,7 +3,7 @@
 	"description": "CLI to extract/validate translations from the code",
 	"license": "MIT",
 	"author": "Rednight Inc.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"type": "module",
 	"bin": "bin/i18n.js",
 	"scripts": {
@@ -28,6 +28,7 @@
 		"@types/gettext-parser": "^4.0.4",
 		"@types/lodash": "^4.17.0",
 		"eslint": "^8.57.0",
+		"prettier": "^3.2.5",
 		"terser": "^5.29.2",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.2"

@@ -30,7 +30,7 @@ const AppLink = (
     const href = getAppHrefBundle(to, targetApp);
 
     return (
-      <a ref={ref} target="_self" {...rest} href={href}>
+      <a ref={ref} href={href} target="_self" {...rest}>
         {children}
       </a>
     );

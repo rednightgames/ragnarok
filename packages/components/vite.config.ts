@@ -30,6 +30,7 @@ export default defineConfig({
     minify: "esbuild",
     rollupOptions: {
       external: [
+        "ttag",
         "react",
         "react-is",
         "react-dom",
