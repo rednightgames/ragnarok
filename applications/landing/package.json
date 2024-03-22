@@ -1,0 +1,36 @@
+{
+  "name": "@rednight/landing",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start:dev": "vite --host",
+    "build": "tsc && vite build",
+    "lint": "eslint src",
+    "pretty": "prettier --check $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)",
+    "pretty:fix": "prettier --write $(find . -type d \\( -name 'node_modules' -o -name 'dist' \\) -prune -o \\( -type f -name '*.js' -o -name '*.ts' -o -name '*.tsx' \\) -print)",
+    "i18n:extract": "i18n extract"
+  },
+  "dependencies": {
+    "@rednight/components": "workspace:packages/components",
+    "@rednight/shared": "workspace:packages/shared",
+    "@rednight/utils": "workspace:packages/utils",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
+  },
+  "devDependencies": {
+    "@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
+    "@rednight/i18n": "workspace:packages/i18n",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.69",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "sass": "^1.72.0",
+    "terser": "^5.29.2",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.3",
+    "vite-plugin-html": "^3.2.2"
+  }
+}
