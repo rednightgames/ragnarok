@@ -18,6 +18,13 @@ export default defineConfig({
       ],
     }),
   ],
+  resolve: {
+    alias: {
+      "@components": resolve(__dirname, "./src/app/components"),
+      "@containers": resolve(__dirname, "./src/app/containers"),
+      "@pages": resolve(__dirname, "./src/pages"),
+    },
+  },
   build: {
     minify: "terser",
     sourcemap: "hidden",

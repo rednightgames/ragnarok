@@ -1,6 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "src/app/components/*"
+      ],
+      "@components": [
+        "src/app/components/index.ts"
+      ],
+      "@containers/*": [
+        "src/app/containers/*"
+      ],
+      "@containers": [
+        "src/app/containers/index.ts"
+      ],
+      "@pages": [
+        "src/pages/*"
+      ]
+    },
   },
   "extends": "../../tsconfig.base.json"
 }
