@@ -74,15 +74,15 @@ const Avatar = <E extends ElementType = typeof defaultElement>(
       size={size}
       ref={ref}
       as={as}
-      data-testid={`${dataTestId}-provider`}
+      data-testid={dataTestId && `${dataTestId}-provider`}
     >
       <AvatarImage
         alt={fallback}
         size={size}
         src={src}
-        data-testid={`${dataTestId}-image`}
+        data-testid={dataTestId && `${dataTestId}-image`}
       />
-      <AvatarFallback data-testid={`${dataTestId}-fallback`}>
+      <AvatarFallback data-testid={dataTestId && `${dataTestId}-fallback`}>
         {fallback?.charAt(0)}
       </AvatarFallback>
     </AvatarProvider>

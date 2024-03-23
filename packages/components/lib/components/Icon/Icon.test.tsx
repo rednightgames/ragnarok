@@ -13,7 +13,7 @@ vi.mock("./icon-sprite.svg", () => ({
 
 describe("Icon component", () => {
   test("renders the correct icon", () => {
-    render(<Icon name="account" />);
+    render(<Icon name="account" data-testid="icon" />);
     const svgElement = screen.getByTestId("icon");
 
     expect(svgElement).toBeInTheDocument();
@@ -22,7 +22,9 @@ describe("Icon component", () => {
   });
 
   test("applies additional classes", () => {
-    render(<Icon name="checkmark" className="custom-class" />);
+    render(
+      <Icon name="checkmark" className="custom-class" data-testid="icon" />,
+    );
     const svgElement = screen.getByTestId("icon");
 
     expect(svgElement).toHaveClass("icon-16p");
@@ -30,7 +32,7 @@ describe("Icon component", () => {
   });
 
   test("renders with alt text", () => {
-    render(<Icon name="minus" alt="Minus Icon" />);
+    render(<Icon name="minus" alt="Minus Icon" data-testid="icon" />);
     const spanElement = screen.getByText("Minus Icon");
 
     expect(spanElement).toBeInTheDocument();
@@ -38,7 +40,7 @@ describe("Icon component", () => {
   });
 
   test("applies color and rotation", () => {
-    render(<Icon name="account" color="red" rotate={45} />);
+    render(<Icon name="account" color="red" rotate={45} data-testid="icon" />);
     const svgElement = screen.getByTestId("icon");
 
     expect(svgElement).toHaveStyle("color: rgb(255, 0, 0)");

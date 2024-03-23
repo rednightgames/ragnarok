@@ -1,6 +1,7 @@
 import chalk, {Chalk, Options} from "chalk";
 import CI from "ci-info";
 
+import {ReportError} from "./error";
 import {MessageName} from "./messageNames";
 
 export const stringifyMessageName = (code: MessageName | number): string => {
@@ -164,4 +165,8 @@ export const formatName = (name: MessageName | null) => {
     return pretty(label, `grey`);
   }
   return label;
+};
+
+export const isReportError = (error: Error): error is ReportError => {
+  return typeof (error as ReportError).reportCode !== `undefined`;
 };

@@ -4,7 +4,7 @@ import {existsSync} from "fs";
 import {promisify} from "util";
 
 import {allSettledSafe} from "../helpers";
-import {Logger, MessageName} from "../logger";
+import {Logger, MessageName, ReportError} from "../logger";
 import {BaseCommand} from "./base";
 
 const execAsync = promisify(exec);
@@ -103,47 +103,6 @@ export default class ExtractCommand extends BaseCommand {
       return "dist";
     };
 
-    const packingBundle = async () => {
-      await opts.logger.startProgressAsync(
-        Logger.progressViaTitle(),
-        async (progress) => {
-          const getFileList = async (dist: string): Promise<string[]> => {
-            const fileList = await execAsync(
-              `find ${dist}/* -type f -name "*.map"`,
-            );
-            return fileList.stdout.trim().split("\n");
-          };
-          const getBundle = async (file: string) => {
-            progress.setTitle(file);
-            await execAsync(
-              `${sourcemapperBinary} --input ${file} --output 'i18n-js'`,
-            );
-          };
-
-          const queue: Promise<unknown>[] = [];
-
-          let files = await getFileList(dist);
-
-          for (const file of files) {
-            queue.push(Promise.resolve().then(() => getBundle(file)));
-          }
-
-          while (queue.length > 0) {
-            const copy = [...queue];
-            queue.length = 0;
-            await allSettledSafe(copy);
-          }
-        },
-      );
-    };
-
-    const linkingTemplate = async () => {
-      await execAsync(
-        `cd i18n-js && ../../../node_modules/.bin/ttag extract . -o "../template.pot"`,
-      );
-      await execAsync(`rm -rf "./i18n-js"`);
-    };
-
     await opts.logger.startTimerAsync(
       "Getting SourceMapper step",
       {
@@ -159,7 +118,7 @@ export default class ExtractCommand extends BaseCommand {
     }
 
     await opts.logger.startTimerAsync(
-      "Bandling step",
+      "Bundling step",
       {
         skipIfEmpty: false,
       },
@@ -174,7 +133,55 @@ export default class ExtractCommand extends BaseCommand {
         skipIfEmpty: false,
       },
       async () => {
-        await packingBundle();
+        const getFileList = async (dist: string): Promise<string[]> => {
+          let files: string[] = [];
+          try {
+            const fileList = await execAsync(
+              `find ${dist}/* -type f -name "*.map"`,
+            );
+
+            files = fileList.stdout
+              .trim()
+              .split("\n")
+              .filter((value) => value);
+          } catch (err) {}
+
+          return files;
+        };
+
+        await opts.logger.startProgressAsync(
+          Logger.progressViaTitle(),
+          async (progress) => {
+            const getBundle = async (file: string) => {
+              progress.setTitle(file);
+              //opts.logger.reportInfo(null, file);
+              await execAsync(
+                `${sourcemapperBinary} --input "${file}" --output 'i18n-js'`,
+              );
+            };
+
+            const queue: Promise<unknown>[] = [];
+
+            let files = await getFileList(dist);
+
+            if (files.length === 0) {
+              throw new ReportError(
+                MessageName.ERROR,
+                "Windows platform is not supported",
+              );
+            }
+
+            for (const file of files) {
+              queue.push(Promise.resolve().then(() => getBundle(file)));
+            }
+
+            while (queue.length > 0) {
+              const copy = [...queue];
+              queue.length = 0;
+              await allSettledSafe(copy);
+            }
+          },
+        );
       },
     );
 
@@ -184,7 +191,14 @@ export default class ExtractCommand extends BaseCommand {
         skipIfEmpty: false,
       },
       async () => {
-        await linkingTemplate();
+        try {
+          await execAsync(
+            `cd i18n-js && ../../../node_modules/.bin/ttag extract . -o "../template.pot"`,
+          );
+          await execAsync(`rm -rf "./i18n-js"`);
+        } catch (err) {
+          opts.logger.reportExceptionOnce(err as Error);
+        }
       },
     );
   }

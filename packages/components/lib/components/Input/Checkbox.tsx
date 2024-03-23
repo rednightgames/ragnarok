@@ -33,6 +33,10 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
     event: React.MouseEvent<HTMLLabelElement, MouseEvent>,
   ) => void;
   labelProps?: LabelHTMLAttributes<HTMLLabelElement>;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
 const Checkbox = (
@@ -50,6 +54,7 @@ const Checkbox = (
     children,
     labelOnClick,
     labelProps,
+    "data-testid": dataTestId,
     ...rest
   }: CheckboxProps,
   ref: Ref<HTMLInputElement>,
@@ -74,7 +79,7 @@ const Checkbox = (
       )}
       title={title}
       onClick={labelOnClick}
-      data-testid="checkbox-label"
+      data-testid={dataTestId && `${dataTestId}-label`}
     >
       <input
         ref={combinedRef}
@@ -83,13 +88,13 @@ const Checkbox = (
         type="checkbox"
         className="checkbox-input"
         checked={checked}
-        data-testid="checkbox-input"
+        data-testid={dataTestId && `${dataTestId}-input`}
         {...rest}
       />
       <span
         className={clsx("checkbox-fakecheck", children ? "mr-2" : "")}
         style={{borderColor, background: backgroundColor, color}}
-        data-testid="checkbox-span"
+        data-testid={dataTestId && `${dataTestId}-span`}
       >
         {indeterminate === false ? (
           <Icon

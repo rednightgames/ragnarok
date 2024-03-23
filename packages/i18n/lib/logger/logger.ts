@@ -4,10 +4,12 @@ import CI from "ci-info";
 import throttle from "lodash/throttle";
 import {Writable} from "stream";
 
+import {ReportError} from "./error";
 import {
   applyStyle,
   formatCode,
   formatName,
+  isReportError,
   pretty,
   Style,
   Type,
@@ -74,6 +76,10 @@ const GROUP = (() => {
 })();
 
 export class Logger {
+  private reportedInfos: Set<any> = new Set();
+  private reportedWarnings: Set<any> = new Set();
+  private reportedErrors: Set<any> = new Set();
+
   private includeFooter: boolean;
   private stdout: Writable;
   private uncommitted: Set<{
@@ -630,6 +636,63 @@ export class Logger {
       return cb(progressIt);
     } finally {
       reportedProgress.stop();
+    }
+  }
+
+  reportInfoOnce(
+    name: MessageName,
+    text: string,
+    opts?: {key?: any; reportExtra?: (logger: Logger) => void},
+  ) {
+    const key = opts && opts.key ? opts.key : text;
+
+    if (!this.reportedInfos.has(key)) {
+      this.reportedInfos.add(key);
+      this.reportInfo(name, text);
+
+      opts?.reportExtra?.(this);
+    }
+  }
+
+  reportWarningOnce(
+    name: MessageName,
+    text: string,
+    opts?: {key?: any; reportExtra?: (logger: Logger) => void},
+  ) {
+    const key = opts && opts.key ? opts.key : text;
+
+    if (!this.reportedWarnings.has(key)) {
+      this.reportedWarnings.add(key);
+      this.reportWarning(name, text);
+
+      opts?.reportExtra?.(this);
+    }
+  }
+
+  reportErrorOnce(
+    name: MessageName,
+    text: string,
+    opts?: {key?: any; reportExtra?: (logger: Logger) => void},
+  ) {
+    const key = opts && opts.key ? opts.key : text;
+
+    if (!this.reportedErrors.has(key)) {
+      this.reportedErrors.add(key);
+      this.reportError(name, text);
+
+      opts?.reportExtra?.(this);
+    }
+  }
+
+  reportExceptionOnce(error: Error | ReportError) {
+    if (isReportError(error)) {
+      this.reportErrorOnce(error.reportCode, error.message, {key: error});
+    } else {
+      this.reportErrorOnce(
+        MessageName.EXCEPTION,
+        error.stack || error.message,
+        {key: error},
+      );
     }
   }
 

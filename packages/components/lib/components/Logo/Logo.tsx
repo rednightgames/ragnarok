@@ -19,6 +19,10 @@ const Sublogos = {
 
 interface LogoOwnProps {
   sublogo: LogoSublogo;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
 export type LogoProps<E extends ElementType> = PolymorphicPropsWithRef<
@@ -29,7 +33,12 @@ export type LogoProps<E extends ElementType> = PolymorphicPropsWithRef<
 const defaultElement = "div";
 
 const Logo = <E extends ElementType = typeof defaultElement>(
-  {as, sublogo = "default", ...restProps}: LogoProps<E>,
+  {
+    as,
+    sublogo = "default",
+    "data-testid": dataTestId,
+    ...restProps
+  }: LogoProps<E>,
   ref: Ref<Element>,
 ) => {
   const Element: ElementType = as || defaultElement;
@@ -44,7 +53,7 @@ const Logo = <E extends ElementType = typeof defaultElement>(
           height="20"
           viewBox="0 0 1 20"
           fill="none"
-          data-testid=""
+          data-testid={dataTestId}
           xmlns="http://www.w3.org/2000/svg"
         >
           <rect width="1" height="20" fill="white" />

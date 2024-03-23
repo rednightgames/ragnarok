@@ -10,9 +10,18 @@ export interface CircleLoaderProps extends ComponentPropsWithoutRef<"svg"> {
    * Controls how large the loader should be.
    */
   size?: CircleLoaderSize;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
-const CircleLoader = ({size, className, ...rest}: CircleLoaderProps) => {
+const CircleLoader = ({
+  size,
+  className,
+  "data-testid": dataTestId,
+  ...rest
+}: CircleLoaderProps) => {
   const uid = generateUID("circle_loader");
 
   return (
@@ -20,7 +29,7 @@ const CircleLoader = ({size, className, ...rest}: CircleLoaderProps) => {
       xmlns="http://www.w3.org/2000/svg"
       className={clsx("circle-loader", size && `is-${size}`, className)}
       viewBox="0 0 16 16"
-      data-testid="circle_loader"
+      data-testid={dataTestId}
       {...rest}
     >
       <defs>

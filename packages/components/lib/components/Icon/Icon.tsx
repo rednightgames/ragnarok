@@ -52,6 +52,10 @@ export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
    * Applied as inline css "color" attribute on the svg element.
    */
   color?: string;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
 const Icon = forwardRef<SVGSVGElement, IconProps>(
@@ -65,6 +69,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>(
       viewBox = "0 0 16 16",
       size = 16,
       rotate = 0,
+      "data-testid": dataTestId,
       ...rest
     },
     ref,
@@ -84,7 +89,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>(
           focusable="false"
           ref={ref}
           aria-hidden="true"
-          data-testid="icon"
+          data-testid={dataTestId}
           {...rest}
         >
           {title ? <title>{title}</title> : null}

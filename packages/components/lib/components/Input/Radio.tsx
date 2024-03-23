@@ -10,6 +10,10 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
    * Puts the radio in a disabled state.
    */
   disabled?: boolean;
+  /**
+   * Locator for e2e tests.
+   */
+  "data-testid"?: string;
 }
 
 const Radio = ({
@@ -18,6 +22,7 @@ const Radio = ({
   className = "inline-flex",
   name,
   disabled = false,
+  "data-testid": dataTestId,
   ...rest
 }: RadioProps) => {
   return (
@@ -28,7 +33,7 @@ const Radio = ({
         disabled && "opacity-50 no-pointer-events",
         className,
       ])}
-      data-testid="radio-label"
+      data-testid={dataTestId && `${dataTestId}-label`}
     >
       <input
         id={id}
@@ -36,12 +41,12 @@ const Radio = ({
         className="radio"
         name={name}
         disabled={disabled}
-        data-testid="radio-input"
+        data-testid={dataTestId && `${dataTestId}-input`}
         {...rest}
       />
       <span
         className={clsx("radio-fakeradio shrink-0", children ? "mr-2" : "")}
-        data-testid="radio-span"
+        data-testid={dataTestId && `${dataTestId}-span`}
       />
       {children}
     </label>

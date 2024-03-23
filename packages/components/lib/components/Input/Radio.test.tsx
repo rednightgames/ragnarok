@@ -19,7 +19,12 @@ describe("Radio component tests", () => {
 
   it("applies custom class correctly", () => {
     render(
-      <Radio id="radio" name="radioName" className="custom-class">
+      <Radio
+        id="radio"
+        name="radioName"
+        className="custom-class"
+        data-testid="radio"
+      >
         Radio Label
       </Radio>,
     );
@@ -30,7 +35,7 @@ describe("Radio component tests", () => {
 
   it("handles disabled state correctly", () => {
     render(
-      <Radio id="radioId" name="radioName" disabled>
+      <Radio id="radioId" name="radioName" disabled data-testid="radio">
         Radio Label
       </Radio>,
     );
@@ -43,7 +48,12 @@ describe("Radio component tests", () => {
     const handleChange = vi.fn();
 
     render(
-      <Radio id="radioId" name="radioName" onChange={handleChange}>
+      <Radio
+        id="radioId"
+        name="radioName"
+        onChange={handleChange}
+        data-testid="radio"
+      >
         Radio Label
       </Radio>,
     );
