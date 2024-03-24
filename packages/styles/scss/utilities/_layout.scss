@@ -34,6 +34,7 @@
 .clear {
   clear: both;
 }
+
 @if $use-clearleft-right==true {
   .clear-left {
     clear: inline-start;

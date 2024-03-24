@@ -15,13 +15,13 @@ $queries: (
 /// @return {String} Stacked classes with responsive prefixes
 
 @function stack-classenames($classnames, $prefix) {
-  $classstack: '';
+  $classstack: "";
   @each $classname in $classnames {
     // Remove dot (.) if there is one
-    $classname: if(string.slice($classname, 1, 1) == '.', string.slice($classname, 2, -1), $classname);
+    $classname: if(string.slice($classname, 1, 1) == ".", string.slice($classname, 2, -1), $classname);
 
     // Stack classe with dot, comma and responsive prefix
-    $classstack: if($classstack == '', '.' + $prefix + $classname, $classstack + ', .' + $prefix + $classname);
+    $classstack: if($classstack == "", "." + $prefix + $classname, $classstack + ", ." + $prefix + $classname);
   }
   @return $classstack;
 }
