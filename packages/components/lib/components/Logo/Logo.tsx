@@ -44,7 +44,7 @@ const Logo = <E extends ElementType = typeof defaultElement>(
   const Element: ElementType = as || defaultElement;
 
   return (
-    <Element className="logo" ref={ref} data-testid="logo" {...restProps}>
+    <Element className="logo" ref={ref} data-testid={dataTestId} {...restProps}>
       <img src={redEagle} alt="Rednight" />
 
       {sublogo !== "default" && (
@@ -53,7 +53,6 @@ const Logo = <E extends ElementType = typeof defaultElement>(
           height="20"
           viewBox="0 0 1 20"
           fill="none"
-          data-testid={dataTestId}
           xmlns="http://www.w3.org/2000/svg"
         >
           <rect width="1" height="20" fill="white" />

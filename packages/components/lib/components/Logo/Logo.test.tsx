@@ -6,22 +6,24 @@ import Logo from "./Logo";
 
 describe("Logo Component", () => {
   it("renders with default sublogo", () => {
-    const {getByTestId} = render(<Logo />);
+    const {getByTestId} = render(<Logo data-testid="logo" />);
     expect(getByTestId("logo")).toBeInTheDocument();
   });
 
   it("renders with account sublogo", () => {
-    const {getByTestId} = render(<Logo sublogo="account" />);
+    const {getByTestId} = render(<Logo sublogo="account" data-testid="logo" />);
     expect(getByTestId("logo")).toBeInTheDocument();
   });
 
   it("renders with custom element", () => {
-    const {getByTestId} = render(<Logo as="span" />);
+    const {getByTestId} = render(<Logo as="span" data-testid="logo" />);
     expect(getByTestId("logo")).toBeInTheDocument();
   });
 
   it("renders with custom class", () => {
-    const {getByTestId} = render(<Logo className="custom-class" />);
+    const {getByTestId} = render(
+      <Logo className="custom-class" data-testid="logo" />,
+    );
     expect(getByTestId("logo")).toHaveClass("custom-class");
   });
 });
