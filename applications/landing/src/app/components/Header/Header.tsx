@@ -15,16 +15,40 @@ const Header = ({...restProps}: HeaderProps) => {
           <Logo />
         </AppLink>
         <div className="links">
-          <Button shape="ghost" to="/about" toApp={APPS.LANDING} as={AppLink}>
+          <Button
+            shape="ghost"
+            to="/about"
+            toApp={APPS.LANDING}
+            as={AppLink}
+            tabIndex="0"
+          >
             {c("Header").t`About`}
           </Button>
-          <Button shape="ghost" to="/premium" toApp={APPS.LANDING} as={AppLink}>
+          <Button
+            shape="ghost"
+            to="/premium"
+            toApp={APPS.LANDING}
+            as={AppLink}
+            tabIndex="0"
+          >
             {c("Header").t`Premium`}
           </Button>
-          <Button shape="ghost" to="/safety" toApp={APPS.LANDING} as={AppLink}>
+          <Button
+            shape="ghost"
+            to="/safety"
+            toApp={APPS.LANDING}
+            as={AppLink}
+            tabIndex="0"
+          >
             {c("Header").t`Safety`}
           </Button>
-          <Button shape="ghost" to="/support" toApp={APPS.LANDING} as={AppLink}>
+          <Button
+            shape="ghost"
+            to="/support"
+            toApp={APPS.LANDING}
+            as={AppLink}
+            tabIndex="0"
+          >
             {c("Header").t`Support`}
           </Button>
         </div>

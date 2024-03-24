@@ -1,13 +1,15 @@
+@import "@rednight/styles/scss/rednight-landing";
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  max-width: 1280px;
+  padding: 0 rem(24);
+  max-width: rem(1280);
 }
 
 .links {
-  @media (max-width: 600px) {
+  @media (max-width: rem(600)) {
     display: none;
   }
 }
@@ -15,5 +17,5 @@
 .section {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: rem(32);
 }
