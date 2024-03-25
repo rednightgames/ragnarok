@@ -52,7 +52,7 @@
     "@testing-library/react": "^14.2.2",
     "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20.11.30",
-    "@types/react": "^18.2.69",
+    "@types/react": "^18.2.70",
     "@types/react-dom": "^18.2.22",
     "@types/text-encoding-utf-8": "^1.0.5",
     "@vitejs/plugin-react": "^4.2.1",
@@ -64,9 +64,9 @@
     "storybook": "^8.0.4",
     "text-encoding-utf-8": "^1.0.2",
     "typescript": "^5.4.3",
-    "vite": "^5.2.3",
+    "vite": "^5.2.6",
     "vite-plugin-dts": "^3.7.3",
-    "vite-plugin-lib-inject-css": "^2.0.0",
+    "vite-plugin-lib-inject-css": "^2.0.1",
     "vitest": "^1.4.0"
   }
 }

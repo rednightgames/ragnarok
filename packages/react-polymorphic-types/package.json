@@ -23,11 +23,11 @@
   },
   "devDependencies": {
     "@rednight/eslint-config-rednight": "workspace:packages/eslint-config-rednight",
-    "@types/react": "^18.2.69",
+    "@types/react": "^18.2.70",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3",
-    "vite": "^5.2.3",
+    "vite": "^5.2.6",
     "vite-plugin-dts": "^3.7.3"
   },
   "peerDependencies": {
